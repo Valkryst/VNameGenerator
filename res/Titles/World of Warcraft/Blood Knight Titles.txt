@@ -1,0 +1,13 @@
+Master
+Lord
+Lady
+Knight-Lord
+Champion
+Blood Knight
+Blood Lord
+Captain
+Commander
+Initiate
+Adept
+Knight
+Master

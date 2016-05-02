@@ -1,0 +1,30 @@
+Fleet Admiral
+Admiral
+Vice Admiral
+Rear Admiral
+Commodore
+Captain
+Commander
+Lieutenant Commander
+Lieutenant
+Lieutenant Junior Grade
+Ensign
+Cadet
+Cadet 1st Class
+Cadet 2nd Class
+Cadet 3rd Class
+Cadet 4th Class
+Master Chief Petty Officer
+Senior Chief Petty Officer
+Chief Petty Officer
+Petty Officer First Class
+Petty Officer Second Class
+Petty Officer Third Class
+Crewman First Class
+Crewman Second Class
+Crewman Third Class
+Recruit
+Fleet Captain
+Deputy Director
+Colonel
+Corporal

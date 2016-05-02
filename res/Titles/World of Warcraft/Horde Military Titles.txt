@@ -1,0 +1,14 @@
+High Warlord
+Warlord
+General
+Lieutenant General
+Champion
+Centurion
+Legionnaire
+Blood Guard
+Stone Guard
+First Sergeant
+Senior Sergeant
+Sergeant
+Grunt
+Scout
