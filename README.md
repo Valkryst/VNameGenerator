@@ -19,7 +19,7 @@ Use this code however you wish. Modifications, improvements, additional lists of
 11. Click *Module Dependency...*.
 12. Select *VNameGenerator*.
 
-You can now use the VNameGeneratoe in your project.
+You can now use the VNameGenerator in your project.
 
 ---
 
