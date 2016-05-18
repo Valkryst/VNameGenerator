@@ -54,4 +54,4 @@ An example of how this is used can be found within the */test/com/valkryst/gener
 Names are generated using a computed table of probabilities to determine which character follows the previous two
 characters.
 
-You can learn more about Markov Chains [here[(https://en.wikipedia.org/wiki/Markov_chain).
+You can learn more about Markov Chains [here](https://en.wikipedia.org/wiki/Markov_chain).
