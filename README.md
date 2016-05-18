@@ -55,3 +55,85 @@ Names are generated using a computed table of probabilities to determine which c
 characters.
 
 You can learn more about Markov Chains [here](https://en.wikipedia.org/wiki/Markov_chain).
+
+---
+
+## Combinatorial Generator Test Output:
+    Ggis Yamadral
+    Jalasun Urkest
+    Obdl Kloraerg
+    Bofnmar Armabadur
+    Theobl Buldud
+    Rafdan Azalthec
+    Taldhudyr Garkapal
+    Yrlim Thranduum
+    Thauk Klorfal
+    Falold Azdul
+    Dwl Tudal
+    Kaggratbk Gahad
+    Droimfr Moramron
+    Dogdtvo Lazafal
+    Delnndre Darmek
+    Fakas Lazaron
+    Rtdo Vonbduum
+    Baalak Magamak
+    Anamic Theivok
+    Bazkdrirr Ruknamzak
+    Bicaim Palakbal
+    Gnlofr Fadan
+    Klobyr Argdal
+    Ulturt Drunaald
+    Fulhor Vonbal
+    Vofagh Gursten
+    Delnnhor Kazaald
+    Bazkral Raondal
+
+## Consonant Vowel Generator Test Output:
+    Youyst
+    Oseito
+    Ahaont
+    Eisoes
+    Iitowa
+    Owaiea
+    Ehiere
+    Engiha
+    Oalaha
+    Ahiied
+
+## Grammer Name Generator Test Output:
+    Nalor
+    Naror
+    Khalo
+    Dalor
+    Noror
+    Falor
+    Naloi
+    Naroi
+    Loror
+    Faror
+
+## Markov Name Generator Test Output:
+    Ìneamhì
+    Ibhliùs
+    Ibhia
+    Iònansa
+    Blamhìn
+    Ùsaìdei
+    Dhalagh
+    Lìonnua
+    Rgàilil
+    Achalai
+    Imeanna
+    Athansa
+    Ìdhalai
+    Tistìne
+    Muirigh
+    Orighri
+    Seònana
+    Ghdeitl
+    Hlidhal
+    Àrlamin
+    Leigior
+    Blaghna
+
+---
