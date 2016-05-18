@@ -42,7 +42,7 @@ Names are generated using a set of beginnings, optional set of middles, and a se
 Names are generated using a set of consonants and vowels. A name begins with a vowel which is followed by a consonant
 which is followed by a vowel... and so on, until the name is generated.
 
-### Contest Free Grammer:
+### Context Free Grammer:
 Names are generated using a very crude context free grammer method. 
 
 You can learn more about CFGs [here]
