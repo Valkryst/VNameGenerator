@@ -42,8 +42,8 @@ Names are generated using a set of beginnings, optional set of middles, and a se
 Names are generated using a set of consonants and vowels. A name begins with a vowel which is followed by a consonant
 which is followed by a vowel... and so on, until the name is generated.
 
-### Context Free Grammer:
-Names are generated using a very crude context free grammer method. 
+### Context Free Grammar:
+Names are generated using a very crude context free grammar method. 
 
 You can learn more about CFGs [here]
 (http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
@@ -100,7 +100,7 @@ You can learn more about Markov Chains [here](https://en.wikipedia.org/wiki/Mark
     Oalaha
     Ahiied
 
-## Grammer Name Generator Test Output:
+## Grammar Name Generator Test Output:
     Nalor
     Naror
     Khalo
