@@ -10,8 +10,6 @@ public class GrammarNameGeneratorTest {
     @Test
     public void generateName() {
         final List<String> rules = new ArrayList<>();
-        rules.add("1 2 3 4 5 6");
-        rules.add("1 2 3 4 5 6");
 
         // Balin, Bifur, Bofur, Bombur, Borin
         // Dain, Dis, Dori, Dwalin, Farin, Fili
