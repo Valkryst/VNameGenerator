@@ -5,9 +5,34 @@ import com.valkryst.builder.MarkovNameGeneratorBuilder;
 import java.util.*;
 
 public class MarkovNameGenerator {
-    private ArrayList<String> sequences = new ArrayList<>();
+    /**
+     * The List containing all two-character combinations found
+     * in the training names.
+     */
+    private List<String> sequences = new ArrayList<>();
+    /**
+     * The HashMap containing the probability of any character
+     * to follow any two previous characters.
+     *
+     * Ex:
+     *      aa, <a, 1>
+     *      aa, <b, 2>
+     *      aa, <c, 3>
+     *
+     *      With the three entries above, we can see that the
+     *      character 'c' is most-likely to follow the characters
+     *      "aa" with 'b' being the second most-likely, and 'a'
+     *      being the least likely.
+     */
     private HashMap<String, HashMap<String, Integer>> sequenceProbabilities = new HashMap<>();
 
+    /**
+     * Constructs a new MarkovNameGenerator with the
+     * specified builder.
+     *
+     * @param builder
+     *         The builder to retrieve the training names from.
+     */
     public MarkovNameGenerator(final MarkovNameGeneratorBuilder builder) {
         builder.getTrainingNames()
                .stream()
