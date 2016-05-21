@@ -14,7 +14,7 @@ public class MarkovNameGeneratorTest {
             final Random random = new Random(System.currentTimeMillis());
 
             final MarkovNameGeneratorBuilder builder = new MarkovNameGeneratorBuilder();
-            builder.setTrainingNames(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Scottish_Gaelic\\Human_Scottish_Gaelic_Female.txt"));
+            builder.setTrainingNames(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Human\\Viking\\Human_Viking_Male.txt"));
 
             final MarkovNameGenerator nameGenerator = builder.build();
 
