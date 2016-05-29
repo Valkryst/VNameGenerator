@@ -1,6 +1,7 @@
 package com.valkryst.builder;
 
 import com.valkryst.generator.CombinatorialNameGenerator;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,11 +13,11 @@ import java.util.List;
 
 public class CombinatorialNameGeneratorBuilder {
     /** The List containing all loaded name-beginnings. */
-    private List<String> beginnings;
+    @Getter private List<String> beginnings;
     /** The List containing all loaded name-middles. */
-    private List<String> middles;
+    @Getter private List<String> middles;
     /** The List containing all loaded name-endings. */
-    private List<String> endings;
+    @Getter private List<String> endings;
 
     /**
      * Uses the builder to construct a new CombinatorialNameGenerator.
@@ -79,21 +80,6 @@ public class CombinatorialNameGeneratorBuilder {
         if(endings.size() == 0) {
             throw new IllegalStateException("The list of endings is empty.");
         }
-    }
-
-    /** @return The List containing all loaded name-beginnings. */
-    public List<String> getBeginnings() {
-        return beginnings;
-    }
-
-    /** @return The List containing all loaded name-middles. */
-    public List<String> getMiddles() {
-        return middles;
-    }
-
-    /** @return The List containing all loaded name-endings. */
-    public List<String> getEndings() {
-        return endings;
     }
 
     /**

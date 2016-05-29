@@ -1,6 +1,7 @@
 package com.valkryst.builder;
 
 import com.valkryst.generator.MarkovNameGenerator;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class MarkovNameGeneratorBuilder {
     /** The list containing all names to train the Markov Chain with. */
-    private List<String> trainingNames;
+    @Getter private List<String> trainingNames;
 
     /**
      * Uses the builder to construct a new MarkovNameGenerator.
@@ -49,11 +50,6 @@ public class MarkovNameGeneratorBuilder {
         if(trainingNames.size() == 0) {
             throw new IllegalStateException("The list of training names is empty.");
         }
-    }
-
-    /** @return The list containing all names to train the Markov Chain with. */
-    public List<String> getTrainingNames() {
-        return trainingNames;
     }
 
     /**

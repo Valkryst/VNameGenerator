@@ -1,6 +1,7 @@
 package com.valkryst.builder;
 
 import com.valkryst.generator.ConsonantVowelNameGenerator;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,9 +13,9 @@ import java.util.List;
 
 public class ConsonantVowelNameGeneratorBuilder {
     /** The array containing all loaded consonants. */
-    private List<String> consonants = new ArrayList<>();
+    @Getter private List<String> consonants = new ArrayList<>();
     /** The array containing all loaded vowels. */
-    private List<String> vowels = new ArrayList<>();
+    @Getter private List<String> vowels = new ArrayList<>();
 
     /**
      * Uses the builder to construct a new ConsonantVowelNameGenerator.
@@ -59,16 +60,6 @@ public class ConsonantVowelNameGeneratorBuilder {
         if(vowels.size() == 0) {
             throw new IllegalStateException("The list of vowels is empty.");
         }
-    }
-
-    /** @return The List containing all loaded consonants. */
-    public List<String> getConsonants() {
-        return consonants;
-    }
-
-    /** @return The List containing all loaded vowels. */
-    public List<String> getVowels() {
-        return vowels;
     }
 
     /**
