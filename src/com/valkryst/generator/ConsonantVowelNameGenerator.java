@@ -30,7 +30,7 @@ public class ConsonantVowelNameGenerator {
      * Generates a name of at-least the specified length
      * as a string of randomized consonants and vowels.
      *
-     * The string begins with a consonants, then a vowel,
+     * The string begins with a consonant, then a vowel,
      * then a consonant, then a vowel, etc... until the
      * specified length is reached or exceeded.
      *
