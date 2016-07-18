@@ -35,7 +35,6 @@ public class MarkovNameGenerator {
      */
     public MarkovNameGenerator(final MarkovNameGeneratorBuilder builder) {
         builder.getTrainingNames()
-               .stream()
                .forEach(this::acquireProbabilities);
     }
 
