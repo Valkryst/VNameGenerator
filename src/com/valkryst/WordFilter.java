@@ -44,6 +44,6 @@ public class WordFilter {
      *         The string to remove.
      */
     public void removeDisallowedString(final String string) {
-        disallowedStrings.remove(string);
+        disallowedStrings.remove(string.toLowerCase());
     }
 }
