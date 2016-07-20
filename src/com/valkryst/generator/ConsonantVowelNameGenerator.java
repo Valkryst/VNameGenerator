@@ -1,10 +1,11 @@
 package com.valkryst.generator;
 
+import com.valkryst.NameGenerator;
 import com.valkryst.builder.ConsonantVowelNameGeneratorBuilder;
 
-import java.util.Random;
+import java.util.function.IntUnaryOperator;
 
-public class ConsonantVowelNameGenerator {
+public final class ConsonantVowelNameGenerator implements NameGenerator {
     /** The array containing all loaded consonants. */
     private final String[] consonants;
     /** The array containing all loaded vowels. */
@@ -34,17 +35,18 @@ public class ConsonantVowelNameGenerator {
      * then a consonant, then a vowel, etc... until the
      * specified length is reached or exceeded.
      *
-     * @param random
-     *         The instance of Random to use when
-     *         necessary.
+     * @param randomInRange
+     *         A function that returns an arbitrary
+     *         number in the range [0, param)
      *
      * @param length
-     *         The length of the name to generate.
+     *         The length of the name to generateName.
      *
      * @return
      *         The generated name.
      */
-    public String generateName(final Random random, final int length) {
+    @Override
+    public String generateName(final IntUnaryOperator randomInRange, final int length) {
         if(length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -54,10 +56,10 @@ public class ConsonantVowelNameGenerator {
 
         while(sb.length() < length) {
             if(addConsonant) {
-                int randomIndex = random.nextInt(consonants.length);
+                int randomIndex = randomInRange.applyAsInt(consonants.length);
                 sb.append(consonants[randomIndex]);
             } else {
-                int randomIndex = random.nextInt(vowels.length);
+                int randomIndex = randomInRange.applyAsInt(vowels.length);
                 sb.append(vowels[randomIndex]);
             }
 
