@@ -153,8 +153,7 @@ public final class GrammarNameGenerator implements NameGenerator{
             }
 
             if(sb.length() < length) {
-                sb.setLength(0);
-                sb.append(startingSymbol);
+                return "LENGTH_TOO_LONG-UNABLE_TO_GENERATE";
             }
         }
 
