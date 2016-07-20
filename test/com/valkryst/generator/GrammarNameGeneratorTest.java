@@ -5,12 +5,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.IntUnaryOperator;
 
 public class GrammarNameGeneratorTest {
-    @Test
-    public void generateName() {
-        final List<String> rules = new ArrayList<>();
+    private static final List<String> RULES = new ArrayList<>();
 
+    static {
         // Balin, Bifur, Bofur, Bombur, Borin
         // Dain, Dis, Dori, Dwalin, Farin, Fili
         // Floi, Frar, Frerin, Fror, Fundin, Gaiml
@@ -19,38 +19,71 @@ public class GrammarNameGeneratorTest {
         // Nori, Oin, Ori, Telchar, Thorin, Thrain
         // Thror,
 
-        rules.add("S B D F G I K L M N O T");
-        rules.add("A a aL aI aR");
-        rules.add("B b bA bI bO");
-        rules.add("C c");
-        rules.add("D d dA dI dO dW dU");
-        rules.add("E e eR eL");
-        rules.add("F f fA fI fL fR fU fO");
-        rules.add("G g gA gI gL gR");
-        rules.add("H h hI hA");
-        rules.add("I i");
-        rules.add("K k kH kI");
-        rules.add("L l lO");
-        rules.add("M m mI");
-        rules.add("N n nA nO");
-        rules.add("O o oI oR");
-        rules.add("P p");
-        rules.add("Q q");
-        rules.add("R r rI rO rV");
-        rules.add("S s");
-        rules.add("T t tE tH");
-        rules.add("U u uR uN");
-        rules.add("V v");
-        rules.add("W w wA");
-        rules.add("X x");
-        rules.add("Y y");
-        rules.add("Z z");
+        RULES.add("S B D F G I K L M N O T");
+        RULES.add("A a aL aI aR");
+        RULES.add("B b bA bI bO");
+        RULES.add("C c");
+        RULES.add("D d dA dI dO dW dU");
+        RULES.add("E e eR eL");
+        RULES.add("F f fA fI fL fR fU fO");
+        RULES.add("G g gA gI gL gR");
+        RULES.add("H h hI hA");
+        RULES.add("I i");
+        RULES.add("K k kH kI");
+        RULES.add("L l lO");
+        RULES.add("M m mI");
+        RULES.add("N n nA nO");
+        RULES.add("O o oI oR");
+        RULES.add("P p");
+        RULES.add("Q q");
+        RULES.add("R r rI rO rV");
+        RULES.add("S s");
+        RULES.add("T t tE tH");
+        RULES.add("U u uR uN");
+        RULES.add("V v");
+        RULES.add("W w wA");
+        RULES.add("X x");
+        RULES.add("Y y");
+        RULES.add("Z z");
+    }
 
-        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(rules);
+    @Test
+    public void generateNameUsingRandom() {
         final Random random = new Random(System.currentTimeMillis());
 
-        for(int i = 0 ; i < 10 ; i++) {
-            System.out.println(grammarNameGenerator.generateName(random, 5, 'S'));
+        // Setup & Test the Generator:
+        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
+
+        for(int i = 0 ; i < 100 ; i++) {
+            grammarNameGenerator.generateName(random, i % 20, 'S');
+        }
+    }
+
+    @Test
+    public void generateNameUsingIntUnaryOperator() {
+        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+
+        // Setup & Test the Generator:
+        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
+
+        for(int i = 0 ; i < 100 ; i++) {
+            grammarNameGenerator.generateName(randomInRange, i % 20, 'S');
+        }
+    }
+
+    @Test
+    public void longGeneration() {
+        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+
+        // Setup & Test the Generator:
+        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
+
+        for (int i = 0 ; i < 100 ; i++) {
+            System.out.println(grammarNameGenerator.generateName(randomInRange, i % 20, 'S'));
+        }
+
+        for (int i = 0 ; i < 1_000_000 ; i++) {
+            grammarNameGenerator.generateName(randomInRange, i % 20, 'S');
         }
     }
 }
