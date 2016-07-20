@@ -1,9 +1,15 @@
 package com.valkryst.generator;
 
+import com.valkryst.TestHelper;
 import com.valkryst.builder.CombinatorialNameGeneratorBuilder;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
@@ -14,8 +20,9 @@ public class CombinatorialNameGeneratorTest {
             final Random random = new Random(System.currentTimeMillis());
 
             final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();
-            builder.setBeginnings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Fantasy\\Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
-            builder.setEndings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Fantasy\\Dwarven_Khordaldrum_Fantasy_Last_B.txt"));
+
+            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
+            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_B.txt"));
 
             final CombinatorialNameGenerator nameGenerator = builder.build(false);
 
@@ -37,15 +44,15 @@ public class CombinatorialNameGeneratorTest {
             final Random random = new Random(System.currentTimeMillis());
 
             final CombinatorialNameGeneratorBuilder builderFirst = new CombinatorialNameGeneratorBuilder();
-            builderFirst.setBeginnings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Realistic\\Dwarven_Khordaldrum_Realistic_Male_A.txt"));
-            builderFirst.setEndings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Realistic\\Dwarven_Khordaldrum_Realistic_Male_B.txt"));
+            builderFirst.setBeginnings(TestHelper.resource("Dwarven/Realistic/Dwarven_Khordaldrum_Realistic_Male_A.txt"));
+            builderFirst.setEndings(TestHelper.resource("Dwarven/Realistic/Dwarven_Khordaldrum_Realistic_Male_B.txt"));
 
             final CombinatorialNameGenerator firstNameGenerator = builderFirst.build(false);
 
 
             final CombinatorialNameGeneratorBuilder builderLast = new CombinatorialNameGeneratorBuilder();
-            builderLast.setBeginnings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Realistic\\Dwarven_Khordaldrum_Realistic_Last_A.txt"));
-            builderLast.setEndings(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Dwarven\\Realistic\\Dwarven_Khordaldrum_Realistic_Last_B.txt"));
+            builderLast.setBeginnings(TestHelper.resource("Dwarven/Realistic/Dwarven_Khordaldrum_Realistic_Last_A.txt"));
+            builderLast.setEndings(TestHelper.resource("Dwarven/Realistic/Dwarven_Khordaldrum_Realistic_Last_B.txt"));
 
             final CombinatorialNameGenerator lastNameGenerator = builderLast.build(false);
 

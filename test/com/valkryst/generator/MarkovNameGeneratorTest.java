@@ -1,5 +1,6 @@
 package com.valkryst.generator;
 
+import com.valkryst.TestHelper;
 import com.valkryst.builder.MarkovNameGeneratorBuilder;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class MarkovNameGeneratorTest {
             final Random random = new Random(System.currentTimeMillis());
 
             final MarkovNameGeneratorBuilder builder = new MarkovNameGeneratorBuilder();
-            builder.setTrainingNames(Paths.get("C:\\Users\\Valkryst\\Google Drive\\Development\\Programming\\Java\\VNameGenerator\\res\\Human\\Viking\\Human_Viking_Male.txt"));
+            builder.setTrainingNames(TestHelper.resource("Human/Viking/Human_Viking_Male.txt"));
 
             final MarkovNameGenerator nameGenerator = builder.build();
 
