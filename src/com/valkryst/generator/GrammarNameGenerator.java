@@ -89,7 +89,41 @@ public final class GrammarNameGenerator implements NameGenerator{
         return null;
     }
 
-
+    /**
+     * Searches the rules of the grammar for the first
+     * rule whose first character matches that of the
+     * specified character.
+     *
+     * Ex:
+     *      character = 'S'
+     *
+     *      rule = "T tt Tt"
+     *      rule = "S ss Ss"
+     *      rule = "S tt St"
+     *
+     *      The first rule is ignored and the second
+     *      rule is used.
+     *
+     * @param randomInRange
+     *         A function that returns an arbitrary
+     *         number in the range of [0, param)
+     *
+     * @param length
+     *         The length of the name to generate.
+     *
+     *         If the value is less than or equal to
+     *         zero, then this parameter is ignored.
+     *
+     *         No guarantee is made that the name
+     *         will be exactly this length.
+     *
+     * @param startingSymbol
+     *         The symbol to begin generating the
+     *         name from.
+     *
+     * @return
+     *         The generated name.
+     */
     public String generateName(final IntUnaryOperator randomInRange, final int length, final char startingSymbol) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
@@ -118,14 +152,14 @@ public final class GrammarNameGenerator implements NameGenerator{
                 }
             }
 
-            if (sb.length() < length) {
+            if(sb.length() < length) {
                 sb.setLength(0);
                 sb.append(startingSymbol);
             }
         }
 
         // Return Name:
-        if (length >= 0) {
+        if(length >= 0) {
             return sb.substring(0, length);
         } else {
             return sb.toString();

@@ -41,7 +41,33 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         }
     }
 
-
+    /**
+     * Randomly generates a name with one beginning,
+     * zero or more middles, and one ending.
+     *
+     * If no middles have been loaded, then they are
+     * ignored and a name is generated without them.
+     *
+     * @param random
+     *         The instance of Random to use when
+     *         necessary.
+     *
+     * @param length
+     *         The length of the name to generateName.
+     *
+     *         If the value is less than or equal to
+     *         zero, then this parameter is ignored.
+     *
+     *         No guarantee is made that the name
+     *         will be exactly this length.
+     *
+     * @param middlesToUse
+     *         The number of name-middles to append
+     *         between the beginning and ending.
+     *
+     * @return
+     *         The generated name.
+     */
     public String generateName(final Random random, final int length, int middlesToUse) {
         return generateName(random::nextInt, length, middlesToUse);
     }
