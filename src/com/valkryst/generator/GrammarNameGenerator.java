@@ -154,7 +154,8 @@ public final class GrammarNameGenerator implements NameGenerator{
             }
 
             if(sb.length() < length) {
-                return sb.toString();
+                sb.setLength(0);
+                sb.append(startingSymbol);
             }
         }
 
@@ -170,5 +171,32 @@ public final class GrammarNameGenerator implements NameGenerator{
     public String generateName(final IntUnaryOperator randomInRange, final int length) {
         final char startingSymbol = (char) randomInRange.applyAsInt(Character.MAX_VALUE);
         return generateName(randomInRange, length, startingSymbol);
+    }
+
+    /**
+     * Determines the index of the next upper case character
+     * in the specified String.
+     *
+     * @param string
+     *         The String to search.
+     *
+     * @param startingIndex
+     *         The index of the character to begin searching
+     *         from.
+     *
+     * @return
+     *         Either the index of the next upper case character
+     *         or -1 if no upper case character was found.
+     */
+    private int getIndexOfNextUpperCaseChar(final String string, final int startingIndex) {
+        for (int i = 0 ; i < string.length() ; i++) {
+            char current = string.charAt(i);
+
+            if (Character.isUpperCase(current)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
