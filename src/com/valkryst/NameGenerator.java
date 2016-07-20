@@ -19,6 +19,17 @@ public interface NameGenerator {
      */
     String generateName(final IntUnaryOperator randomInRange, final int length);
 
+    /**
+     * Randomly generates a name using the provided random function, of at least the given length
+     *
+     * @param random
+     *         The instance of Random to use when necessary.
+     *
+     * @param length
+     *         The length of the name to generateName.
+     *
+     * @return
+     */
     default String generateName(final Random random, final int length) {
         return generateName(random::nextInt, length);
     }
