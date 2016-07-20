@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarkovNameGeneratorBuilder {
+public final class MarkovNameGeneratorBuilder {
     /** The list containing all names to train the Markov Chain with. */
     @Getter private List<String> trainingNames;
 

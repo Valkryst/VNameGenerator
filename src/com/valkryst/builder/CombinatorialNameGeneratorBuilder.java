@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombinatorialNameGeneratorBuilder {
+public final class CombinatorialNameGeneratorBuilder {
     /** The List containing all loaded name-beginnings. */
     @Getter private List<String> beginnings;
     /** The List containing all loaded name-middles. */
