@@ -27,7 +27,7 @@ public class CombinatorialNameGeneratorTest {
         final CombinatorialNameGenerator generator = builder.build(false);
 
         for (int i = 0 ; i < 100 ; i++) {
-            generator.generateName(random, i, 0);
+            generator.generateName(random, i % 20, 0);
         }
     }
 
@@ -49,7 +49,7 @@ public class CombinatorialNameGeneratorTest {
         final CombinatorialNameGenerator generator = builder.build(false);
 
         for (int i = 0 ; i < 100 ; i++) {
-            generator.generateName(randomInRange, i, 0);
+            generator.generateName(randomInRange, i % 20, 0);
         }
     }
 
@@ -75,7 +75,7 @@ public class CombinatorialNameGeneratorTest {
         }
 
         for (int i = 0 ; i < 1_000_000 ; i++) {
-            generator.generateName(randomInRange, i, 0);
+            generator.generateName(randomInRange, i % 20, 0);
         }
     }
 }
