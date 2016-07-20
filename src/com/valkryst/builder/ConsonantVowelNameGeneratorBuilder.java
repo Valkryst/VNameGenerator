@@ -1,17 +1,15 @@
 package com.valkryst.builder;
 
+import com.valkryst.NameGeneratorBuilder;
 import com.valkryst.generator.ConsonantVowelNameGenerator;
 import lombok.Getter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ConsonantVowelNameGeneratorBuilder {
+public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuilder {
     /** The array containing all loaded consonants. */
     @Getter private List<String> consonants = new ArrayList<>();
     /** The array containing all loaded vowels. */
@@ -44,20 +42,20 @@ public final class ConsonantVowelNameGeneratorBuilder {
      */
     private void checkState() throws IllegalStateException {
         // Ensure lists aren't null:
-        if(consonants == null) {
+        if (consonants == null) {
             throw new IllegalStateException("The list of consonants is null.");
         }
 
-        if(vowels == null) {
+        if (vowels == null) {
             throw new IllegalStateException("The list of vowels is null.");
         }
 
         // Ensure lists aren't empty:
-        if(consonants.size() == 0) {
+        if (consonants.size() == 0) {
             throw new IllegalStateException("The list of consonants is empty.");
         }
 
-        if(vowels.size() == 0) {
+        if (vowels.size() == 0) {
             throw new IllegalStateException("The list of vowels is empty.");
         }
     }
@@ -111,54 +109,5 @@ public final class ConsonantVowelNameGeneratorBuilder {
      */
     public void setVowels(final List<String> vowels) {
         this.vowels = vowels;
-    }
-
-    /**
-     * Reads each line of the specified file and returns them
-     * as a list. All empty lines are skipped.
-     *
-     * @param path
-     *         The file to read from.
-     *
-     * @return
-     *         The lines that have been read.
-     *
-     * @throws IOException
-     *          If the specified file doesn't exist.
-     *          If an I/O error occurs.
-     */
-    private List<String> readLines(final Path path) throws IOException {
-        if(! Files.exists(path)) {
-            throw new IOException("The file at \"" + path.toString() +"\" does not exist.");
-        }
-
-        // Attempt to read the lines using NIO.
-        // If this fails, then fallback to
-        // the BufferedReader method.
-        try {
-            return Files.readAllLines(path);
-        } catch(final IOException e) {
-            // Open Resources:
-            final FileReader fileReader = new FileReader(path.toFile());
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            // Read Lines From File:
-            List<String> readLines = new ArrayList<>();
-            String currentLine;
-
-            while((currentLine = bufferedReader.readLine()) != null) {
-                // Don't read empty lines:
-                if(! currentLine.isEmpty()) {
-                    readLines.add(currentLine);
-                }
-            }
-
-            // Close Resources:
-            bufferedReader.close();
-            fileReader.close();
-
-            // Return Read Lines:
-            return readLines;
-        }
     }
 }

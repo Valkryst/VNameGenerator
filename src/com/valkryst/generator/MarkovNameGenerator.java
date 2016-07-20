@@ -62,21 +62,21 @@ public final class MarkovNameGenerator implements NameGenerator {
      */
     @Override
     public String generateName(final IntUnaryOperator randomInRange, final int length) {
-        if(length == 0) {
+        if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
 
         final StringBuilder sb = new StringBuilder();
 
         // Initalize the first two characters of the name:
-        int initialSequenceIndex = randomInRange.applyAsInt(sequences.size());
+        final int initialSequenceIndex = randomInRange.applyAsInt(sequences.size());
         final String initialSequence = sequences.get(initialSequenceIndex);
         sb.append(initialSequence);
 
         char previous = initialSequence.charAt(0);
         char current = initialSequence.charAt(1);
 
-        for(int i = 2; i < length; ++i) {
+        for (int i = 2; i < length; ++i) {
             final String key  = previous + "" + current;
 
             try {
@@ -84,15 +84,15 @@ public final class MarkovNameGenerator implements NameGenerator {
                 sb.append(next);
                 previous = current;
                 current = next;
-            } catch(final NoSuchElementException e) {
+            } catch (final NoSuchElementException e) {
                 break;
             }
 
         }
 
         /*
-            We gaurantee "at-least-as-long-as". lengths of 0 or 1 will produce a result
-            of size 2, all other lengths will result in exact built string length matching.
+         * We guarantee "at-least-as-long-as". Lengths of 0 or 1 will produce a result of
+         * size 2, all other lengths will result in a string of the specified length.
          */
         return formatName(sb.toString());
     }
@@ -108,23 +108,23 @@ public final class MarkovNameGenerator implements NameGenerator {
      *         The string to parse.
      */
     public void acquireProbabilities(final String string) {
-        if(string.length() < 2) {
+        if (string.length() < 2) {
             return;
         }
 
-        for(int i = 2 ; i < string.length(); ++i) {
+        for (int i = 2 ; i < string.length(); ++i) {
             final char previousChar = string.charAt(i - 2);
             final char currentChar = string.charAt(i - 1);
             final char nextChar = string.charAt(i);
 
             final String key = previousChar + "" + currentChar;
 
-            if(!sequences.contains(key)) {
+            if (!sequences.contains(key)) {
                 sequences.add(key);
             }
 
             HashMap<Character, Integer> probabilities = sequenceProbabilities.get(key);
-            if(probabilities == null) {
+            if (probabilities == null) {
                 probabilities = new HashMap<>();
                 sequenceProbabilities.put(key, probabilities);
             }
@@ -159,7 +159,8 @@ public final class MarkovNameGenerator implements NameGenerator {
      */
     private char chooseNextCharacter(final IntUnaryOperator randomInRange, final String sequence) throws NoSuchElementException {
         final Map<Character, Integer> probabilities = sequenceProbabilities.get(sequence);
-        if(probabilities == null) {
+
+        if (probabilities == null) {
             throw new NoSuchElementException("There are no computed probabilities for the specified key.");
         }
 
@@ -169,7 +170,7 @@ public final class MarkovNameGenerator implements NameGenerator {
         for(final Map.Entry<Character, Integer> entry : probabilities.entrySet()) {
             // If the initial data has not yet been set,
             // then set it.
-            if(highestProbability == null) {
+            if (highestProbability == null) {
                 highestStrings.add(entry.getKey());
                 highestProbability = entry.getValue();
             } else {

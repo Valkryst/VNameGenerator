@@ -1,17 +1,14 @@
 package com.valkryst.builder;
 
+import com.valkryst.NameGeneratorBuilder;
 import com.valkryst.generator.CombinatorialNameGenerator;
 import lombok.Getter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
-public final class CombinatorialNameGeneratorBuilder {
+public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilder {
     /** The List containing all loaded name-beginnings. */
     @Getter private List<String> beginnings;
     /** The List containing all loaded name-middles. */
@@ -56,28 +53,28 @@ public final class CombinatorialNameGeneratorBuilder {
      */
     private void checkState(final boolean usesMiddles) throws IllegalStateException {
         // Ensure lists aren't null:
-        if(beginnings == null) {
+        if (beginnings == null) {
             throw new IllegalStateException("The list of beginnings is null.");
         }
 
-        if(usesMiddles && middles == null) {
+        if (usesMiddles && middles == null) {
             throw new IllegalStateException("The list of middles is null.");
         }
 
-        if(endings == null) {
+        if (endings == null) {
             throw new IllegalStateException("The list of endings is null.");
         }
 
         // Ensure lists aren't empty:
-        if(beginnings.size() == 0) {
+        if (beginnings.size() == 0) {
             throw new IllegalStateException("The list of beginnings is empty.");
         }
 
-        if(usesMiddles && middles.size() == 0) {
+        if (usesMiddles && middles.size() == 0) {
             throw new IllegalStateException("The list of middles is empty.");
         }
 
-        if(endings.size() == 0) {
+        if (endings.size() == 0) {
             throw new IllegalStateException("The list of endings is empty.");
         }
     }
@@ -125,54 +122,5 @@ public final class CombinatorialNameGeneratorBuilder {
      */
     public void setEndings(final Path path) throws IOException {
         endings = readLines(path);
-    }
-
-    /**
-     * Reads each line of the specified file and returns them
-     * as a list. All empty lines are skipped.
-     *
-     * @param path
-     *         The file to read from.
-     *
-     * @return
-     *         The lines that have been read.
-     *
-     * @throws IOException
-     *          If the specified file doesn't exist.
-     *          If an I/O error occurs.
-     */
-    private List<String> readLines(final Path path) throws IOException {
-        if(! Files.exists(path)) {
-            throw new IOException("The file at \"" + path.toString() +"\" does not exist.");
-        }
-
-        // Attempt to read the lines using NIO.
-        // If this fails, then fallback to
-        // the BufferedReader method.
-        try {
-            return Files.readAllLines(path);
-        } catch(final IOException e) {
-            // Open Resources:
-            final FileReader fileReader = new FileReader(path.toFile());
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            // Read Lines From File:
-            List<String> readLines = new ArrayList<>();
-            String currentLine;
-
-            while((currentLine = bufferedReader.readLine()) != null) {
-                // Don't read empty lines:
-                if(! currentLine.isEmpty()) {
-                    readLines.add(currentLine);
-                }
-            }
-
-            // Close Resources:
-            bufferedReader.close();
-            fileReader.close();
-
-            // Return Read Lines:
-            return readLines;
-        }
     }
 }

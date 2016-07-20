@@ -73,17 +73,16 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      * @return
      *         The generated name.
      */
-    public String generateName(final IntUnaryOperator randomInRange, final int length, int middlesToUse)
-    {
-        if(length == 0) {
+    public String generateName(final IntUnaryOperator randomInRange, final int length, int middlesToUse) {
+        if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
 
-        if(middles == null) {
+        if (middles == null) {
             middlesToUse = 0;
         }
 
-        if(middlesToUse < 0) {
+        if (middlesToUse < 0) {
             middlesToUse = 0;
         }
 
@@ -95,15 +94,15 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         // Construct Name:
         sb.append(beginnings[beginningIndex]);
 
-        for(int i = 0 ; i < middlesToUse ; i++) {
-            int middleIndex = randomInRange.applyAsInt(middles.length);
+        for (int i = 0 ; i < middlesToUse ; i++) {
+            final int middleIndex = randomInRange.applyAsInt(middles.length);
             sb.append(middles[middleIndex]);
         }
 
         sb.append(endings[endingIndex]);
 
         // Return Name:
-        if(length >= 0 && length <= sb.length()) {
+        if (length >= 0 && length <= sb.length()) {
             return sb.substring(0, length);
         } else {
             return sb.toString();

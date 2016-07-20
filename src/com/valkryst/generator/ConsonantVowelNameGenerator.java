@@ -47,19 +47,19 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      */
     @Override
     public String generateName(final IntUnaryOperator randomInRange, final int length) {
-        if(length == 0) {
+        if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
 
         boolean addConsonant = false;
         final StringBuilder sb = new StringBuilder();
 
-        while(sb.length() < length) {
-            if(addConsonant) {
-                int randomIndex = randomInRange.applyAsInt(consonants.length);
+        while (sb.length() < length) {
+            if (addConsonant) {
+                final int randomIndex = randomInRange.applyAsInt(consonants.length);
                 sb.append(consonants[randomIndex]);
             } else {
-                int randomIndex = randomInRange.applyAsInt(vowels.length);
+                final int randomIndex = randomInRange.applyAsInt(vowels.length);
                 sb.append(vowels[randomIndex]);
             }
 

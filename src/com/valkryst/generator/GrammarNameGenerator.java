@@ -75,11 +75,11 @@ public final class GrammarNameGenerator implements NameGenerator{
      *         be chosen.
      */
     private String chooseRandomRuleOption(final IntUnaryOperator randomInRange, final char character) {
-        for(final String rule : rules) {
+        for (final String rule : rules) {
             final String[] tokens = rule.split(" ");
 
-            if(tokens[0].equals(String.valueOf(character))) {
-                if(tokens.length > 1) {
+            if (tokens[0].equals(String.valueOf(character))) {
+                if (tokens.length > 1) {
                     final int randomOptionIndex = randomInRange.applyAsInt(tokens.length - 1) + 1;
                     return tokens[randomOptionIndex];
                 }
@@ -91,14 +91,14 @@ public final class GrammarNameGenerator implements NameGenerator{
 
 
     public String generateName(final IntUnaryOperator randomInRange, final int length, final char startingSymbol) {
-        if(length == 0) {
+        if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
 
         final StringBuilder sb = new StringBuilder();
         sb.append(startingSymbol);
 
-        while(sb.length() < length) {
+        while (sb.length() < length) {
             for (int i = 0; i < sb.length(); i++) {
                 char currentChar = sb.charAt(i);
                 boolean isCurrentCharUpperCase = Character.isUpperCase(currentChar);
@@ -118,14 +118,14 @@ public final class GrammarNameGenerator implements NameGenerator{
                 }
             }
 
-            if(sb.length() < length) {
+            if (sb.length() < length) {
                 sb.setLength(0);
                 sb.append(startingSymbol);
             }
         }
 
         // Return Name:
-        if(length >= 0) {
+        if (length >= 0) {
             return sb.substring(0, length);
         } else {
             return sb.toString();
