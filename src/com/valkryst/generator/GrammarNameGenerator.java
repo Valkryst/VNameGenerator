@@ -134,8 +134,8 @@ public final class GrammarNameGenerator implements NameGenerator{
 
         while (sb.length() < length) {
             for (int i = 0; i < sb.length(); i++) {
-                char currentChar = sb.charAt(i);
-                boolean isCurrentCharUpperCase = Character.isUpperCase(currentChar);
+                final char currentChar = sb.charAt(i);
+                final boolean isCurrentCharUpperCase = Character.isUpperCase(currentChar);
 
                 if (isCurrentCharUpperCase) {
                     final String substitution = chooseRandomRuleOption(randomInRange, currentChar);
