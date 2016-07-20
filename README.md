@@ -2,6 +2,8 @@
 
 Use this code however you wish. Modifications, improvements, additional lists of names, and new algorithms are welcome.
 
+Please refer to the LICENSE file for additional information.
+
 ---
 
 ## How to Setup:
