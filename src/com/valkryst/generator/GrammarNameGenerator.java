@@ -22,7 +22,8 @@ public final class GrammarNameGenerator implements NameGenerator{
     }
 
     /**
-     * Generates a name of at-least the specified length.
+     * Attempts to generate a name of at-least the specified
+     * length.
      *
      * @param random
      *         The instance of Random to use when
@@ -153,7 +154,7 @@ public final class GrammarNameGenerator implements NameGenerator{
             }
 
             if(sb.length() < length) {
-                return "LENGTH_TOO_LONG-UNABLE_TO_GENERATE";
+                return sb.toString();
             }
         }
 
