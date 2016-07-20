@@ -6,9 +6,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public final class TestHelper {
-    public static Path resource(String path)  {
+    /**
+     * Determines the path to the specified resource file.
+     *
+     * @param path
+     *         The resource file to look for.
+     *
+     * @return
+     *         The path to the resource file.
+     */
+    public static Path resource(final String path)  {
         final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         final URL resourceUrl = classloader.getResource(path);
+
         try {
             final Path resourcePath = Paths.get(resourceUrl.toURI());
             return resourcePath;
