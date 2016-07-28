@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public class CombinatorialNameGeneratorTest {
@@ -33,7 +34,7 @@ public class CombinatorialNameGeneratorTest {
 
     @Test
     public void generateNameUsingIntUnaryOperator() {
-        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
         final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();
@@ -55,7 +56,7 @@ public class CombinatorialNameGeneratorTest {
 
     @Test
     public void longGeneration() {
-        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
         final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();

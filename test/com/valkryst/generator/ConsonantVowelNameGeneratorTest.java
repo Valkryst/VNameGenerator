@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public class ConsonantVowelNameGeneratorTest {
@@ -77,7 +78,7 @@ public class ConsonantVowelNameGeneratorTest {
 
     @Test
     public void generateNameUsingIntUnaryOperator() {
-        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
         final ConsonantVowelNameGeneratorBuilder builder = new ConsonantVowelNameGeneratorBuilder();
@@ -94,7 +95,7 @@ public class ConsonantVowelNameGeneratorTest {
 
     @Test
     public void longGeneration() {
-        final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
+        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
         final ConsonantVowelNameGeneratorBuilder builder = new ConsonantVowelNameGeneratorBuilder();

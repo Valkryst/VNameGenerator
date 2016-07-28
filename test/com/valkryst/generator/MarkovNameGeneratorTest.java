@@ -5,14 +5,14 @@ import com.valkryst.builder.MarkovNameGeneratorBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.IntUnaryOperator;
 
 public class MarkovNameGeneratorTest {
     @Test
     public void generateName() {
         try {
-            final Random random = new Random(System.currentTimeMillis());
+            final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
             final MarkovNameGeneratorBuilder builder = new MarkovNameGeneratorBuilder();
             builder.setTrainingNames(TestHelper.resource("Human/Viking/Human_Viking_Male.txt"));
@@ -20,11 +20,11 @@ public class MarkovNameGeneratorTest {
             final MarkovNameGenerator nameGenerator = builder.build();
 
             for(int i = 0 ; i < 50 ; i++) {
-                System.out.println(nameGenerator.generateName(random, 7));
+                System.out.println(nameGenerator.generateName(randomInRange, 7));
             }
 
             for(int i = 0 ; i < 10000 ; i++) {
-                nameGenerator.generateName(random, i % 50);
+                nameGenerator.generateName(randomInRange, i % 50);
             }
         } catch(final IOException e) {
             e.printStackTrace();
