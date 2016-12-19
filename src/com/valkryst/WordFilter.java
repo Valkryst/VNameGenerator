@@ -8,15 +8,13 @@ public class WordFilter {
     private final List<String> disallowedStrings = new ArrayList<>();
 
     /**
-     * Determines if the specified string contains any of the
-     * disallowed strings.
+     * Determines if the specified string contains any of the disallowed strings.
      *
      * @param input
      *         The string to be checked.
      *
      * @return
-     *         Whether or not the input string contains any of
-     *         the disallowed strings.
+     *         Whether or not the input string contains any of the disallowed strings.
      */
     public boolean isAllowed(final String input) {
         final String lowerCaseInput = input.toLowerCase();
@@ -26,8 +24,7 @@ public class WordFilter {
     }
 
     /**
-     * Adds the specified string to the list of disallowed
-     * strings.
+     * Adds the specified string to the list of disallowed strings.
      *
      * @param string
      *         The string to add.
@@ -37,8 +34,7 @@ public class WordFilter {
     }
 
     /**
-     * Removes the specified string from the list of disallowed
-     * strings, if it exists within the list.
+     * Removes the specified string from the list of disallowed strings, if it exists within the list.
      *
      * @param string
      *         The string to remove.

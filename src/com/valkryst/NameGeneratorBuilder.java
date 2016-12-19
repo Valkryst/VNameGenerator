@@ -10,8 +10,7 @@ import java.util.List;
 
 public class NameGeneratorBuilder {
     /**
-     * Reads each line of the specified file and returns them
-     * as a list. All empty lines are skipped.
+     * Reads each line of the specified file and returns them as a list. All empty lines are skipped.
      *
      * @param path
      *         The file to read from.
