@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
 import com.valkryst.TestHelper;
-import com.valkryst.builder.CombinatorialNameGeneratorBuilder;
+import com.valkryst.builder.CombinatorialBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class CombinatorialNameGeneratorTest {
         final Random random = new Random(System.currentTimeMillis());
 
         // Setup the Builder:
-        final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();
+        final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
             builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
@@ -37,7 +37,7 @@ public class CombinatorialNameGeneratorTest {
         final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
-        final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();
+        final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
             builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
@@ -59,7 +59,7 @@ public class CombinatorialNameGeneratorTest {
         final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
-        final CombinatorialNameGeneratorBuilder builder = new CombinatorialNameGeneratorBuilder();
+        final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
             builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));

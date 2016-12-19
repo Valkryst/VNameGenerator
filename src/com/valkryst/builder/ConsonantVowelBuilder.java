@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuilder {
+public final class ConsonantVowelBuilder extends NameGeneratorBuilder {
     /** The array containing all loaded consonants. */
     @Getter private List<String> consonants = new ArrayList<>();
     /** The array containing all loaded vowels. */

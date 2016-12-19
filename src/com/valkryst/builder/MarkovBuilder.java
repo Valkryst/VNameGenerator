@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-public final class MarkovNameGeneratorBuilder extends NameGeneratorBuilder {
+public final class MarkovBuilder extends NameGeneratorBuilder {
     /** The list containing all names to train the Markov Chain with. */
     @Getter private List<String> trainingNames;
 

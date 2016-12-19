@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
 import com.valkryst.TestHelper;
-import com.valkryst.builder.MarkovNameGeneratorBuilder;
+import com.valkryst.builder.MarkovBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class MarkovNameGeneratorTest {
         try {
             final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
-            final MarkovNameGeneratorBuilder builder = new MarkovNameGeneratorBuilder();
+            final MarkovBuilder builder = new MarkovBuilder();
             builder.setTrainingNames(TestHelper.resource("Human/Viking/Human_Viking_Male.txt"));
 
             final MarkovNameGenerator nameGenerator = builder.build();

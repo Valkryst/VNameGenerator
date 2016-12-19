@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
 import com.valkryst.NameGenerator;
-import com.valkryst.builder.MarkovNameGeneratorBuilder;
+import com.valkryst.builder.MarkovBuilder;
 
 import java.util.*;
 import java.util.function.IntUnaryOperator;
@@ -29,7 +29,7 @@ public final class MarkovNameGenerator implements NameGenerator {
      * @param builder
      *         The builder to retrieve the training names from.
      */
-    public MarkovNameGenerator(final MarkovNameGeneratorBuilder builder) {
+    public MarkovNameGenerator(final MarkovBuilder builder) {
         builder.getTrainingNames()
                .forEach(this::acquireProbabilities);
     }

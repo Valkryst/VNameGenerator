@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
 import com.valkryst.NameGenerator;
-import com.valkryst.builder.ConsonantVowelNameGeneratorBuilder;
+import com.valkryst.builder.ConsonantVowelBuilder;
 
 import java.util.function.IntUnaryOperator;
 
@@ -17,7 +17,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      * @param builder
      *         The builder to retrieve the consonants and vowels from.
      */
-    public ConsonantVowelNameGenerator(final ConsonantVowelNameGeneratorBuilder builder) {
+    public ConsonantVowelNameGenerator(final ConsonantVowelBuilder builder) {
         final int totalConsonants = builder.getConsonants().size();
         final int totalVowels = builder.getVowels().size();
 

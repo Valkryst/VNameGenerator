@@ -1,6 +1,6 @@
 package com.valkryst.generator;
 
-import com.valkryst.builder.ConsonantVowelNameGeneratorBuilder;
+import com.valkryst.builder.ConsonantVowelBuilder;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class ConsonantVowelNameGeneratorTest {
         final Random random = new Random(System.currentTimeMillis());
 
         // Setup the Builder:
-        final ConsonantVowelNameGeneratorBuilder builder = new ConsonantVowelNameGeneratorBuilder();
+        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
         builder.setConsonants(CONSONANTS);
         builder.setVowels(VOWELS);
 
@@ -81,7 +81,7 @@ public class ConsonantVowelNameGeneratorTest {
         final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
-        final ConsonantVowelNameGeneratorBuilder builder = new ConsonantVowelNameGeneratorBuilder();
+        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
         builder.setConsonants(CONSONANTS);
         builder.setVowels(VOWELS);
 
@@ -98,7 +98,7 @@ public class ConsonantVowelNameGeneratorTest {
         final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
         // Setup the Builder:
-        final ConsonantVowelNameGeneratorBuilder builder = new ConsonantVowelNameGeneratorBuilder();
+        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
         builder.setConsonants(CONSONANTS);
         builder.setVowels(VOWELS);
 

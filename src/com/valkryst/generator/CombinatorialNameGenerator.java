@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
 import com.valkryst.NameGenerator;
-import com.valkryst.builder.CombinatorialNameGeneratorBuilder;
+import com.valkryst.builder.CombinatorialBuilder;
 
 import java.util.Random;
 import java.util.function.IntUnaryOperator;
@@ -23,7 +23,7 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      * @param usesMiddles
      *         Whether or not name-middles can be used in name generation.
      */
-    public CombinatorialNameGenerator(final CombinatorialNameGeneratorBuilder builder, final boolean usesMiddles) {
+    public CombinatorialNameGenerator(final CombinatorialBuilder builder, final boolean usesMiddles) {
         final int totalBeginnings = builder.getBeginnings().size();
         final int totalEndings = builder.getEndings().size();
 
