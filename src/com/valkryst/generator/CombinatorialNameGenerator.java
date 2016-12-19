@@ -15,16 +15,13 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     private final String[] endings;
 
     /**
-     * Constructs a new combinatorial name generator
-     * from the specified builder.
+     * Constructs a new combinatorial name generator from the specified builder.
      *
      * @param builder
-     *         The builder to retrieve the beginnings,
-     *         middles, and ends from.
+     *         The builder to retrieve the beginnings, middles, and ends from.
      *
      * @param usesMiddles
-     *         Whether or not name-middles can be used
-     *         in name generation.
+     *         Whether or not name-middles can be used in name generation.
      */
     public CombinatorialNameGenerator(final CombinatorialNameGeneratorBuilder builder, final boolean usesMiddles) {
         final int totalBeginnings = builder.getBeginnings().size();
@@ -42,28 +39,22 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     }
 
     /**
-     * Randomly generates a name with one beginning,
-     * zero or more middles, and one ending.
+     * Randomly generates a name with one beginning, zero or more middles, and one ending.
      *
-     * If no middles have been loaded, then they are
-     * ignored and a name is generated without them.
+     * If no middles have been loaded, then they are ignored and a name is generated without them.
      *
      * @param random
-     *         The instance of Random to use when
-     *         necessary.
+     *         The instance of Random to use when necessary.
      *
      * @param length
      *         The length of the name to generateName.
      *
-     *         If the value is less than or equal to
-     *         zero, then this parameter is ignored.
+     *         If the value is less than or equal to zero, then this parameter is ignored.
      *
-     *         No guarantee is made that the name
-     *         will be exactly this length.
+     *         No guarantee is made that the name will be exactly this length.
      *
      * @param middlesToUse
-     *         The number of name-middles to append
-     *         between the beginning and ending.
+     *         The number of name-middles to append between the beginning and ending.
      *
      * @return
      *         The generated name.
@@ -73,28 +64,22 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     }
 
     /**
-     * Randomly generates a name with one beginning,
-     * zero or more middles, and one ending.
+     * Randomly generates a name with one beginning, zero or more middles, and one ending.
      *
-     * If no middles have been loaded, then they are
-     * ignored and a name is generated without them.
+     * If no middles have been loaded, then they are ignored and a name is generated without them.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range of [0, param)
+     *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param length
      *         The length of the name to generateName.
      *
-     *         If the value is less than or equal to
-     *         zero, then this parameter is ignored.
+     *         If the value is less than or equal to zero, then this parameter is ignored.
      *
-     *         No guarantee is made that the name
-     *         will be exactly this length.
+     *         No guarantee is made that the name will be exactly this length.
      *
      * @param middlesToUse
-     *         The number of name-middles to append
-     *         between the beginning and ending.
+     *         The number of name-middles to append between the beginning and ending.
      *
      * @return
      *         The generated name.
