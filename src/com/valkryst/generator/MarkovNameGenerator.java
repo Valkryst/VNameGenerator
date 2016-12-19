@@ -58,7 +58,7 @@ public final class MarkovNameGenerator implements NameGenerator {
 
         final StringBuilder sb = new StringBuilder();
 
-        // Initalize the first two characters of the name:
+        // Initialize the first two characters of the name:
         final int initialSequenceIndex = randomInRange.applyAsInt(sequences.size());
         final String initialSequence = sequences.get(initialSequenceIndex);
         sb.append(initialSequence);
