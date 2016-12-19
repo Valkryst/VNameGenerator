@@ -18,8 +18,8 @@ public class CombinatorialNameGeneratorTest {
         final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
-            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
-            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_B.txt"));
+            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_A.txt"));
+            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_B.txt"));
         } catch (final IOException e) {
             e.printStackTrace();
         }
@@ -40,8 +40,8 @@ public class CombinatorialNameGeneratorTest {
         final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
-            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
-            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_B.txt"));
+            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_A.txt"));
+            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_B.txt"));
         } catch (final IOException e) {
             e.printStackTrace();
         }
@@ -62,8 +62,8 @@ public class CombinatorialNameGeneratorTest {
         final CombinatorialBuilder builder = new CombinatorialBuilder();
 
         try {
-            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_A.txt"));
-            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Dwarven_Khordaldrum_Fantasy_Last_B.txt"));
+            builder.setBeginnings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_A.txt"));
+            builder.setEndings(TestHelper.resource("Dwarven/Fantasy/Khordaldrum_Last_B.txt"));
         } catch (final IOException e) {
             e.printStackTrace();
         }

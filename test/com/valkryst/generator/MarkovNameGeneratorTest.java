@@ -15,7 +15,7 @@ public class MarkovNameGeneratorTest {
             final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
 
             final MarkovBuilder builder = new MarkovBuilder();
-            builder.setTrainingNames(TestHelper.resource("Human/Viking/Human_Viking_Male.txt"));
+            builder.setTrainingNames(TestHelper.resource("Human/Viking/Male.txt"));
 
             final MarkovNameGenerator nameGenerator = builder.build();
 
