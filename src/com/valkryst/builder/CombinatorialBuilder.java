@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilder {
+public final class CombinatorialBuilder extends NameGeneratorBuilder {
     /** The List containing all loaded name-beginnings. */
     @Getter private List<String> beginnings;
     /** The List containing all loaded name-middles. */
