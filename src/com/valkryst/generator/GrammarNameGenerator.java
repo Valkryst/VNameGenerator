@@ -11,8 +11,7 @@ public final class GrammarNameGenerator implements NameGenerator{
     private String[] rules;
 
     /**
-     * Constructs a new GrammarNameGenerator with the
-     * specified grammar rules.
+     * Constructs a new GrammarNameGenerator with the specified grammar rules.
      *
      * @param rules
      *         The rules of the grammar to use when generating a name.
@@ -22,8 +21,7 @@ public final class GrammarNameGenerator implements NameGenerator{
     }
 
     /**
-     * Attempts to generate a name of at-least the specified
-     * length.
+     * Attempts to generate a name of at-least the specified length.
      *
      * @param random
      *         The instance of Random to use when
@@ -32,15 +30,12 @@ public final class GrammarNameGenerator implements NameGenerator{
      * @param length
      *         The length of the name to generateName.
      *
-     *         If the value is less than or equal to
-     *         zero, then this parameter is ignored.
+     *         If the value is less than or equal to zero, then this parameter is ignored.
      *
-     *         No guarantee is made that the name
-     *         will be exactly this length.
+     *         No guarantee is made that the name will be exactly this length.
      *
      * @param startingSymbol
-     *         The symbol to begin generating the
-     *         name from.
+     *         The symbol to begin generating the name from.
      *
      * @return
      *         The generated name.
@@ -50,9 +45,8 @@ public final class GrammarNameGenerator implements NameGenerator{
     }
 
     /**
-     * Searches the rules of the grammar for the first
-     * rule whose first character matches that of the
-     * specified character.
+     * Searches the rules of the grammar for the first rule whose first character matches that of the specified
+     * character.
      *
      * Ex:
      *      character = 'S'
@@ -61,19 +55,16 @@ public final class GrammarNameGenerator implements NameGenerator{
      *      rule = "S ss Ss"
      *      rule = "S tt St"
      *
-     *      The first rule is ignored and the second
-     *      rule is used.
+     *      The first rule is ignored and the second rule is used.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range of [0, param)
+     *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param character
      *         The identifier of the grammar rule to use.
      *
      * @return
-     *         The chosen rule or null if no rule could
-     *         be chosen.
+     *         The chosen rule or null if no rule could be chosen.
      */
     private String chooseRandomRuleOption(final IntUnaryOperator randomInRange, final char character) {
         for (final String rule : rules) {
@@ -91,9 +82,8 @@ public final class GrammarNameGenerator implements NameGenerator{
     }
 
     /**
-     * Searches the rules of the grammar for the first
-     * rule whose first character matches that of the
-     * specified character.
+     * Searches the rules of the grammar for the first rule whose first character matches that of the specified
+     * character.
      *
      * Ex:
      *      character = 'S'
@@ -102,25 +92,20 @@ public final class GrammarNameGenerator implements NameGenerator{
      *      rule = "S ss Ss"
      *      rule = "S tt St"
      *
-     *      The first rule is ignored and the second
-     *      rule is used.
+     *      The first rule is ignored and the second rule is used.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range of [0, param)
+     *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param length
      *         The length of the name to generate.
      *
-     *         If the value is less than or equal to
-     *         zero, then this parameter is ignored.
+     *         If the value is less than or equal to zero, then this parameter is ignored.
      *
-     *         No guarantee is made that the name
-     *         will be exactly this length.
+     *         No guarantee is made that the name will be exactly this length.
      *
      * @param startingSymbol
-     *         The symbol to begin generating the
-     *         name from.
+     *         The symbol to begin generating the name from.
      *
      * @return
      *         The generated name.
@@ -171,32 +156,5 @@ public final class GrammarNameGenerator implements NameGenerator{
     public String generateName(final IntUnaryOperator randomInRange, final int length) {
         final char startingSymbol = (char) randomInRange.applyAsInt(Character.MAX_VALUE);
         return generateName(randomInRange, length, startingSymbol);
-    }
-
-    /**
-     * Determines the index of the next upper case character
-     * in the specified String.
-     *
-     * @param string
-     *         The String to search.
-     *
-     * @param startingIndex
-     *         The index of the character to begin searching
-     *         from.
-     *
-     * @return
-     *         Either the index of the next upper case character
-     *         or -1 if no upper case character was found.
-     */
-    private int getIndexOfNextUpperCaseChar(final String string, final int startingIndex) {
-        for (int i = 0 ; i < string.length() ; i++) {
-            char current = string.charAt(i);
-
-            if (Character.isUpperCase(current)) {
-                return i;
-            }
-        }
-
-        return -1;
     }
 }
