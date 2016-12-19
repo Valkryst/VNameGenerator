@@ -12,12 +12,10 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     private final String[] vowels;
 
     /**
-     * Constructs a new consonant-vowel name
-     * generator from the specified builder.
+     * Constructs a new consonant-vowel name generator from the specified builder.
      *
      * @param builder
-     *         The builder to retrieve the
-     *         consonants and vowels from.
+     *         The builder to retrieve the consonants and vowels from.
      */
     public ConsonantVowelNameGenerator(final ConsonantVowelNameGeneratorBuilder builder) {
         final int totalConsonants = builder.getConsonants().size();
@@ -28,16 +26,13 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     }
 
     /**
-     * Generates a name of at-least the specified length
-     * as a string of randomized consonants and vowels.
+     * Generates a name of at-least the specified length as a string of randomized consonants and vowels.
      *
-     * The string begins with a consonant, then a vowel,
-     * then a consonant, then a vowel, etc... until the
-     * specified length is reached or exceeded.
+     * The string begins with a consonant, then a vowel, then a consonant, then a vowel, etc... until the specified
+     * length is reached or exceeded.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range [0, param)
+     *         A function that returns an arbitrary number in the range [0, param)
      *
      * @param length
      *         The length of the name to generateName.

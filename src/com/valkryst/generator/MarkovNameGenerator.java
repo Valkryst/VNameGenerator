@@ -7,30 +7,24 @@ import java.util.*;
 import java.util.function.IntUnaryOperator;
 
 public final class MarkovNameGenerator implements NameGenerator {
-    /**
-     * The List containing all two-character combinations found
-     * in the training names.
-     */
+    /** The List containing all two-character combinations found in the training names. */
     private final List<String> sequences = new ArrayList<>();
+
     /**
-     * The HashMap containing the probability of any character
-     * to follow any two previous characters.
+     * The HashMap containing the probability of any character to follow any two previous characters.
      *
      * Ex:
      *      aa, <a, 1>
      *      aa, <b, 2>
      *      aa, <c, 3>
      *
-     *      With the three entries above, we can see that the
-     *      character 'c' is most-likely to follow the characters
-     *      "aa" with 'b' being the second most-likely, and 'a'
-     *      being the least likely.
+     *      With the three entries above, we can see that the character 'c' is most-likely to follow the characters "aa"
+     *      with 'b' being the second most-likely, and 'a' being the least likely.
      */
     private final HashMap<String, HashMap<Character, Integer>> sequenceProbabilities = new HashMap<>();
 
     /**
-     * Constructs a new MarkovNameGenerator with the
-     * specified builder.
+     * Constructs a new MarkovNameGenerator with the specified builder.
      *
      * @param builder
      *         The builder to retrieve the training names from.
@@ -41,21 +35,17 @@ public final class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Generates a name through the use of a trained
-     * Markov Chain.
+     * Generates a name through the use of a trained Markov Chain.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range of [0, param)
+     *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param length
      *         The length of the name to generateName.
      *
-     *         If the value is less than or equal to
-     *         zero, then this parameter is ignored.
+     *         If the value is less than or equal to zero, then this parameter is ignored.
      *
-     *         No guarantee is made that the name
-     *         will be exactly this length.
+     *         No guarantee is made that the name will be exactly this length.
      *
      * @return
      *         The generated name.
@@ -98,11 +88,8 @@ public final class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Parses the specified String to determine the
-     * probability of a character appearing after
-     * the previous two characters beginning with
-     * the third character in the String and ending
-     * with the last.
+     * Parses the specified String to determine the probability of a character appearing after the previous two
+     * characters beginning with the third character in the String and ending with the last.
      *
      * @param string
      *         The string to parse.
@@ -136,26 +123,20 @@ public final class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Determines the character to follow the specified
-     * sequence using the precomputed probabilities of
-     * which characters most often appear after the
-     * specified sequence.
+     * Determines the character to follow the specified sequence using the precomputed probabilities of which characters
+     * most often appear after the specified sequence.
      *
      * @param randomInRange
-     *         A function that returns an arbitrary
-     *         number in the range of [0, param)
+     *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param sequence
-     *         The sequence to find the next character
-     *         for.
+     *         The sequence to find the next character for.
      *
      * @return
      *         The next character of the sequence.
      *
      * @throws NoSuchElementException
-     *          If the specified sequence has no
-     *          corresponding probabilities to
-     *          determine the next character from.
+     *          If the specified sequence has no corresponding probabilities to determine the next character from.
      */
     private char chooseNextCharacter(final IntUnaryOperator randomInRange, final String sequence) throws NoSuchElementException {
         final Map<Character, Integer> probabilities = sequenceProbabilities.get(sequence);
@@ -190,8 +171,7 @@ public final class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Sets the first character of the specified name
-     * to be upper case.
+     * Sets the first character of the specified name to be upper case.
      *
      * @param name
      *         The name to format.
