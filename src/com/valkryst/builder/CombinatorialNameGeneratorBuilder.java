@@ -20,16 +20,13 @@ public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilde
      * Uses the builder to construct a new CombinatorialNameGenerator.
      *
      * @param usesMiddles
-     *         Whether or not the builder will construct
-     *         a CombinatorialNameGenerator that uses
-     *         name-middles or not.
+     *         Whether or not the builder will construct a CombinatorialNameGenerator that uses name-middles or not.
      *
      * @return
      *         A new CombinatorialNameGenerator.
      *
      * @throws IllegalStateException
-     *          If something is wrong with the builder's
-     *          state.
+     *          If something is wrong with the builder's state.
      */
     public CombinatorialNameGenerator build(final boolean usesMiddles) throws IllegalStateException {
         checkState(usesMiddles);
@@ -37,19 +34,15 @@ public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilde
     }
 
     /**
-     * Checks the current state of the builder for any
-     * issue with it's state.
+     * Checks the current state of the builder for any issue with it's state.
      *
      * If no issue is found, then no exception is thrown.
      *
      * @param usesMiddles
-     *         Whether or not the builder will construct
-     *         a CombinatorialNameGenerator that uses
-     *         name-middles or not.
+     *         Whether or not the builder will construct a CombinatorialNameGenerator that uses name-middles or not.
      *
      * @throws IllegalStateException
-     *          If something is wrong with the builder's
-     *          state.
+     *          If something is wrong with the builder's state.
      */
     private void checkState(final boolean usesMiddles) throws IllegalStateException {
         // Ensure lists aren't null:
@@ -80,8 +73,7 @@ public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilde
     }
 
     /**
-     * Reads each line of the specified file into the
-     * list of name-beginnings.
+     * Reads each line of the specified file into the list of name-beginnings.
      *
      * @param path
      *         The path to the file of name-beginnings.
@@ -95,8 +87,7 @@ public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilde
     }
 
     /**
-     * Reads each line of the specified file into the
-     * list of name-middles.
+     * Reads each line of the specified file into the list of name-middles.
      *
      * @param path
      *         The path to the file of name-middles.
@@ -110,8 +101,7 @@ public final class CombinatorialNameGeneratorBuilder extends NameGeneratorBuilde
     }
 
     /**
-     * Reads each line of the specified file into the
-     * list of name-endings.
+     * Reads each line of the specified file into the list of name-endings.
      *
      * @param path
      *         The path to the file of name-endings.

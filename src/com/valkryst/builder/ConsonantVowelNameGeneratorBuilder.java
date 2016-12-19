@@ -22,8 +22,7 @@ public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuild
      *         A new ConsonantVowelNameGenerator.
      *
      * @throws IllegalStateException
-     *          If something is wrong with the builder's
-     *          state.
+     *          If something is wrong with the builder's state.
      */
     public ConsonantVowelNameGenerator build() throws IllegalStateException {
         checkState();
@@ -31,14 +30,12 @@ public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuild
     }
 
     /**
-     * Checks the current state of the builder for any
-     * issue with it's state.
+     * Checks the current state of the builder for any issue with it's state.
      *
      * If no issue is found, then no exception is thrown.
      *
      * @throws IllegalStateException
-     *          If something is wrong with the builder's
-     *          state.
+     *          If something is wrong with the builder's state.
      */
     private void checkState() throws IllegalStateException {
         // Ensure lists aren't null:
@@ -61,8 +58,7 @@ public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuild
     }
 
     /**
-     * Reads each line of the specified file into the
-     * list of consonants.
+     * Reads each line of the specified file into the list of consonants.
      *
      * @param path
      *         The path to the file of consonants.
@@ -87,8 +83,7 @@ public final class ConsonantVowelNameGeneratorBuilder extends NameGeneratorBuild
     }
 
     /**
-     * Reads each line of the specified file into the
-     * list of vowels.
+     * Reads each line of the specified file into the list of vowels.
      *
      * @param path
      *         The path to the file of vowels.
