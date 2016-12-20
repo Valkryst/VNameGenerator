@@ -3,25 +3,17 @@ package com.valkryst.generator;
 import com.valkryst.NameGenerator;
 import com.valkryst.builder.MarkovBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.IntUnaryOperator;
 
 public final class MarkovNameGenerator implements NameGenerator {
     /** The List containing all two-character combinations found in the training names. */
     private final List<String> sequences = new ArrayList<>();
 
-    /**
-     * The HashMap containing the probability of any character to follow any two previous characters.
-     *
-     * Ex:
-     *      aa, <a, 1>
-     *      aa, <b, 2>
-     *      aa, <c, 3>
-     *
-     *      With the three entries above, we can see that the character 'c' is most-likely to follow the characters "aa"
-     *      with 'b' being the second most-likely, and 'a' being the least likely.
-     */
-    private final HashMap<String, HashMap<Character, Integer>> sequenceProbabilities = new HashMap<>();
+    // todo JavaDoc
+    private final MarkovChain<String, String> markovChain = new MarkovChain<>();
 
     /**
      * Constructs a new MarkovNameGenerator with the specified builder.
@@ -58,19 +50,18 @@ public final class MarkovNameGenerator implements NameGenerator {
 
         final StringBuilder sb = new StringBuilder();
 
-        // Initialize the first two characters of the name:
-        final int initialSequenceIndex = randomInRange.applyAsInt(sequences.size());
-        final String initialSequence = sequences.get(initialSequenceIndex);
-        sb.append(initialSequence);
+        // Choose a random preSequence to begin with:
+        String preSequence = sequences.get(randomInRange.applyAsInt(sequences.size()));
+        sb.append(preSequence);
 
-        char previous = initialSequence.charAt(0);
-        char current = initialSequence.charAt(1);
+        String previous = preSequence.substring(0, 1);
+        String current = preSequence.substring(1, 2);
 
         for (int i = 2; i < length; ++i) {
-            final String key  = previous + "" + current;
+            preSequence  = previous + "" + current;
 
             try {
-                final char next = chooseNextCharacter(randomInRange, key);
+                final String next = chooseNextCharacter(randomInRange, preSequence);
                 sb.append(next);
                 previous = current;
                 current = next;
@@ -80,10 +71,6 @@ public final class MarkovNameGenerator implements NameGenerator {
 
         }
 
-        /*
-         * We guarantee "at-least-as-long-as". Lengths of 0 or 1 will produce a result of
-         * size 2, all other lengths will result in a string of the specified length.
-         */
         return formatName(sb.toString());
     }
 
@@ -91,34 +78,23 @@ public final class MarkovNameGenerator implements NameGenerator {
      * Parses the specified String to determine the probability of a character appearing after the previous two
      * characters beginning with the third character in the String and ending with the last.
      *
-     * @param string
+     * @param trainingString
      *         The string to parse.
      */
-    public void acquireProbabilities(final String string) {
-        if (string.length() < 2) {
+    public void acquireProbabilities(final String trainingString) {
+        if (trainingString.length() < 2) {
             return;
         }
 
-        for (int i = 2 ; i < string.length(); ++i) {
-            final char previousChar = string.charAt(i - 2);
-            final char currentChar = string.charAt(i - 1);
-            final char nextChar = string.charAt(i);
+        for (int i = 2 ; i < trainingString.length(); ++i) {
+            final String preSequence = trainingString.substring(i - 2, i);
+            final String sequence = trainingString.substring(i, i + 1);
 
-            final String key = previousChar + "" + currentChar;
-
-            if (!sequences.contains(key)) {
-                sequences.add(key);
+            if (sequences.contains(preSequence) == false) {
+                 sequences.add(preSequence);
             }
 
-            HashMap<Character, Integer> probabilities = sequenceProbabilities.get(key);
-            if (probabilities == null) {
-                probabilities = new HashMap<>();
-                sequenceProbabilities.put(key, probabilities);
-            }
-
-            int existingValue = probabilities.getOrDefault(nextChar, 0);
-            ++existingValue;
-            probabilities.put(nextChar, existingValue);
+            markovChain.incrementOccurrences(preSequence, sequence);
         }
     }
 
@@ -129,7 +105,7 @@ public final class MarkovNameGenerator implements NameGenerator {
      * @param randomInRange
      *         A function that returns an arbitrary number in the range of [0, param)
      *
-     * @param sequence
+     * @param preSequence
      *         The sequence to find the next character for.
      *
      * @return
@@ -138,35 +114,36 @@ public final class MarkovNameGenerator implements NameGenerator {
      * @throws NoSuchElementException
      *          If the specified sequence has no corresponding probabilities to determine the next character from.
      */
-    private char chooseNextCharacter(final IntUnaryOperator randomInRange, final String sequence) throws NoSuchElementException {
-        final Map<Character, Integer> probabilities = sequenceProbabilities.get(sequence);
+    private String chooseNextCharacter(final IntUnaryOperator randomInRange, final String preSequence) throws NoSuchElementException {
+        final ArrayList<String> sequences = markovChain.getAllSequences(preSequence);
 
-        if (probabilities == null) {
+        if (sequences.size() == 0) {
             throw new NoSuchElementException("There are no computed probabilities for the specified key.");
         }
 
-        Integer highestProbability = null;
-        final List<Character> highestStrings = new ArrayList<>();
+        Float highestProbability = null;
+        final List<String> highestStrings = new ArrayList<>();
 
-        for(final Map.Entry<Character, Integer> entry : probabilities.entrySet()) {
+        for(final String sequence : sequences) {
+            final Float currentProbability = markovChain.getProbability(preSequence, sequence);
+
             // If the initial data has not yet been set,
             // then set it.
             if (highestProbability == null) {
-                highestStrings.add(entry.getKey());
-                highestProbability = entry.getValue();
+                highestStrings.add(sequence);
+                highestProbability = currentProbability;
             } else {
-                if(entry.getValue() > highestProbability) {
+                if(currentProbability > highestProbability) {
                     highestStrings.clear();
-                    highestStrings.add(entry.getKey());
-                    highestProbability = entry.getValue();
+                    highestStrings.add(sequence);
+                    highestProbability = currentProbability;
                 } else {
-                    highestStrings.add(entry.getKey());
+                    highestStrings.add(sequence);
                 }
             }
         }
 
         final int randomIndex = randomInRange.applyAsInt(highestStrings.size());
-
         return highestStrings.get(randomIndex);
     }
 
