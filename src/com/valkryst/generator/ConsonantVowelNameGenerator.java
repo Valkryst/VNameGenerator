@@ -3,13 +3,14 @@ package com.valkryst.generator;
 import com.valkryst.NameGenerator;
 import com.valkryst.builder.ConsonantVowelBuilder;
 
+import java.util.List;
 import java.util.function.IntUnaryOperator;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
     /** The array containing all loaded consonants. */
-    private final String[] consonants;
+    private final List<String> consonants;
     /** The array containing all loaded vowels. */
-    private final String[] vowels;
+    private final List<String> vowels;
 
     /**
      * Constructs a new consonant-vowel name generator from the specified builder.
@@ -18,11 +19,8 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      *         The builder to retrieve the consonants and vowels from.
      */
     public ConsonantVowelNameGenerator(final ConsonantVowelBuilder builder) {
-        final int totalConsonants = builder.getConsonants().size();
-        final int totalVowels = builder.getVowels().size();
-
-        consonants = builder.getConsonants().toArray(new String[totalConsonants]);
-        vowels = builder.getVowels().toArray(new String[totalVowels]);
+        consonants = builder.getConsonants();
+        vowels = builder.getVowels();
     }
 
     /**
@@ -46,19 +44,18 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
             return "LENGTH_WAS_ZERO";
         }
 
-        boolean addConsonant = false;
+        List<String> data = vowels;
         final StringBuilder sb = new StringBuilder();
 
         while (sb.length() < length) {
-            if (addConsonant) {
-                final int randomIndex = randomInRange.applyAsInt(consonants.length);
-                sb.append(consonants[randomIndex]);
-            } else {
-                final int randomIndex = randomInRange.applyAsInt(vowels.length);
-                sb.append(vowels[randomIndex]);
-            }
+            final int randomIndex = randomInRange.applyAsInt(data.size());
+            sb.append(data.get(randomIndex));
 
-            addConsonant = !addConsonant;
+            if (length % 2 == 0) {
+                data = vowels;
+            } else {
+                data = consonants;
+            }
         }
 
         return sb.substring(0, length);
