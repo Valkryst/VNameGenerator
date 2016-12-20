@@ -118,38 +118,27 @@ public final class GrammarNameGenerator implements NameGenerator{
         final StringBuilder sb = new StringBuilder();
         sb.append(startingSymbol);
 
-        while (sb.length() < length) {
-            for (int i = 0; i < sb.length(); i++) {
-                final char currentChar = sb.charAt(i);
-                final boolean isCurrentCharUpperCase = Character.isUpperCase(currentChar);
+        for (int i = 0; i < sb.length(); i++) {
+            final char currentChar = sb.charAt(i);
+            final boolean isCurrentCharUpperCase = Character.isUpperCase(currentChar);
 
-                if (isCurrentCharUpperCase) {
-                    final String substitution = chooseRandomRuleOption(randomInRange, currentChar);
+            if (isCurrentCharUpperCase) {
+                final String substitution = chooseRandomRuleOption(randomInRange, currentChar);
 
-                    if (substitution != null) {
-                        String temp = sb.toString();
-                        temp = temp.replace(String.valueOf(currentChar), substitution);
+                if (substitution != null) {
+                    String temp = sb.toString();
+                    temp = temp.replace(String.valueOf(currentChar), substitution);
 
-                        sb.setLength(0);
-                        sb.append(temp);
+                    sb.setLength(0);
+                    sb.append(temp);
 
-                        i--;
-                    }
+                    i--;
                 }
-            }
-
-            if(sb.length() < length) {
-                sb.setLength(0);
-                sb.append(startingSymbol);
             }
         }
 
         // Return Name:
-        if(length >= 0) {
-            return sb.substring(0, length);
-        } else {
-            return sb.toString();
-        }
+        return sb.toString();
     }
 
     @Override
