@@ -6,9 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MarkovEntry <Sequence> {
+    /** The sequences. */
     @Getter private final ArrayList<Sequence> sequences = new ArrayList<>();
+    /** The total number of sequence occurrences. */
     private float totalOccurrences = 0;
+    /** The number of occurrences of each sequence. */
     @Getter private final HashMap<Sequence, Integer> occurrences = new HashMap<>();
+    /** The probability of each sequence occurring. */
     @Getter private final HashMap<Sequence, Float> probabilities = new HashMap<>();
 
     public void addNewSequence(final Sequence sequence) {
