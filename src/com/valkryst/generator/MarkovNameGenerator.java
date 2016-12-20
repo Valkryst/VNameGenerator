@@ -16,14 +16,13 @@ public final class MarkovNameGenerator implements NameGenerator {
     private final MarkovChain<String, String> markovChain = new MarkovChain<>();
 
     /**
-     * Constructs a new MarkovNameGenerator with the specified builder.
+     * Constructs a new MarkovNameGenerator.
      *
      * @param builder
-     *         The builder to retrieve the training names from.
+     *         Builder containing the training names.
      */
     public MarkovNameGenerator(final MarkovBuilder builder) {
-        builder.getTrainingNames()
-               .forEach(this::acquireProbabilities);
+        builder.getTrainingNames().forEach(this::acquireProbabilities);
     }
 
     /**
@@ -40,7 +39,7 @@ public final class MarkovNameGenerator implements NameGenerator {
      *         No guarantee is made that the name will be exactly this length.
      *
      * @return
-     *         The generated name.
+     *         A generated name.
      */
     @Override
     public String generateName(final IntUnaryOperator randomInRange, final int length) {
@@ -71,15 +70,16 @@ public final class MarkovNameGenerator implements NameGenerator {
 
         }
 
-        return formatName(sb.toString());
+        // Capitalize the first letter of the name:
+        return sb.toString().substring(0, 1).toUpperCase() + sb.toString().substring(1);
     }
 
     /**
-     * Parses the specified String to determine the probability of a character appearing after the previous two
-     * characters beginning with the third character in the String and ending with the last.
+     * Parses the specified string to determine the probability of a character appearing after the previous two
+     * characters beginning with the third character in the string and ending with the last.
      *
      * @param trainingString
-     *         The string to parse.
+     *         A string to parse.
      */
     public void acquireProbabilities(final String trainingString) {
         if (trainingString.length() < 2) {
@@ -99,26 +99,26 @@ public final class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Determines the character to follow the specified sequence using the precomputed probabilities of which characters
-     * most often appear after the specified sequence.
+     * Determines the sequence to follow the specified pre-sequence using the precomputed probabilities of which
+     * sequences most often appear after the specified pre-sequence.
      *
      * @param randomInRange
      *         A function that returns an arbitrary number in the range of [0, param)
      *
      * @param preSequence
-     *         The sequence to find the next character for.
+     *         The pre-sequence to find the next character for.
      *
      * @return
      *         The next character of the sequence.
      *
      * @throws NoSuchElementException
-     *          If the specified sequence has no corresponding probabilities to determine the next character from.
+     *          If the specified pre-sequence has no corresponding probabilities to determine the next sequence from.
      */
     private String chooseNextCharacter(final IntUnaryOperator randomInRange, final String preSequence) throws NoSuchElementException {
         final ArrayList<String> sequences = markovChain.getAllSequences(preSequence);
 
         if (sequences.size() == 0) {
-            throw new NoSuchElementException("There are no computed probabilities for the specified key.");
+            throw new NoSuchElementException("There are no computed probabilities for the specified pre-sequence.");
         }
 
         Float highestProbability = null;
@@ -145,20 +145,5 @@ public final class MarkovNameGenerator implements NameGenerator {
 
         final int randomIndex = randomInRange.applyAsInt(highestStrings.size());
         return highestStrings.get(randomIndex);
-    }
-
-    /**
-     * Sets the first character of the specified name to be upper case.
-     *
-     * @param name
-     *         The name to format.
-     *
-     * @return
-     *         The formatted name.
-     */
-    private String formatName(final String name) {
-        final char firstCharacter = Character.toUpperCase(name.charAt(0));
-        final String remainingCharacters = name.substring(1);
-        return firstCharacter + remainingCharacters;
     }
 }
