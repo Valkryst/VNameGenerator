@@ -28,8 +28,7 @@ public class NameGeneratorBuilder {
         }
 
         // Attempt to read the lines using NIO.
-        // If this fails, then fallback to
-        // the BufferedReader method.
+        // If this fails, then fallback to the BufferedReader method.
         try {
             return Files.readAllLines(path);
         } catch (final IOException e) {
