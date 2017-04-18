@@ -29,7 +29,7 @@ You can now use the VNameGenerator in your project.
 
 Examples of each algorithm in-use can be found within the */test/com/valkryst/generator/* folder. These tests aren't
 documented, but should be simple to understand after reading the JavaDoc documentation within the generator classes
-located at */src/com/valkryst/generator/* folder.
+located in the */src/com/valkryst/generator/* folder.
 
 Lists of names to use with the generators can be found within the */res/* folder.
 
@@ -47,8 +47,7 @@ which is followed by a vowel... and so on, until the name is generated.
 ### Context Free Grammar:
 Names are generated using a very crude context free grammar method. 
 
-You can learn more about CFGs [here]
-(http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
+You can learn more about CFGs [here](http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
 
 An example of how this is used can be found within the */test/com/valkryst/generator/* folder.
 
