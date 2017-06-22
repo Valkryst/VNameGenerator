@@ -49,42 +49,26 @@ public class GrammarNameGeneratorTest {
     }
 
     @Test
-    public void generateNameUsingRandom() {
-        final Random random = new Random(System.currentTimeMillis());
-
+    public void generateName() {
         // Setup & Test the Generator:
         final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
 
         for(int i = 0 ; i < 100 ; i++) {
-            grammarNameGenerator.generateName(random, i % 6, 'S');
-        }
-    }
-
-    @Test
-    public void generateNameUsingIntUnaryOperator() {
-        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
-
-        // Setup & Test the Generator:
-        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
-
-        for(int i = 0 ; i < 100 ; i++) {
-            grammarNameGenerator.generateName(randomInRange, i % 6, 'S');
+            grammarNameGenerator.generateName(i % 6, 'S');
         }
     }
 
     @Test
     public void longGeneration() {
-        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
-
         // Setup & Test the Generator:
         final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
 
         for (int i = 0 ; i < 100 ; i++) {
-            System.out.println(grammarNameGenerator.generateName(randomInRange, i % 6, 'S'));
+            System.out.println(grammarNameGenerator.generateName(i % 6, 'S'));
         }
 
         for (int i = 0 ; i < 1_000_000 ; i++) {
-            grammarNameGenerator.generateName(randomInRange, i % 6, 'S');
+            grammarNameGenerator.generateName(i % 6, 'S');
         }
     }
 }
