@@ -5,6 +5,7 @@ import com.valkryst.builder.ConsonantVowelBuilder;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
@@ -25,7 +26,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String generateName(final Random random, final int length) {
+    public String generateName(final int length) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -34,7 +35,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
         final StringBuilder sb = new StringBuilder();
 
         while (sb.length() < length) {
-            final int randomIndex = random.nextInt(data.size());
+            final int randomIndex = ThreadLocalRandom.current().nextInt(data.size());
             sb.append(data.get(randomIndex));
 
             if (length % 2 == 0) {
