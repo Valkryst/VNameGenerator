@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public final class MarkovNameGenerator implements NameGenerator {
     /** All two-character combinations found in the training names. */
