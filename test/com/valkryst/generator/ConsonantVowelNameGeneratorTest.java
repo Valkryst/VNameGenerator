@@ -60,9 +60,7 @@ public class ConsonantVowelNameGeneratorTest {
     }
 
     @Test
-    public void generateNameUsingRandom() {
-        final Random random = new Random(System.currentTimeMillis());
-
+    public void generateName() {
         // Setup the Builder:
         final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
         builder.setConsonants(CONSONANTS);
@@ -72,31 +70,12 @@ public class ConsonantVowelNameGeneratorTest {
         final ConsonantVowelNameGenerator generator = builder.build();
 
         for(int i = 0 ; i < 100 ; i++) {
-            generator.generateName(random, i % 20);
-        }
-    }
-
-    @Test
-    public void generateNameUsingIntUnaryOperator() {
-        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
-
-        // Setup the Builder:
-        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
-        builder.setConsonants(CONSONANTS);
-        builder.setVowels(VOWELS);
-
-        // Setup & Test the Generator:
-        final ConsonantVowelNameGenerator generator = builder.build();
-
-        for(int i = 0 ; i < 100 ; i++) {
-            generator.generateName(randomInRange, i % 20);
+            generator.generateName(i % 20);
         }
     }
 
     @Test
     public void longGeneration() {
-        final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt;
-
         // Setup the Builder:
         final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
         builder.setConsonants(CONSONANTS);
@@ -106,11 +85,11 @@ public class ConsonantVowelNameGeneratorTest {
         final ConsonantVowelNameGenerator generator = builder.build();
 
         for (int i = 0 ; i < 100 ; i++) {
-            System.out.println(generator.generateName(randomInRange, i));
+            System.out.println(generator.generateName(i));
         }
 
         for (int i = 0 ; i < 1_000_000 ; i++) {
-            generator.generateName(randomInRange, i % 20);
+            generator.generateName(i % 20);
         }
     }
 }
