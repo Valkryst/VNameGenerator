@@ -4,6 +4,7 @@ import com.valkryst.NameGenerator;
 import com.valkryst.builder.CombinatorialBuilder;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public final class CombinatorialNameGenerator implements NameGenerator {
@@ -38,13 +39,16 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         }
     }
 
+    @Override
+    public String generateName(final int length) {
+        final int middles = ThreadLocalRandom.current().nextInt(5);
+        return generateName(length, middles);
+    }
+
     /**
      * Randomly generates a name with one beginning, zero or more middles, and one ending.
      *
      * If no middles have been loaded, then they are ignored and a name is generated without them.
-     *
-     * @param random
-     *         The instance of Random to use when necessary.
      *
      * @param length
      *         The length of the name to generateName.
@@ -59,7 +63,7 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      * @return
      *         The generated name.
      */
-    public String generateName(final Random random, final int length, int middlesToUse) {
+    public String generateName(final int length, int middlesToUse) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -73,6 +77,8 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         }
 
         // Setup Variables:
+        final ThreadLocalRandom random = ThreadLocalRandom.current();
+
         final int beginningIndex = random.nextInt(beginnings.length);
         final int endingIndex = random.nextInt(endings.length);
         final StringBuilder sb = new StringBuilder();
@@ -93,11 +99,5 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         } else {
             return sb.toString();
         }
-    }
-
-    @Override
-    public String generateName(final Random random, final int length) {
-        final int middles = random.nextInt(5);
-        return generateName(random, length, middles);
     }
 }
