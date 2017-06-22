@@ -60,31 +60,6 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      *         The generated name.
      */
     public String generateName(final Random random, final int length, int middlesToUse) {
-        return generateName(random::nextInt, length, middlesToUse);
-    }
-
-    /**
-     * Randomly generates a name with one beginning, zero or more middles, and one ending.
-     *
-     * If no middles have been loaded, then they are ignored and a name is generated without them.
-     *
-     * @param randomInRange
-     *         A function that returns an arbitrary number in the range of [0, param)
-     *
-     * @param length
-     *         The length of the name to generateName.
-     *
-     *         If the value is less than or equal to zero, then this parameter is ignored.
-     *
-     *         No guarantee is made that the name will be exactly this length.
-     *
-     * @param middlesToUse
-     *         The number of name-middles to append between the beginning and ending.
-     *
-     * @return
-     *         The generated name.
-     */
-    public String generateName(final IntUnaryOperator randomInRange, final int length, int middlesToUse) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -98,15 +73,15 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         }
 
         // Setup Variables:
-        final int beginningIndex = randomInRange.applyAsInt(beginnings.length);
-        final int endingIndex = randomInRange.applyAsInt(endings.length);
+        final int beginningIndex = random.nextInt(beginnings.length);
+        final int endingIndex = random.nextInt(endings.length);
         final StringBuilder sb = new StringBuilder();
 
         // Construct Name:
         sb.append(beginnings[beginningIndex]);
 
         for (int i = 0 ; i < middlesToUse ; i++) {
-            final int middleIndex = randomInRange.applyAsInt(middles.length);
+            final int middleIndex = random.nextInt(middles.length);
             sb.append(middles[middleIndex]);
         }
 
@@ -121,8 +96,8 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String generateName(final IntUnaryOperator randomInRange, final int length) {
-        final int middles = randomInRange.applyAsInt(5);
-        return generateName(randomInRange, length, middles);
+    public String generateName(final Random random, final int length) {
+        final int middles = random.nextInt(5);
+        return generateName(random, length, middles);
     }
 }
