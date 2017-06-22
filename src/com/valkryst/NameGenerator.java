@@ -1,35 +1,18 @@
 package com.valkryst;
 
 import java.util.Random;
-import java.util.function.IntUnaryOperator;
 
 public interface NameGenerator {
-
     /**
-     * Randomly generates a name using the provided random function, of at least the given length
-     *
-     * @param randomInRange
-     *         A function that returns an arbitrary number in the range of [0, param)
-     *
-     * @param length
-     *         The length of the name to generateName.
-     *
-     * @return
-     */
-    String generateName(final IntUnaryOperator randomInRange, final int length);
-
-    /**
-     * Randomly generates a name using the provided random function, of at least the given length
+     * Randomly generates a name of at-least the desired length.
      *
      * @param random
      *         The instance of Random to use when necessary.
      *
      * @param length
-     *         The length of the name to generateName.
+     *         The desired name length.
      *
      * @return
      */
-    default String generateName(final Random random, final int length) {
-        return generateName(random::nextInt, length);
-    }
+    String generateName(final Random random, final int length);
 }
