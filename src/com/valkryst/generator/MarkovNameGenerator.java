@@ -6,6 +6,7 @@ import com.valkryst.builder.MarkovBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public final class MarkovNameGenerator implements NameGenerator {
@@ -25,24 +26,8 @@ public final class MarkovNameGenerator implements NameGenerator {
         builder.getTrainingNames().forEach(this::acquireProbabilities);
     }
 
-    /**
-     * Generates a name through the use of a trained Markov Chain.
-     *
-     * @param randomInRange
-     *         A function that returns an arbitrary number in the range of [0, param)
-     *
-     * @param length
-     *         The length of the name to generateName.
-     *
-     *         If the value is less than or equal to zero, then this parameter is ignored.
-     *
-     *         No guarantee is made that the name will be exactly this length.
-     *
-     * @return
-     *         A generated name.
-     */
     @Override
-    public String generateName(final IntUnaryOperator randomInRange, final int length) {
+    public String generateName(final int length) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -50,7 +35,7 @@ public final class MarkovNameGenerator implements NameGenerator {
         final StringBuilder sb = new StringBuilder();
 
         // Choose a random preSequence to begin with:
-        String preSequence = sequences.get(randomInRange.applyAsInt(sequences.size()));
+        String preSequence = sequences.get(ThreadLocalRandom.current().nextInt(sequences.size()));
         sb.append(preSequence);
 
         String previous = preSequence.substring(0, 1);
@@ -60,7 +45,7 @@ public final class MarkovNameGenerator implements NameGenerator {
             preSequence  = previous + "" + current;
 
             try {
-                final String next = chooseNextCharacter(randomInRange, preSequence);
+                final String next = chooseNextCharacter(preSequence);
                 sb.append(next);
                 previous = current;
                 current = next;
@@ -102,9 +87,6 @@ public final class MarkovNameGenerator implements NameGenerator {
      * Determines the sequence to follow the specified pre-sequence using the precomputed probabilities of which
      * sequences most often appear after the specified pre-sequence.
      *
-     * @param randomInRange
-     *         A function that returns an arbitrary number in the range of [0, param)
-     *
      * @param preSequence
      *         The pre-sequence to find the next character for.
      *
@@ -114,7 +96,7 @@ public final class MarkovNameGenerator implements NameGenerator {
      * @throws NoSuchElementException
      *          If the specified pre-sequence has no corresponding probabilities to determine the next sequence from.
      */
-    private String chooseNextCharacter(final IntUnaryOperator randomInRange, final String preSequence) throws NoSuchElementException {
+    private String chooseNextCharacter(final String preSequence) throws NoSuchElementException {
         final ArrayList<String> sequences = markovChain.getAllSequences(preSequence);
 
         if (sequences.size() == 0) {
@@ -143,7 +125,7 @@ public final class MarkovNameGenerator implements NameGenerator {
             }
         }
 
-        final int randomIndex = randomInRange.applyAsInt(highestStrings.size());
+        final int randomIndex = ThreadLocalRandom.current().nextInt(highestStrings.size());
         return highestStrings.get(randomIndex);
     }
 }
