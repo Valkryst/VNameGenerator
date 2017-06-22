@@ -4,6 +4,7 @@ import com.valkryst.NameGenerator;
 import com.valkryst.builder.ConsonantVowelBuilder;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.IntUnaryOperator;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
@@ -23,23 +24,8 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
         vowels = builder.getVowels();
     }
 
-    /**
-     * Generates a name of at-least the specified length as a string of randomized consonants and vowels.
-     *
-     * The string begins with a consonant, then a vowel, then a consonant, then a vowel, etc... until the specified
-     * length is reached or exceeded.
-     *
-     * @param randomInRange
-     *         A function that returns an arbitrary number in the range [0, param)
-     *
-     * @param length
-     *         The length of the name to generateName.
-     *
-     * @return
-     *         The generated name.
-     */
     @Override
-    public String generateName(final IntUnaryOperator randomInRange, final int length) {
+    public String generateName(final Random random, final int length) {
         if (length == 0) {
             return "LENGTH_WAS_ZERO";
         }
@@ -48,7 +34,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
         final StringBuilder sb = new StringBuilder();
 
         while (sb.length() < length) {
-            final int randomIndex = randomInRange.applyAsInt(data.size());
+            final int randomIndex = random.nextInt(data.size());
             sb.append(data.get(randomIndex));
 
             if (length % 2 == 0) {
