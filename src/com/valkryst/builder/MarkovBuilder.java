@@ -9,11 +9,11 @@ import java.nio.file.Path;
 import java.util.List;
 
 public final class MarkovBuilder extends NameGeneratorBuilder {
-    /** The list containing all names to train the Markov Chain with. */
+    /** The names to train the Markov Chain with. */
     @Getter private List<String> trainingNames;
 
     /**
-     * Uses the builder to construct a new MarkovNameGenerator.
+     * Constructs a new MarkovNameGenerator.
      *
      * @return
      *         A new MarkovNameGenerator.
@@ -27,9 +27,7 @@ public final class MarkovBuilder extends NameGeneratorBuilder {
     }
 
     /**
-     * Checks the current state of the builder for any issue with it's state.
-     *
-     * If no issue is found, then no exception is thrown.
+     * Checks the current state of the builder for issues.
      *
      * @throws IllegalStateException
      *          If something is wrong with the builder's state.
@@ -57,7 +55,7 @@ public final class MarkovBuilder extends NameGeneratorBuilder {
      *          If an I/O error occurs.
      */
     public void setTrainingNames(final Path path) throws IOException {
-        trainingNames = readLines(path);
+        trainingNames = super.readLines(path);
     }
 }
 
