@@ -10,14 +10,14 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
 
 public final class MarkovNameGenerator implements NameGenerator {
-    /** The List containing all two-character combinations found in the training names. */
+    /** All two-character combinations found in the training names. */
     private final List<String> sequences = new ArrayList<>();
 
     // todo JavaDoc
     private final MarkovChain<String, String> markovChain = new MarkovChain<>();
 
     /**
-     * Constructs a new MarkovNameGenerator.
+     * Constructs a MarkovNameGenerator.
      *
      * @param builder
      *         Builder containing the training names.
