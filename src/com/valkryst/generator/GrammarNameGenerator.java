@@ -3,7 +3,6 @@ package com.valkryst.generator;
 import com.valkryst.VParser_CFG.ContextFreeGrammar;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public final class GrammarNameGenerator implements NameGenerator{
     /** The CFG to generate names with. */
