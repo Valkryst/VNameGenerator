@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class CombinatorialBuilder extends NameGeneratorBuilder {
@@ -18,18 +19,14 @@ public final class CombinatorialBuilder extends NameGeneratorBuilder {
     /**
      * Uses the builder to construct a new CombinatorialNameGenerator.
      *
-     * @param usesMiddles
-     *         Whether or not the builder will construct a CombinatorialNameGenerator that uses name-middles or not.
-     *
      * @return
      *         A new CombinatorialNameGenerator.
      *
      * @throws IllegalStateException
      *          If something is wrong with the builder's state.
      */
-    public CombinatorialNameGenerator build(final boolean usesMiddles) throws IllegalStateException {
-        checkState(usesMiddles);
-        return new CombinatorialNameGenerator(this, usesMiddles);
+    public CombinatorialNameGenerator build() throws IllegalStateException {
+        return new CombinatorialNameGenerator(this);
     }
 
     /**
@@ -37,20 +34,17 @@ public final class CombinatorialBuilder extends NameGeneratorBuilder {
      *
      * If no issue is found, then no exception is thrown.
      *
-     * @param usesMiddles
-     *         Whether or not the builder will construct a CombinatorialNameGenerator that uses name-middles or not.
-     *
      * @throws IllegalStateException
      *          If something is wrong with the builder's state.
      */
-    private void checkState(final boolean usesMiddles) throws IllegalStateException {
+    private void checkState() throws IllegalStateException {
         // Ensure lists aren't null:
         if (beginnings == null) {
             throw new IllegalStateException("The list of beginnings is null.");
         }
 
-        if (usesMiddles && middles == null) {
-            throw new IllegalStateException("The list of middles is null.");
+        if (middles == null) {
+            middles = new ArrayList<>(0);
         }
 
         if (endings == null) {
@@ -60,10 +54,6 @@ public final class CombinatorialBuilder extends NameGeneratorBuilder {
         // Ensure lists aren't empty:
         if (beginnings.size() == 0) {
             throw new IllegalStateException("The list of beginnings is empty.");
-        }
-
-        if (usesMiddles && middles.size() == 0) {
-            throw new IllegalStateException("The list of middles is empty.");
         }
 
         if (endings.size() == 0) {
