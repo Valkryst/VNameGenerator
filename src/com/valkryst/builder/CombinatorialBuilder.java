@@ -26,6 +26,7 @@ public final class CombinatorialBuilder extends NameGeneratorBuilder {
      *          If something is wrong with the builder's state.
      */
     public CombinatorialNameGenerator build() throws IllegalStateException {
+        checkState();
         return new CombinatorialNameGenerator(this);
     }
 
