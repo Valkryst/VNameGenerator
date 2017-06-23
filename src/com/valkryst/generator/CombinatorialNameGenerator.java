@@ -50,6 +50,15 @@ public final class CombinatorialNameGenerator implements NameGenerator {
         return sb.toString();
     }
 
+    /**
+     * Chooses a random String from an array.
+     *
+     * @param arr
+     *        The array.
+     *
+     * @return
+     *        A random String from the array.
+     */
     private String chooseRandomElementFrom(final String[] arr) {
         final int index = ThreadLocalRandom.current().nextInt(arr.length);
         return arr[index];
