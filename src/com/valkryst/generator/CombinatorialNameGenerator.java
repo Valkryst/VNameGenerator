@@ -13,10 +13,10 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     private final String[] endings;
 
     /**
-     * Constructs a new combinatorial name generator from the specified builder.
+     * Constructs a CombinatorialNameGenerator.
      *
      * @param builder
-     *         The builder to retrieve the beginnings, middles, and ends from.
+     *         The builder.
      */
     public CombinatorialNameGenerator(final CombinatorialBuilder builder) {
         final int totalBeginnings = builder.getBeginnings().size();
