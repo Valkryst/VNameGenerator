@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class GrammarNameGenerator implements NameGenerator{
+    /** The CFG to generate names with. */
     private final ContextFreeGrammar contextFreeGrammar;
 
     /**
