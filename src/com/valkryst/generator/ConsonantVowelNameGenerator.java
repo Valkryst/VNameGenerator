@@ -7,9 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
     /** The consonants. */
-    private final List<String> consonants;
+    private final String[] consonants;
     /** The vowels. */
-    private final List<String> vowels;
+    private final String[] vowels;
 
     /**
      * Constructs a ConsonantVowelNameGenerator.
@@ -18,8 +18,11 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      *         The builder.
      */
     public ConsonantVowelNameGenerator(final ConsonantVowelBuilder builder) {
-        consonants = builder.getConsonants();
-        vowels = builder.getVowels();
+        final int totalConsonants = builder.getConsonants().size();
+        final int totalVowels = builder.getConsonants().size();
+
+        consonants = builder.getConsonants().toArray(new String[totalConsonants]);
+        vowels = builder.getConsonants().toArray(new String[totalVowels]);
     }
 
     @Override
@@ -32,9 +35,9 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
 
         while (sb.length() < length) {
             if (length % 2 == 0) {
-                sb.append(vowels.get(ThreadLocalRandom.current().nextInt(vowels.size())));
+                sb.append(vowels[ThreadLocalRandom.current().nextInt(vowels.length)]);
             } else {
-                sb.append(consonants.get(ThreadLocalRandom.current().nextInt(consonants.size())));
+                sb.append(consonants[ThreadLocalRandom.current().nextInt(consonants.length)]);
             }
         }
 
