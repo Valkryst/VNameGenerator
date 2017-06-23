@@ -1,11 +1,8 @@
 package com.valkryst.generator;
 
-import com.valkryst.NameGenerator;
 import com.valkryst.builder.CombinatorialBuilder;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public final class CombinatorialNameGenerator implements NameGenerator {
     /** The array containing all loaded name-beginnings. */

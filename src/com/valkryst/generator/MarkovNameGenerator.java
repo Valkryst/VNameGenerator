@@ -1,6 +1,5 @@
 package com.valkryst.generator;
 
-import com.valkryst.NameGenerator;
 import com.valkryst.builder.MarkovBuilder;
 import com.valkryst.markov.MarkovChain;
 

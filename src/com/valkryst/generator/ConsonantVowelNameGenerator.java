@@ -1,12 +1,9 @@
 package com.valkryst.generator;
 
-import com.valkryst.NameGenerator;
 import com.valkryst.builder.ConsonantVowelBuilder;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
     /** The array containing all loaded consonants. */

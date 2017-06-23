@@ -1,11 +1,7 @@
 package com.valkryst.generator;
 
-import com.valkryst.NameGenerator;
-
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public final class GrammarNameGenerator implements NameGenerator{
     /** The rules of the grammar to use when generating a name. */
