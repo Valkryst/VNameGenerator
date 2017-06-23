@@ -5,11 +5,11 @@ import com.valkryst.builder.CombinatorialBuilder;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class CombinatorialNameGenerator implements NameGenerator {
-    /** The array containing all loaded name-beginnings. */
+    /** The name-beginnings. */
     private final String[] beginnings;
-    /** The array containing all loaded name-middles. */
+    /** The name-middles. */
     private final String[] middles;
-    /** The array containing all loaded name-endings. */
+    /** The name-endings. */
     private final String[] endings;
 
     /**
