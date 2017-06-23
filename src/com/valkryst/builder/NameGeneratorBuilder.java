@@ -1,4 +1,4 @@
-package com.valkryst;
+package com.valkryst.builder;
 
 import java.io.IOException;
 import java.nio.file.Files;

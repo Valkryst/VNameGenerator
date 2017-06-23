@@ -1,6 +1,5 @@
 package com.valkryst.builder;
 
-import com.valkryst.NameGeneratorBuilder;
 import com.valkryst.generator.MarkovNameGenerator;
 import lombok.Getter;
 
