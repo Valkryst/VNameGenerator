@@ -8,10 +8,10 @@ public final class GrammarNameGenerator implements NameGenerator{
     private String[] rules;
 
     /**
-     * Constructs a new GrammarNameGenerator with the specified grammar rules.
+     * Constructs a GrammarNameGenerator.
      *
      * @param rules
-     *         The rules of the grammar to use when generating a name.
+     *         The name generation rules.
      */
     public GrammarNameGenerator(final List<String> rules) {
         this.rules = rules.toArray(new String[rules.size()]);
