@@ -23,7 +23,11 @@ public final class GrammarNameGenerator implements NameGenerator{
 
 
     @Override
-    public String generateName(final int length) {
+    public String generateName(int length) {
+        if (length < 2) {
+            length = 2;
+        }
+
         String longestResult = "";
 
         for (int i = 0 ; i < 100 ; i++) {
