@@ -2,7 +2,7 @@ package com.valkryst.generator;
 
 public interface NameGenerator {
     /**
-     * Randomly generates a name with a length of at-least two characters.
+     * Generates a name with a length in the range of [2, length].
      *
      * @param length
      *        The desired name length.
