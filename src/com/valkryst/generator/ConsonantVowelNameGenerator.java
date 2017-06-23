@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
-    /** The array containing all loaded consonants. */
+    /** The consonants. */
     private final List<String> consonants;
-    /** The array containing all loaded vowels. */
+    /** The vowels. */
     private final List<String> vowels;
 
     /**
