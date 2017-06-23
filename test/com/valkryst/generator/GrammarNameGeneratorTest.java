@@ -54,7 +54,7 @@ public class GrammarNameGeneratorTest {
         final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
 
         for(int i = 0 ; i < 100 ; i++) {
-            grammarNameGenerator.generateName(i % 6, 'S');
+            grammarNameGenerator.generateName(i % 6);
         }
     }
 
@@ -64,11 +64,11 @@ public class GrammarNameGeneratorTest {
         final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
 
         for (int i = 0 ; i < 100 ; i++) {
-            System.out.println(grammarNameGenerator.generateName(i % 6, 'S'));
+            System.out.println(grammarNameGenerator.generateName(i % 6));
         }
 
         for (int i = 0 ; i < 1_000_000 ; i++) {
-            grammarNameGenerator.generateName(i % 6, 'S');
+            grammarNameGenerator.generateName(i % 6);
         }
     }
 }
