@@ -12,10 +12,10 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     private final List<String> vowels;
 
     /**
-     * Constructs a new consonant-vowel name generator from the specified builder.
+     * Constructs a ConsonantVowelNameGenerator.
      *
      * @param builder
-     *         The builder to retrieve the consonants and vowels from.
+     *         The builder.
      */
     public ConsonantVowelNameGenerator(final ConsonantVowelBuilder builder) {
         consonants = builder.getConsonants();
@@ -23,22 +23,18 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String generateName(final int length) {
+    public String generateName(int length) {
         if (length == 0) {
-            return "LENGTH_WAS_ZERO";
+            length = 2;
         }
 
-        List<String> data = vowels;
         final StringBuilder sb = new StringBuilder();
 
         while (sb.length() < length) {
-            final int randomIndex = ThreadLocalRandom.current().nextInt(data.size());
-            sb.append(data.get(randomIndex));
-
             if (length % 2 == 0) {
-                data = vowels;
+                sb.append(vowels.get(ThreadLocalRandom.current().nextInt(vowels.size())));
             } else {
-                data = consonants;
+                sb.append(vowels.get(ThreadLocalRandom.current().nextInt(consonants.size())));
             }
         }
 
