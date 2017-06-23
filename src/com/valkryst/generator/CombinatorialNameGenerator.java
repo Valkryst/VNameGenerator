@@ -17,23 +17,15 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      *
      * @param builder
      *         The builder to retrieve the beginnings, middles, and ends from.
-     *
-     * @param usesMiddles
-     *         Whether or not name-middles can be used in name generation.
      */
-    public CombinatorialNameGenerator(final CombinatorialBuilder builder, final boolean usesMiddles) {
+    public CombinatorialNameGenerator(final CombinatorialBuilder builder) {
         final int totalBeginnings = builder.getBeginnings().size();
+        final int totalMiddles = builder.getMiddles().size();
         final int totalEndings = builder.getEndings().size();
 
         beginnings = builder.getBeginnings().toArray(new String[totalBeginnings]);
+        middles = builder.getMiddles().toArray(new String[totalMiddles]);
         endings = builder.getEndings().toArray(new String[totalEndings]);
-
-        if(usesMiddles) {
-            final int totalMiddles = builder.getMiddles().size();
-            middles = builder.getMiddles().toArray(new String[totalMiddles]);
-        } else {
-            middles = null;
-        }
     }
 
     @Override
