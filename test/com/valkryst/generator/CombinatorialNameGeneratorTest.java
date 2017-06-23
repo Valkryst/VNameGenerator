@@ -23,7 +23,7 @@ public class CombinatorialNameGeneratorTest {
         }
 
         // Setup & Test the Generator:
-        final CombinatorialNameGenerator generator = builder.build(false);
+        final CombinatorialNameGenerator generator = builder.build();
 
         for (int i = 0 ; i < 100 ; i++) {
             generator.generateName(i % 20);
@@ -43,7 +43,7 @@ public class CombinatorialNameGeneratorTest {
         }
 
         // Setup & Test the Generator:
-        final CombinatorialNameGenerator generator = builder.build(false);
+        final CombinatorialNameGenerator generator = builder.build();
 
         for (int i = 0 ; i < 100 ; i++) {
             System.out.println(generator.generateName(i));
