@@ -136,34 +136,3 @@ You can learn more about Markov Chains [here](https://en.wikipedia.org/wiki/Mark
     Àrlamin
     Leigior
     Blaghna
-
----
-
-## Usage of IntUnaryOperator:
-
-### Alternative Method #1:
-
-    final Random random = new Random(System.nanoTime());
-    final IntUnaryOperator randomInRange = random::nextInt;
-    
-The above code is equivalent to the following code.
-
-    final Random random = new Random(System.nanoTime());
-    final IntUnaryOperator randomInRange = value -> random.nextInt(value);
-    
-Both snippets of code will create a single Random object and reuse it on every method invocation.
-
-### Alternative Method #2:
-
-    final IntUnaryOperator randomInRange = ThreadLocalRandom.current()::nextInt
-    
-This snippet works much the same as Method #1, but uses ThreadLocalRandom rather than Random.
-    
-### Alternative Method #3:
-
-    final IntUnaryOperator randomInRange = (value) -> new Random(System.nanoTime()).nextInt(value);
- 
-On every method invocation, this will create a new Random object using System nanotime, call nextInt(value), and then 
-it will simply throw Random away to be dealt with by the Garbage Collector.
-
-This method isn't recommended, but it does work.
