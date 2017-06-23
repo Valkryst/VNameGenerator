@@ -4,9 +4,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public class GrammarNameGeneratorTest {
     private static final List<String> RULES = new ArrayList<>();
@@ -54,20 +51,6 @@ public class GrammarNameGeneratorTest {
         final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
 
         for(int i = 0 ; i < 100 ; i++) {
-            grammarNameGenerator.generateName(i % 6);
-        }
-    }
-
-    @Test
-    public void longGeneration() {
-        // Setup & Test the Generator:
-        final GrammarNameGenerator grammarNameGenerator = new GrammarNameGenerator(RULES);
-
-        for (int i = 0 ; i < 100 ; i++) {
-            System.out.println(grammarNameGenerator.generateName(i % 6));
-        }
-
-        for (int i = 0 ; i < 1_000_000 ; i++) {
             grammarNameGenerator.generateName(i % 6);
         }
     }
