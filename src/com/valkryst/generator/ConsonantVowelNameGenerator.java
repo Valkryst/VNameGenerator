@@ -34,7 +34,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
             if (length % 2 == 0) {
                 sb.append(vowels.get(ThreadLocalRandom.current().nextInt(vowels.size())));
             } else {
-                sb.append(vowels.get(ThreadLocalRandom.current().nextInt(consonants.size())));
+                sb.append(consonants.get(ThreadLocalRandom.current().nextInt(consonants.size())));
             }
         }
 
