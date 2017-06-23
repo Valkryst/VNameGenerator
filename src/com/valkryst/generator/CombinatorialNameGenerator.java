@@ -37,64 +37,29 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String generateName(final int length) {
-        final int middles = ThreadLocalRandom.current().nextInt(5);
-        return generateName(length, middles);
-    }
-
-    /**
-     * Randomly generates a name with one beginning, zero or more middles, and one ending.
-     *
-     * If no middles have been loaded, then they are ignored and a name is generated without them.
-     *
-     * @param length
-     *         The length of the name to generateName.
-     *
-     *         If the value is less than or equal to zero, then this parameter is ignored.
-     *
-     *         No guarantee is made that the name will be exactly this length.
-     *
-     * @param middlesToUse
-     *         The number of name-middles to append between the beginning and ending.
-     *
-     * @return
-     *         The generated name.
-     */
-    public String generateName(final int length, int middlesToUse) {
+    public String generateName(int length) {
         if (length == 0) {
-            return "LENGTH_WAS_ZERO";
+            length = 2;
         }
 
-        if (middles == null) {
-            middlesToUse = 0;
-        }
-
-        if (middlesToUse < 0) {
-            middlesToUse = 0;
-        }
-
-        // Setup Variables:
-        final ThreadLocalRandom random = ThreadLocalRandom.current();
-
-        final int beginningIndex = random.nextInt(beginnings.length);
-        final int endingIndex = random.nextInt(endings.length);
         final StringBuilder sb = new StringBuilder();
 
         // Construct Name:
-        sb.append(beginnings[beginningIndex]);
+        sb.append(chooseRandomElementFrom(beginnings));
 
-        for (int i = 0 ; i < middlesToUse ; i++) {
-            final int middleIndex = random.nextInt(middles.length);
-            sb.append(middles[middleIndex]);
+        if (middles.length > 0) {
+            while (sb.length() < length) {
+                sb.append(chooseRandomElementFrom(middles));
+            }
         }
 
-        sb.append(endings[endingIndex]);
+        sb.append(chooseRandomElementFrom(endings));
 
-        // Return Name:
-        if (length >= 0 && length <= sb.length()) {
-            return sb.substring(0, length);
-        } else {
-            return sb.toString();
-        }
+        return sb.toString();
+    }
+
+    private String chooseRandomElementFrom(final String[] arr) {
+        final int index = ThreadLocalRandom.current().nextInt(arr.length);
+        return arr[index];
     }
 }
