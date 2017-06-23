@@ -1,0 +1,24 @@
+sudo: false
+
+language: java
+jdk:
+  - oraclejdk8
+env:
+  global:
+    - secure: "xMYIFW4eo5OKcQWDv0uLRory6pTl0Pq0E4x3mNbQvjapr54de4BYg+hEs4S6VE34Rnealvi5bHyS1EEpnWKYU8PeTvOtKbPdibJRhDDYVdnXdns/tiublWi2j635kmYT+C6fRW6ePdxh2DofQY+Q06T/ZQ9lSSDCNDPYj0XUBuMZ9MjOIyJXd93G30CoQKz1Kr8YeZ3T/SYqxRWRd0UxeR+9rqtBRnAfOiS3tGiA7TjX0jfw7qg5X/YT/kdQbMrCoB0AwdobsmljJY5Cp3lC1bily9qf5zIKJ7fCgqdleqsm/EhSm09+H1vl//bPjJlJptXIqYhYr2w3cVq9XLVhoACL5vQNK57zOsRcsHEJgtI3r2wnR3aTC+NS/ljGZrHtNvigCYTWZ3Dq8wHYfcRxnZYIbtUTOCCn2ExIlEQs7n7E5/vsYGZZUXMlUcNfALXLiIbcEJy+D0HNWRLkF8CfkTkmIKkJ0Em80FRHOQBOJPkNwwUqpuI3f4mMNKhGPfQrnkxBwnoBlQCLjVXvkBsn5GevKa7Dkn/d8jh6aW8x+WVeCU1pLFQRaTqo7Myt4Ip0NLtzJHVJis78HFqkVbX/NrL34ufBICjHYY/VHcDLGges+2bPrTcwKjKkljxzoxP2Vlin7V68VtrHQvblbVPt+w52urTfK2R/B3sb0y/EPQ="
+cache:
+  directories:
+    - $HOME/.m2
+
+script:
+  - "mvn cobertura:cobertura"
+  - "mvn javadoc:javadoc"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - bash Deploy_JavaDoc.sh
+
+notification:
+  email:
+    on_success: never
+    on_failure: always
