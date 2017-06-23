@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class GrammarNameGenerator implements NameGenerator{
-    /** The rules of the grammar to use when generating a name. */
+    /** The name generation rules. */
     private String[] rules;
 
     /**
