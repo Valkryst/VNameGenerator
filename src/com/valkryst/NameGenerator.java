@@ -1,15 +1,14 @@
 package com.valkryst;
 
-import java.util.Random;
-
 public interface NameGenerator {
     /**
-     * Randomly generates a name of at-least the desired length.
+     * Randomly generates a name with a length of at-least two characters.
      *
      * @param length
-     *         The desired name length.
+     *        The desired name length.
      *
      * @return
+     *        The name.
      */
     String generateName(final int length);
 }
