@@ -1,95 +1,119 @@
 package com.valkryst.generator;
 
-import com.valkryst.builder.ConsonantVowelBuilder;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.IntUnaryOperator;
 
 public class ConsonantVowelNameGeneratorTest {
-    private static final List<String> CONSONANTS = new ArrayList<>();
+    private final List<String> consonants = new ArrayList<>();
+    private final List<String> vowels = new ArrayList<>();
 
-    private static final List<String> VOWELS = new ArrayList<>();
+    private ConsonantVowelNameGenerator nameGenerator;
 
-    static {
-        CONSONANTS.add("al");
-        CONSONANTS.add("an");
-        CONSONANTS.add("ar");
-        CONSONANTS.add("as");
-        CONSONANTS.add("at");
-        CONSONANTS.add("ea");
-        CONSONANTS.add("ed");
-        CONSONANTS.add("en");
-        CONSONANTS.add("er");
-        CONSONANTS.add("es");
-        CONSONANTS.add("ha");
-        CONSONANTS.add("he");
-        CONSONANTS.add("hi");
-        CONSONANTS.add("in");
-        CONSONANTS.add("is");
-        CONSONANTS.add("it");
-        CONSONANTS.add("le");
-        CONSONANTS.add("me");
-        CONSONANTS.add("nd");
-        CONSONANTS.add("ne");
-        CONSONANTS.add("ng");
-        CONSONANTS.add("nt");
-        CONSONANTS.add("on");
-        CONSONANTS.add("or");
-        CONSONANTS.add("ou");
-        CONSONANTS.add("re");
-        CONSONANTS.add("se");
-        CONSONANTS.add("st");
-        CONSONANTS.add("te");
-        CONSONANTS.add("th");
-        CONSONANTS.add("ti");
-        CONSONANTS.add("to");
-        CONSONANTS.add("ve");
-        CONSONANTS.add("wa");
-        CONSONANTS.add("it");
+    @Before
+    public void initalizeVariables() {
+        consonants.clear();
+        vowels.clear();
 
-        VOWELS.add("a");
-        VOWELS.add("e");
-        VOWELS.add("i");
-        VOWELS.add("o");
-        VOWELS.add("u");
-        VOWELS.add("y");
+        consonants.add("al");
+        consonants.add("an");
+        consonants.add("ar");
+        consonants.add("as");
+        consonants.add("at");
+        consonants.add("ea");
+        consonants.add("ed");
+        consonants.add("en");
+        consonants.add("er");
+        consonants.add("es");
+        consonants.add("ha");
+        consonants.add("he");
+        consonants.add("hi");
+        consonants.add("in");
+        consonants.add("is");
+        consonants.add("it");
+        consonants.add("le");
+        consonants.add("me");
+        consonants.add("nd");
+        consonants.add("ne");
+        consonants.add("ng");
+        consonants.add("nt");
+        consonants.add("on");
+        consonants.add("or");
+        consonants.add("ou");
+        consonants.add("re");
+        consonants.add("se");
+        consonants.add("st");
+        consonants.add("te");
+        consonants.add("th");
+        consonants.add("ti");
+        consonants.add("to");
+        consonants.add("ve");
+        consonants.add("wa");
+        consonants.add("it");
+
+        vowels.add("a");
+        vowels.add("e");
+        vowels.add("i");
+        vowels.add("o");
+        vowels.add("u");
+        vowels.add("y");
+
+        nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
+    }
+
+
+
+    @Test
+    public void testConstructor_withValidConsonantsAndVowels() {
+        nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testConstructor_withNullConsonants() {
+        nameGenerator = new ConsonantVowelNameGenerator(null, vowels);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testConstructor_withNullVowels() {
+        nameGenerator = new ConsonantVowelNameGenerator(consonants, null);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testConstructor_withEmptyConsonants() {
+        nameGenerator = new ConsonantVowelNameGenerator(new ArrayList<>(0), vowels);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testConstructor_withEmptyVowels() {
+        nameGenerator = new ConsonantVowelNameGenerator(consonants, new ArrayList<>(0));
     }
 
     @Test
-    public void generateName() {
-        // Setup the Builder:
-        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
-        builder.setConsonants(CONSONANTS);
-        builder.setVowels(VOWELS);
-
-        // Setup & Test the Generator:
-        final ConsonantVowelNameGenerator generator = builder.build();
-
-        for(int i = 0 ; i < 100 ; i++) {
-            generator.generateName(i % 20);
-        }
+    public void testGenerateName_withZeroLength() {
+        final String result = nameGenerator.generateName(0);
+        Assert.assertEquals(2, result.length());
     }
 
     @Test
-    public void longGeneration() {
-        // Setup the Builder:
-        final ConsonantVowelBuilder builder = new ConsonantVowelBuilder();
-        builder.setConsonants(CONSONANTS);
-        builder.setVowels(VOWELS);
+    public void  testGenerateName_withOneLength() {
+        final String result = nameGenerator.generateName(1);
+        Assert.assertEquals(2, result.length());
+    }
 
-        // Setup & Test the Generator:
-        final ConsonantVowelNameGenerator generator = builder.build();
+    @Test
+    public void  testGenerateName_withTwoLength() {
+        final String result = nameGenerator.generateName(2);
+        Assert.assertEquals(2, result.length());
+    }
 
-        for (int i = 0 ; i < 100 ; i++) {
-            System.out.println(generator.generateName(i));
-        }
-
-        for (int i = 0 ; i < 1_000_000 ; i++) {
-            generator.generateName(i % 20);
+    @Test
+    public void  testGenerateName_withThreeToTwentyLength() {
+        for (int i = 3 ; i < 20 ; i++) {
+            final String result = nameGenerator.generateName(i);
+            Assert.assertEquals(i, result.length());
         }
     }
 }
