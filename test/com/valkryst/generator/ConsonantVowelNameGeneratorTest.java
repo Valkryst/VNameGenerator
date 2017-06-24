@@ -64,8 +64,6 @@ public class ConsonantVowelNameGeneratorTest {
         nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
     }
 
-
-
     @Test
     public void testConstructor_withValidConsonantsAndVowels() {
         nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
