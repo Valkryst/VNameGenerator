@@ -50,6 +50,13 @@
             <version>1.16.8</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.valkryst.VParser_CFG</groupId>
+            <artifactId>VParser_CFG</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/VParser_CFG.jar</systemPath>
+        </dependency>
     </dependencies>
 
 
