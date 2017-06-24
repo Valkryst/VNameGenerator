@@ -16,6 +16,16 @@ public final class MarkovNameGenerator implements NameGenerator {
      *         The names to train the Markov Chain with.
      */
     public MarkovNameGenerator(final List<String> trainingNames) {
+        // Ensure list isn't null:
+        if (trainingNames == null) {
+            throw new IllegalArgumentException("The list of training names is null.");
+        }
+
+        // Ensure list isn't empty:
+        if (trainingNames.size() == 0) {
+            throw new IllegalArgumentException("The list of training names is empty.");
+        }
+
         markovChain.train(trainingNames);
     }
 
@@ -34,7 +44,11 @@ public final class MarkovNameGenerator implements NameGenerator {
             if (next.isPresent()) {
                 sb.append(next.get());
             } else {
-                break;
+                if (sb.length() != length) {
+                    return generateName(length);
+                } else {
+                    break;
+                }
             }
         }
 
