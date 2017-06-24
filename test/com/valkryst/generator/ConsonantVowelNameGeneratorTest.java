@@ -14,7 +14,7 @@ public class ConsonantVowelNameGeneratorTest {
     private ConsonantVowelNameGenerator nameGenerator;
 
     @Before
-    public void initalizeVariables() {
+    public void initializeVariables() {
         consonants.clear();
         vowels.clear();
 
