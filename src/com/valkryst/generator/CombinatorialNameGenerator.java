@@ -1,7 +1,7 @@
 package com.valkryst.generator;
 
-import com.valkryst.builder.CombinatorialBuilder;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class CombinatorialNameGenerator implements NameGenerator {
@@ -13,19 +13,56 @@ public final class CombinatorialNameGenerator implements NameGenerator {
     private final String[] endings;
 
     /**
-     * Constructs a CombinatorialNameGenerator.
+     * Constructs a new CombinatorialNameGenerator.
      *
-     * @param builder
-     *         The builder.
+     * @param beginnings
+     *         The name-beginnings.
+     *
+     * @param endings
+     *         The name-endings.
      */
-    public CombinatorialNameGenerator(final CombinatorialBuilder builder) {
-        final int totalBeginnings = builder.getBeginnings().size();
-        final int totalMiddles = builder.getMiddles().size();
-        final int totalEndings = builder.getEndings().size();
+    public CombinatorialNameGenerator(final List<String> beginnings, final List<String> endings) {
+        this(beginnings, null, endings);
+    }
 
-        beginnings = builder.getBeginnings().toArray(new String[totalBeginnings]);
-        middles = builder.getMiddles().toArray(new String[totalMiddles]);
-        endings = builder.getEndings().toArray(new String[totalEndings]);
+    /**
+     * Constructs a new CombinatorialNameGenerator.
+     *
+     * @param beginnings
+     *         The name-beginnings.
+     *
+     * @param middles
+     *         The name-middles.
+     *
+     * @param endings
+     *         The name-endings.
+     */
+    public CombinatorialNameGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
+        // Ensure lists aren't null:
+        if (beginnings == null) {
+            throw new IllegalArgumentException("The list of beginnings is null.");
+        }
+
+        if (middles == null) {
+            middles = new ArrayList<>(0);
+        }
+
+        if (endings == null) {
+            throw new IllegalArgumentException("The list of endings is null.");
+        }
+
+        // Ensure lists aren't empty:
+        if (beginnings.size() == 0) {
+            throw new IllegalArgumentException("The list of beginnings is empty.");
+        }
+
+        if (endings.size() == 0) {
+            throw new IllegalArgumentException("The list of endings is empty.");
+        }
+
+        this.beginnings = beginnings.toArray(new String[beginnings.size()]);
+        this.middles = middles.toArray(new String[middles.size()]);
+        this.endings = endings.toArray(new String[endings.size()]);
     }
 
     @Override
