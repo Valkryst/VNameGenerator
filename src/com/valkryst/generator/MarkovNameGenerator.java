@@ -1,8 +1,8 @@
 package com.valkryst.generator;
 
-import com.valkryst.builder.MarkovBuilder;
 import com.valkryst.markov.MarkovChain;
 
+import java.util.List;
 import java.util.Optional;
 
 public final class MarkovNameGenerator implements NameGenerator {
@@ -12,11 +12,11 @@ public final class MarkovNameGenerator implements NameGenerator {
     /**
      * Constructs a MarkovNameGenerator.
      *
-     * @param builder
-     *         Builder containing the training names.
+     * @param trainingNames
+     *         The names to train the Markov Chain with.
      */
-    public MarkovNameGenerator(final MarkovBuilder builder) {
-        markovChain.train(builder.getTrainingNames());
+    public MarkovNameGenerator(final List<String> trainingNames) {
+        markovChain.train(trainingNames);
     }
 
     @Override
