@@ -1,7 +1,5 @@
 package com.valkryst.generator;
 
-import com.valkryst.builder.ConsonantVowelBuilder;
-
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -12,22 +10,40 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
     private final String[] vowels;
 
     /**
-     * Constructs a ConsonantVowelNameGenerator.
+     * Constructs a new ConsonantVowelNameGenerator.
      *
-     * @param builder
-     *         The builder.
+     * @param consonants
+     *         The consonants.
+     *
+     * @param vowels
+     *         The vowels.
      */
-    public ConsonantVowelNameGenerator(final ConsonantVowelBuilder builder) {
-        final int totalConsonants = builder.getConsonants().size();
-        final int totalVowels = builder.getConsonants().size();
+    public ConsonantVowelNameGenerator(final List<String> consonants, final List<String> vowels) {
+        // Ensure lists aren't null:
+        if (consonants == null) {
+            throw new IllegalArgumentException("The list of consonants is null.");
+        }
 
-        consonants = builder.getConsonants().toArray(new String[totalConsonants]);
-        vowels = builder.getConsonants().toArray(new String[totalVowels]);
+        if (vowels == null) {
+            throw new IllegalArgumentException("The list of vowels is null.");
+        }
+
+        // Ensure lists aren't empty:
+        if (consonants.size() == 0) {
+            throw new IllegalArgumentException("The list of consonants is empty.");
+        }
+
+        if (vowels.size() == 0) {
+            throw new IllegalArgumentException("The list of vowels is empty.");
+        }
+
+        this.consonants = consonants.toArray(new String[consonants.size()]);
+        this.vowels = vowels.toArray(new String[vowels.size()]);
     }
 
     @Override
     public String generateName(int length) {
-        if (length == 0) {
+        if (length < 2) {
             length = 2;
         }
 
