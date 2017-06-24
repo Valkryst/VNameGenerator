@@ -6,6 +6,8 @@ Please refer to the LICENSE file for additional information.
 
 ---
 
+![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator)
+
 ## How to Setup:
 
 1. Clone the project from GitHub.
