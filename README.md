@@ -6,6 +6,8 @@ Please refer to the LICENSE file for additional information.
 
 ---
 
+![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator)
+
 ## How to Setup:
 
 1. Clone the project from GitHub.
@@ -32,6 +34,12 @@ documented, but should be simple to understand after reading the JavaDoc documen
 located in the */src/com/valkryst/generator/* folder.
 
 Lists of names to use with the generators can be found within the */res/* folder.
+
+### JavaDoc Documentation:
+
+Whenever a Travis CI build passes, the JavaDocs are auto-generated and made available at the following link.
+
+https://valkryst.github.io/VNameGenerator/
 
 ---
 
