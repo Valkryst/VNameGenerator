@@ -83,8 +83,9 @@ public class GrammarNameGeneratorTest {
     @Test
     public void  testGenerateName_withThreeToTwentyLength() {
         for (int i = 3 ; i < 20 ; i++) {
-            final String result = grammarNameGenerator.generateName(0);
-            Assert.assertTrue(result.length() >= 1);
+            final String result = grammarNameGenerator.generateName(i);
+            Assert.assertTrue(result.length() <= i);
+            Assert.assertTrue(result.length() > 0);
         }
     }
 }
