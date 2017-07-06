@@ -6,26 +6,13 @@ Please refer to the LICENSE file for additional information.
 
 ---
 
-![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator)
+![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
 
-## How to Setup:
+## Jar Files & Maven
 
-1. Clone the project from GitHub.
-2. Open your project in IntelliJ.
-3. Open the *Project Structure* menu. (S + ALT + CTRL + SHIFT)
-4. Enter the *Modules* subsection.
-5. Click the green "+" at the top of the window.
-6. Select *Import Module*.
-7. Navigate to the cloned project and double-click on *pom.xml*.
-8. Click on the name of your project in the *Modules* subsection.
-9. Enter the *Dependencies* tab of your project.
-10. Click on the green "+" at the right-edge of the window.
-11. Click *Module Dependency...*.
-12. Select *VNameGenerator*.
+To use this project as a Maven dependency, click on the JitPack badge [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator), select a version, click the "Get it!" button, and then follow the instructions.
 
-You can now use the VNameGenerator in your project.
-
----
+If you would rather use a Jar file, then you can find the Jars on the [releases](https://github.com/Valkryst/VNameGenerator/releases) page.
 
 ## How to Use:
 
@@ -35,13 +22,11 @@ located in the */src/com/valkryst/generator/* folder.
 
 Lists of names to use with the generators can be found within the */res/* folder.
 
-### JavaDoc Documentation:
+## JavaDoc Documentation:
 
 Whenever a Travis CI build passes, the JavaDocs are auto-generated and made available at the following link.
 
 https://valkryst.github.io/VNameGenerator/
-
----
 
 ## Included Algorithms:
 
@@ -64,8 +49,6 @@ Names are generated using a computed table of probabilities to determine which c
 characters.
 
 You can learn more about Markov Chains [here](https://en.wikipedia.org/wiki/Markov_chain).
-
----
 
 ## Combinatorial Generator Test Output:
     Ggis Yamadral
