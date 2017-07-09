@@ -38,7 +38,7 @@ Names are generated using a set of consonants and vowels. A name begins with a v
 which is followed by a vowel... and so on, until the name is generated.
 
 ### Context Free Grammar:
-Names are generated using a very crude context free grammar method. 
+Names are generated using a context free grammar method. 
 
 You can learn more about CFGs [here](http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
 
