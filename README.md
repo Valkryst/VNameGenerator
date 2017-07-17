@@ -8,6 +8,8 @@ Please refer to the LICENSE file for additional information.
 
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg)](https://github.com/Valkryst/VNameGenerator/blob/master/LICENSE) ![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
 
+[![Dependency Status](https://www.versioneye.com/user/projects/596d06480fb24f003aaf4c4e/badge.svg)](https://www.versioneye.com/user/projects/596d06480fb24f003aaf4c4e)
+
 ## Jar Files & Maven
 
 To use this project as a Maven dependency, click on the JitPack badge [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator), select a version, click the "Get it!" button, and then follow the instructions.
