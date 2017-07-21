@@ -1,6 +1,7 @@
 package com.valkryst.generator;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
@@ -17,16 +18,16 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      *
      * @param vowels
      *         The vowels.
+     *
+     * @throws NullPointerException
+     *        If the lists of consonants or vowels are null.
+     *
+     * @throws IllegalArgumentException
+     *        If the lists of consonants or vowels are empty.
      */
     public ConsonantVowelNameGenerator(final List<String> consonants, final List<String> vowels) {
-        // Ensure lists aren't null:
-        if (consonants == null) {
-            throw new IllegalArgumentException("The list of consonants is null.");
-        }
-
-        if (vowels == null) {
-            throw new IllegalArgumentException("The list of vowels is null.");
-        }
+        Objects.requireNonNull(consonants);
+        Objects.requireNonNull(vowels);
 
         // Ensure lists aren't empty:
         if (consonants.size() == 0) {
@@ -48,12 +49,13 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
         }
 
         final StringBuilder sb = new StringBuilder();
+        final ThreadLocalRandom rand = ThreadLocalRandom.current();
 
         while (sb.length() < length) {
             if (length % 2 == 0) {
-                sb.append(vowels[ThreadLocalRandom.current().nextInt(vowels.length)]);
+                sb.append(vowels[rand.nextInt(vowels.length)]);
             } else {
-                sb.append(consonants[ThreadLocalRandom.current().nextInt(consonants.length)]);
+                sb.append(consonants[rand.nextInt(consonants.length)]);
             }
         }
 
