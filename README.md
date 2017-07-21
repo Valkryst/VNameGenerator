@@ -6,7 +6,9 @@ Please refer to the LICENSE file for additional information.
 
 ---
 
-![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
+[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg)](https://github.com/Valkryst/VNameGenerator/blob/master/LICENSE) ![](https://travis-ci.org/Valkryst/VNameGenerator.svg?branch=master) [![codecov](https://codecov.io/gh/Valkryst/VNameGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/Valkryst/VNameGenerator) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d62947885d774bb48eb0618f8e5f4c54)](https://www.codacy.com/app/Valkryst/VNameGenerator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Valkryst/VNameGenerator&amp;utm_campaign=Badge_Grade)
 
 ## Jar Files & Maven
 
@@ -38,7 +40,7 @@ Names are generated using a set of consonants and vowels. A name begins with a v
 which is followed by a vowel... and so on, until the name is generated.
 
 ### Context Free Grammar:
-Names are generated using a very crude context free grammar method. 
+Names are generated using a context free grammar method. 
 
 You can learn more about CFGs [here](http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
 
