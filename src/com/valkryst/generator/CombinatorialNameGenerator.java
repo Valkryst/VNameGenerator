@@ -1,5 +1,6 @@
 package com.valkryst.generator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -38,15 +39,18 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      *         The name-endings.
      *
      * @throws NullPointerException
-     *        If the lists of beginnings, middles, or endings are null.
+     *        If the lists of beginnings or endings are null.
      *
      * @throws IllegalArgumentException
      *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialNameGenerator(final List<String> beginnings, final List<String> middles, final List<String> endings) {
+    public CombinatorialNameGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
         Objects.requireNonNull(beginnings);
-        Objects.requireNonNull(middles);
         Objects.requireNonNull(endings);
+
+        if (middles == null) {
+            middles = Collections.emptyList();
+        }
 
         // Ensure lists aren't empty:
         if (beginnings.size() == 0) {
