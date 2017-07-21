@@ -3,6 +3,7 @@ package com.valkryst.generator;
 import com.valkryst.VParser_CFG.ContextFreeGrammar;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class GrammarNameGenerator implements NameGenerator{
     /** The CFG to generate names with. */
@@ -14,10 +15,15 @@ public final class GrammarNameGenerator implements NameGenerator{
      * @param rules
      *         The name generation rules.
      *
+     * @throws NullPointerException
+     *         If the list of rules is null.
+     *
      * @throws IllegalArgumentException
      *         If there is a semantic error in one of the rules.
      */
     public GrammarNameGenerator(final List<String> rules) {
+        Objects.requireNonNull(rules);
+
         contextFreeGrammar = new ContextFreeGrammar(rules);
     }
 
