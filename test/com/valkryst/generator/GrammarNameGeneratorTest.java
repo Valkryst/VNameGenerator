@@ -57,7 +57,7 @@ public class GrammarNameGeneratorTest {
         grammarNameGenerator = new GrammarNameGenerator(rules);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected=NullPointerException.class)
     public void testConstructor_withNullRules() {
         grammarNameGenerator = new GrammarNameGenerator(null);
     }

@@ -32,7 +32,7 @@ public class MarkovNameGeneratorTest {
         nameGenerator = new MarkovNameGenerator(trainingNames);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected=NullPointerException.class)
     public void testConstructor_withNullTrainingNames() {
         nameGenerator = new MarkovNameGenerator(null);
     }

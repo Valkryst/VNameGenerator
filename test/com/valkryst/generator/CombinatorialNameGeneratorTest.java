@@ -38,7 +38,7 @@ public class CombinatorialNameGeneratorTest {
         new CombinatorialNameGenerator(beginnings, middles, endings);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected=NullPointerException.class)
     public void testConstructor_threeParams_withNullBeginnings() {
         new CombinatorialNameGenerator(null, middles, endings);
     }
@@ -48,7 +48,7 @@ public class CombinatorialNameGeneratorTest {
         new CombinatorialNameGenerator(beginnings, null, endings);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected=NullPointerException.class)
     public void testConstructor_threeParams_withNullEndings() {
         new CombinatorialNameGenerator(beginnings, middles, null);
     }
