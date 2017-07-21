@@ -3,6 +3,7 @@ package com.valkryst.generator;
 import com.valkryst.markov.MarkovChain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class MarkovNameGenerator implements NameGenerator {
@@ -14,12 +15,15 @@ public final class MarkovNameGenerator implements NameGenerator {
      *
      * @param trainingNames
      *         The names to train the Markov Chain with.
+     *
+     * @throws NullPointerException
+     *         If the list of training names is null.
+     *
+     * @throws IllegalArgumentException
+     *         If the list of training names is empty.
      */
     public MarkovNameGenerator(final List<String> trainingNames) {
-        // Ensure list isn't null:
-        if (trainingNames == null) {
-            throw new IllegalArgumentException("The list of training names is null.");
-        }
+        Objects.requireNonNull(trainingNames);
 
         // Ensure list isn't empty:
         if (trainingNames.size() == 0) {
