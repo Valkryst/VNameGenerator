@@ -85,7 +85,9 @@ public final class CombinatorialNameGenerator implements NameGenerator {
 
         sb.append(chooseRandomElementFrom(endings));
 
-        return sb.toString();
+        final String name = sb.toString();
+        // Capitalize the first letter of the name:
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
     /**

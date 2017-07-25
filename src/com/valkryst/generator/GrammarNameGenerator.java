@@ -54,6 +54,7 @@ public final class GrammarNameGenerator implements NameGenerator{
             }
         }
 
-        return longestResult;
+        // Capitalize the first letter of the name:
+        return longestResult.substring(0, 1).toUpperCase() + longestResult.substring(1);
     }
 }

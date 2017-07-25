@@ -59,6 +59,8 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
             }
         }
 
-        return sb.substring(0, length);
+        final String name = sb.substring(0, length);
+        // Capitalize the first letter of the name:
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 }
