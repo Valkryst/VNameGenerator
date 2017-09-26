@@ -1,5 +1,7 @@
 package com.valkryst.markov;
 
+import lombok.NonNull;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MarkovChain {
     private final Map<String, Entry> entries = new HashMap<>();
 
-    public void train(final List<String> strings) {
+    public void train(final @NonNull List<String> strings) {
         final Map<String, EntryBuilder> builders = new HashMap<>();
 
         for (final String string : strings) {
@@ -35,7 +37,7 @@ public class MarkovChain {
      * @param string
      *        The string.
      */
-    private void train(final Map<String, EntryBuilder> builders, final String string) {
+    private void train(final @NonNull Map<String, EntryBuilder> builders, final @NonNull String string) {
         if (string.length() < 2) {
             return;
         }
@@ -49,7 +51,7 @@ public class MarkovChain {
         }
     }
 
-    public Optional<Character> chooseRandomCharacter(final String string) {
+    public Optional<Character> chooseRandomCharacter(final @NonNull String string) {
         if (entries.containsKey(string)) {
             return entries.get(string).chooseCharacter();
         } else {

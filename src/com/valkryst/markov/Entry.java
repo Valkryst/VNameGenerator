@@ -1,5 +1,7 @@
 package com.valkryst.markov;
 
+import lombok.NonNull;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -8,7 +10,7 @@ public class Entry {
     private char[] characters;
     private int[] threshold;
 
-    public Entry(final EntryBuilder builder) {
+    public Entry(final @NonNull EntryBuilder builder) {
         final Map<Character, Integer> occurrences = builder.getOccurrences();
 
         characters = new char[occurrences.size()];

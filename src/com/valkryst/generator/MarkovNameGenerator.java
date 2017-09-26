@@ -1,9 +1,9 @@
 package com.valkryst.generator;
 
 import com.valkryst.markov.MarkovChain;
+import lombok.NonNull;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public final class MarkovNameGenerator implements NameGenerator {
@@ -22,9 +22,7 @@ public final class MarkovNameGenerator implements NameGenerator {
      * @throws IllegalArgumentException
      *         If the list of training names is empty.
      */
-    public MarkovNameGenerator(final List<String> trainingNames) {
-        Objects.requireNonNull(trainingNames);
-
+    public MarkovNameGenerator(final @NonNull List<String> trainingNames) {
         // Ensure list isn't empty:
         if (trainingNames.size() == 0) {
             throw new IllegalArgumentException("The list of training names is empty.");

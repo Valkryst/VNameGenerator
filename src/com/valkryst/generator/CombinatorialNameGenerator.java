@@ -1,8 +1,9 @@
 package com.valkryst.generator;
 
+import lombok.NonNull;
+
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class CombinatorialNameGenerator implements NameGenerator {
@@ -21,8 +22,11 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      *
      * @param endings
      *         The name-endings.
+     *
+     * @throws NullPointerException
+     *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialNameGenerator(final List<String> beginnings, final List<String> endings) {
+    public CombinatorialNameGenerator(final @NonNull List<String> beginnings, final @NonNull List<String> endings) {
         this(beginnings, null, endings);
     }
 
@@ -44,10 +48,7 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      * @throws IllegalArgumentException
      *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialNameGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
-        Objects.requireNonNull(beginnings);
-        Objects.requireNonNull(endings);
-
+    public CombinatorialNameGenerator(final @NonNull List<String> beginnings, List<String> middles, final @NonNull List<String> endings) {
         if (middles == null) {
             middles = Collections.emptyList();
         }
@@ -98,8 +99,11 @@ public final class CombinatorialNameGenerator implements NameGenerator {
      *
      * @return
      *        A random String from the array.
+     *
+     * @throws NullPointerException
+     *        If the array is null.
      */
-    private String chooseRandomElementFrom(final String[] arr) {
+    private String chooseRandomElementFrom(final @NonNull String[] arr) {
         final int index = ThreadLocalRandom.current().nextInt(arr.length);
         return arr[index];
     }

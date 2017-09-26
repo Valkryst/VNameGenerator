@@ -1,7 +1,8 @@
 package com.valkryst.generator;
 
+import lombok.NonNull;
+
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelNameGenerator implements NameGenerator {
@@ -25,10 +26,7 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
      * @throws IllegalArgumentException
      *        If the lists of consonants or vowels are empty.
      */
-    public ConsonantVowelNameGenerator(final List<String> consonants, final List<String> vowels) {
-        Objects.requireNonNull(consonants);
-        Objects.requireNonNull(vowels);
-
+    public ConsonantVowelNameGenerator(final @NonNull List<String> consonants, final @NonNull List<String> vowels) {
         // Ensure lists aren't empty:
         if (consonants.size() == 0) {
             throw new IllegalArgumentException("The list of consonants is empty.");
