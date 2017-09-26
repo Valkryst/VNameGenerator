@@ -11,6 +11,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MarkovChain {
     private final Map<String, Entry> entries = new HashMap<>();
 
+    /**
+     * Trains the Markov Chain using a set of strings.
+     *
+     * @param strings
+     *        The training strings.
+     */
     public void train(final @NonNull List<String> strings) {
         final Map<String, EntryBuilder> builders = new HashMap<>();
 
@@ -51,6 +57,15 @@ public class MarkovChain {
         }
     }
 
+    /**
+     * Chooses a random character to follow a string.
+     *
+     * @param string
+     *        The string.
+     *
+     * @return
+     *        The character.
+     */
     public Optional<Character> chooseRandomCharacter(final @NonNull String string) {
         if (entries.containsKey(string)) {
             return entries.get(string).chooseCharacter();
@@ -59,6 +74,12 @@ public class MarkovChain {
         }
     }
 
+    /**
+     * Chooses a random string from the set of valid strings.
+     *
+     * @return
+     *        The string.
+     */
     public String chooseRandomString() {
         final int index = ThreadLocalRandom.current().nextInt(entries.size());
         return (String) entries.keySet().toArray()[index];
