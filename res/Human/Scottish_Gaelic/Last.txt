@@ -131,38 +131,38 @@ loudain
 lìos
 lìosach
 lùtair
-mac a' bhacstair
-mac a' bhacastair
-mac a' bhàird
-mac a' bhàirling
-mac a' bharain
-mac a' bhiataich
-mac a' bhiocair
-mac a' bhreatannaich
-mac a' bhreatnaich
-mac a' bhruthainn
-mac a' chananaich
-mac a' charraige
-mac a' chléirich
-mac a' chombaich
-mac a' chriathrair
-mac a' chrosain
-mac a' chruiteir
-mac a' ghniomhaid
-mac a' ghobhainn
-mac a' ghoill
-mac a' ghreidheir
-mac a' ghreusaiche
-mac a' ghrùdair
-mac a' leòra
-mac a' lìos
-mac a' mhaighstir
-mac a' mhaoilein
-mac a' mhaoir
-mac a' mhiadhaich
-mac a' mhuilleir
-mac a' phearsain
-mac a' phì
+mac an bhacstair
+mac an bhacastair
+mac an bhàird
+mac an bhàirling
+mac an bharain
+mac an bhiataich
+mac an bhiocair
+mac an bhreatannaich
+mac an bhreatnaich
+mac an bhruthainn
+mac an chananaich
+mac an charraige
+mac an chléirich
+mac an chombaich
+mac an chriathrair
+mac an chrosain
+mac an chruiteir
+mac an ghniomhaid
+mac an ghobhainn
+mac an ghoill
+mac an ghreidheir
+mac an ghreusaiche
+mac an ghrùdair
+mac an leòra
+mac an lìos
+mac an mhaighstir
+mac an mhaoilein
+mac an mhaoir
+mac an mhiadhaich
+mac an mhuilleir
+mac an phearsain
+mac an phì
 mac an aba
 mac an airgid
 mac an deòir
@@ -363,7 +363,7 @@ macfhearghail
 macfhearghais
 macfhilib
 macfhiongain
-macfhionghain,
+macfhionghain
 macfhionnlaigh
 macfhitheachain
 macfhlaithbheartaich
@@ -603,7 +603,7 @@ macurchaidh
 macusbaig
 macùisdein
 scottish
-maoileanach,
+maoileanach
 maoliosa
 matasan
 mathanach
