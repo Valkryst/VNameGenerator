@@ -35,12 +35,6 @@ located in the */src/com/valkryst/generator/* folder.
 
 Lists of names to use with the generators can be found within the */res/* folder.
 
-## JavaDoc Documentation:
-
-Whenever a Travis CI build passes, the JavaDocs are auto-generated and made available at the following link.
-
-https://valkryst.github.io/VNameGenerator/
-
 ## Included Algorithms:
 
 ### Combinatorial:
