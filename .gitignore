@@ -46,3 +46,4 @@ fabric.properties
 
 target/*
 *.class
+.idea/vcs.xml
