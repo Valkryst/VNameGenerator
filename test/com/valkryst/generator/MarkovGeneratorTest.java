@@ -12,11 +12,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarkovNameGeneratorTest {
-    private MarkovNameGenerator nameGenerator;
+public class MarkovGeneratorTest {
+    private MarkovGenerator nameGenerator;
     private final List<String> trainingNames;
 
-    public MarkovNameGeneratorTest() throws URISyntaxException, IOException {
+    public MarkovGeneratorTest() throws URISyntaxException, IOException {
         final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         final URL resourceUrl = classloader.getResource("Human/Viking/Male.txt");
         trainingNames = Files.readAllLines(Paths.get(resourceUrl.toURI()));
@@ -24,22 +24,22 @@ public class MarkovNameGeneratorTest {
 
     @Before
     public void initializeVariables() {
-        nameGenerator = new MarkovNameGenerator(trainingNames);
+        nameGenerator = new MarkovGenerator(trainingNames);
     }
 
     @Test
     public void testConstructor_withValidTrainingNames() {
-        nameGenerator = new MarkovNameGenerator(trainingNames);
+        nameGenerator = new MarkovGenerator(trainingNames);
     }
 
     @Test(expected=NullPointerException.class)
     public void testConstructor_withNullTrainingNames() {
-        nameGenerator = new MarkovNameGenerator(null);
+        nameGenerator = new MarkovGenerator(null);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withEmptyTrainingNames() {
-        nameGenerator = new MarkovNameGenerator(new ArrayList<>(0));
+        nameGenerator = new MarkovGenerator(new ArrayList<>(0));
     }
 
     @Test

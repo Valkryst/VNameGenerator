@@ -6,12 +6,12 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public final class MarkovNameGenerator extends NameGenerator {
+public final class MarkovGenerator extends NameGenerator {
     /** The chain to use when generating names. */
     private final MarkovChain markovChain = new MarkovChain();
 
     /**
-     * Constructs a MarkovNameGenerator.
+     * Constructs a MarkovGenerator.
      *
      * @param trainingNames
      *         The names to train the Markov Chain with.
@@ -22,7 +22,7 @@ public final class MarkovNameGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *         If the list of training names is empty.
      */
-    public MarkovNameGenerator(final @NonNull List<String> trainingNames) {
+    public MarkovGenerator(final @NonNull List<String> trainingNames) {
         // Ensure list isn't empty:
         if (trainingNames.size() == 0) {
             throw new IllegalArgumentException("The list of training names is empty.");

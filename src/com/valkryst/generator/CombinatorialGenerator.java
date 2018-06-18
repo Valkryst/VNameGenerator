@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class CombinatorialNameGenerator extends NameGenerator {
+public final class CombinatorialGenerator extends NameGenerator {
     /** The name-beginnings. */
     private final String[] beginnings;
     /** The name-middles. */
@@ -15,7 +15,7 @@ public final class CombinatorialNameGenerator extends NameGenerator {
     private final String[] endings;
 
     /**
-     * Constructs a new CombinatorialNameGenerator.
+     * Constructs a new CombinatorialGenerator.
      *
      * @param beginnings
      *         The name-beginnings.
@@ -26,12 +26,12 @@ public final class CombinatorialNameGenerator extends NameGenerator {
      * @throws NullPointerException
      *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialNameGenerator(final @NonNull List<String> beginnings, final @NonNull List<String> endings) {
+    public CombinatorialGenerator(final @NonNull List<String> beginnings, final @NonNull List<String> endings) {
         this(beginnings, null, endings);
     }
 
     /**
-     * Constructs a new CombinatorialNameGenerator.
+     * Constructs a new CombinatorialGenerator.
      *
      * @param beginnings
      *         The name-beginnings.
@@ -48,7 +48,7 @@ public final class CombinatorialNameGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialNameGenerator(final @NonNull List<String> beginnings, List<String> middles, final @NonNull List<String> endings) {
+    public CombinatorialGenerator(final @NonNull List<String> beginnings, List<String> middles, final @NonNull List<String> endings) {
         if (middles == null) {
             middles = Collections.emptyList();
         }

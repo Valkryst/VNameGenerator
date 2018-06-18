@@ -7,9 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrammarNameGeneratorTest {
+public class GrammarGeneratorTest {
     private final List<String> rules = new ArrayList<>();
-    private GrammarNameGenerator grammarNameGenerator;
+    private GrammarGenerator grammarGenerator;
 
 
     @Before
@@ -49,41 +49,41 @@ public class GrammarNameGeneratorTest {
         rules.add("Y y");
         rules.add("Z z");
 
-        grammarNameGenerator = new GrammarNameGenerator(rules);
+        grammarGenerator = new GrammarGenerator(rules);
     }
 
     @Test
     public void testConstructor_withValidRules() {
-        grammarNameGenerator = new GrammarNameGenerator(rules);
+        grammarGenerator = new GrammarGenerator(rules);
     }
 
     @Test(expected=NullPointerException.class)
     public void testConstructor_withNullRules() {
-        grammarNameGenerator = new GrammarNameGenerator(null);
+        grammarGenerator = new GrammarGenerator(null);
     }
 
     @Test
     public void testGenerateName_withZeroLength() {
-        final String result = grammarNameGenerator.generateName(0);
+        final String result = grammarGenerator.generateName(0);
         Assert.assertEquals(2, result.length());
     }
 
     @Test
     public void  testGenerateName_withOneLength() {
-        final String result = grammarNameGenerator.generateName(1);
+        final String result = grammarGenerator.generateName(1);
         Assert.assertEquals(2, result.length());
     }
 
     @Test
     public void  testGenerateName_withTwoLength() {
-        final String result = grammarNameGenerator.generateName(2);
+        final String result = grammarGenerator.generateName(2);
         Assert.assertEquals(2, result.length());
     }
 
     @Test
     public void  testGenerateName_withThreeToTwentyLength() {
         for (int i = 3 ; i < 20 ; i++) {
-            final String result = grammarNameGenerator.generateName(i);
+            final String result = grammarGenerator.generateName(i);
             Assert.assertTrue(result.length() <= i);
             Assert.assertTrue(result.length() > 0);
         }

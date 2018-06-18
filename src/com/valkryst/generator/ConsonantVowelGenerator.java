@@ -5,14 +5,14 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class ConsonantVowelNameGenerator extends NameGenerator {
+public final class ConsonantVowelGenerator extends NameGenerator {
     /** The consonants. */
     private final String[] consonants;
     /** The vowels. */
     private final String[] vowels;
 
     /**
-     * Constructs a new ConsonantVowelNameGenerator.
+     * Constructs a new ConsonantVowelGenerator.
      *
      * @param consonants
      *         The consonants.
@@ -26,7 +26,7 @@ public final class ConsonantVowelNameGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *        If the lists of consonants or vowels are empty.
      */
-    public ConsonantVowelNameGenerator(final @NonNull List<String> consonants, final @NonNull List<String> vowels) {
+    public ConsonantVowelGenerator(final @NonNull List<String> consonants, final @NonNull List<String> vowels) {
         // Ensure lists aren't empty:
         if (consonants.size() == 0) {
             throw new IllegalArgumentException("The list of consonants is empty.");

@@ -5,12 +5,12 @@ import lombok.NonNull;
 
 import java.util.List;
 
-public final class GrammarNameGenerator extends NameGenerator{
+public final class GrammarGenerator extends NameGenerator{
     /** The CFG to generate names with. */
     private final ContextFreeGrammar contextFreeGrammar;
 
     /**
-     * Constructs a GrammarNameGenerator.
+     * Constructs a GrammarGenerator.
      *
      * @param rules
      *         The name generation rules.
@@ -21,7 +21,7 @@ public final class GrammarNameGenerator extends NameGenerator{
      * @throws IllegalArgumentException
      *         If there is a semantic error in one of the rules.
      */
-    public GrammarNameGenerator(final @NonNull List<String> rules) {
+    public GrammarGenerator(final @NonNull List<String> rules) {
         contextFreeGrammar = new ContextFreeGrammar(rules);
     }
 

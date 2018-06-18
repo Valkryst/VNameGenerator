@@ -7,11 +7,11 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsonantVowelNameGeneratorTest {
+public class ConsonantVowelGeneratorTest {
     private final List<String> consonants = new ArrayList<>();
     private final List<String> vowels = new ArrayList<>();
 
-    private ConsonantVowelNameGenerator nameGenerator;
+    private ConsonantVowelGenerator nameGenerator;
 
     @Before
     public void initializeVariables() {
@@ -61,32 +61,32 @@ public class ConsonantVowelNameGeneratorTest {
         vowels.add("u");
         vowels.add("y");
 
-        nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
+        nameGenerator = new ConsonantVowelGenerator(consonants, vowels);
     }
 
     @Test
     public void testConstructor_withValidConsonantsAndVowels() {
-        nameGenerator = new ConsonantVowelNameGenerator(consonants, vowels);
+        nameGenerator = new ConsonantVowelGenerator(consonants, vowels);
     }
 
     @Test(expected=NullPointerException.class)
     public void testConstructor_withNullConsonants() {
-        nameGenerator = new ConsonantVowelNameGenerator(null, vowels);
+        nameGenerator = new ConsonantVowelGenerator(null, vowels);
     }
 
     @Test(expected=NullPointerException.class)
     public void testConstructor_withNullVowels() {
-        nameGenerator = new ConsonantVowelNameGenerator(consonants, null);
+        nameGenerator = new ConsonantVowelGenerator(consonants, null);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withEmptyConsonants() {
-        nameGenerator = new ConsonantVowelNameGenerator(new ArrayList<>(0), vowels);
+        nameGenerator = new ConsonantVowelGenerator(new ArrayList<>(0), vowels);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withEmptyVowels() {
-        nameGenerator = new ConsonantVowelNameGenerator(consonants, new ArrayList<>(0));
+        nameGenerator = new ConsonantVowelGenerator(consonants, new ArrayList<>(0));
     }
 
     @Test
