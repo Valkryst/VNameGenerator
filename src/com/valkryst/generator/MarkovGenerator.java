@@ -32,7 +32,7 @@ public final class MarkovGenerator extends NameGenerator {
 
     @Override
     public String generateName(int length) {
-        if (length == 0) {
+        if (length < 2) {
             length = 2;
         }
 
@@ -51,6 +51,11 @@ public final class MarkovGenerator extends NameGenerator {
                     break;
                 }
             }
+        }
+
+        if (sb.length() > length) {
+            System.out.println(sb.length() + " " + length + " " + sb.toString());
+            sb.deleteCharAt(sb.length() - (sb.length() - length));
         }
 
         return super.capitalizeFirstCharacter(sb.toString());
