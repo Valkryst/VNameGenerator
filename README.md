@@ -1,11 +1,3 @@
-#### License: 
-
-Use this code however you wish. Modifications, improvements, additional lists of names, and new algorithms are welcome.
-
-Please refer to the LICENSE file for additional information.
-
----
-
 ![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiaDVDRkhJSzBONTh1cVg1ZGJTUko5Qk81NVdNSjBOVnBKQ3Zsek5UNUpVL2l0WmNVcnZyR0R5RU56ZnJRYWtFc3FzSmJBaGJvZ1FIcmQ1RzVmd0VTUWtNPSIsIml2UGFyYW1ldGVyU3BlYyI6IkxBUkVRQzlxcUlnK3I4SmciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
 
 # Jar Files & Maven
