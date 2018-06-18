@@ -28,7 +28,7 @@ Dependency:
     <dependency>
         <groupId>com.github.Valkryst</groupId>
         <artifactId>VNameGenerator</artifactId>
-        <version>1.0.5</version>
+        <version>2.0.0</version>
     </dependency>
 
 ### Jar
