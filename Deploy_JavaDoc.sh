@@ -1,26 +1,28 @@
 #!/bin/bash
 
+PROJECT_NAME="VNameGenerator"
+
 # Display Repo:
 echo -e "Repo Slug:"
-echo -e "\tExpected:\tValkryst/VNameGenerator"
-echo -e "\tActual:\t$TRAVIS_REPO_SLUG\n"
+echo -e "\tExpected: Valkryst/${PROJECT_NAME}"
+echo -e "\tActual: $TRAVIS_REPO_SLUG\n"
 
 # Display JDK Version:
 echo -e "JDK Version:"
-echo -e "\tExpected:\toraclejdk8"
-echo -e "\tActual:\t$TRAVIS_JDK_VERSION\n"
+echo -e "\tExpected: oraclejdk8"
+echo -e "\tActual: $TRAVIS_JDK_VERSION\n"
 
 # Display 'Is Pull Request':
 echo -e "Is Pull Request:"
-echo -e "\tExpected:\tfalse"
-echo -e "\tActual:\t$TRAVIS_PULL_REQUEST\n"
+echo -e "\tExpected: false"
+echo -e "\tActual: $TRAVIS_PULL_REQUEST\n"
 
 # Display Branch:
 echo -e "Branch:"
-echo -e "\tExpected:\tfalse"
-echo -e "\tActual:\t$TRAVIS_BRANCH\n"
+echo -e "\tExpected: master"
+echo -e "\tActual: $TRAVIS_BRANCH\n"
 
-if [ "$TRAVIS_REPO_SLUG" == "Valkryst/VNameGenerator" ] &&
+if [ "$TRAVIS_REPO_SLUG" == "Valkryst/"${PROJECT_NAME} ] &&
    [ "$TRAVIS_JDK_VERSION" == "oraclejdk8" ] &&
    [ "$TRAVIS_PULL_REQUEST" == "false" ] &&
    [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -28,13 +30,13 @@ if [ "$TRAVIS_REPO_SLUG" == "Valkryst/VNameGenerator" ] &&
     echo -e "Publishing JavaDoc...\n"
 
     cd $HOME
-    git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/Valkryst/VNameGenerator gh-pages > /dev/null
+    git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/Valkryst/${PROJECT_NAME} gh-pages > /dev/null
 
     cd gh-pages
     git rm -r *
     git config user.name "Valkryst"
     git config user.email "valkryst@valkryst.com"
-    cp -r /home/travis/build/Valkryst/VNameGenerator/target/site/apidocs/* .
+    cp -r /home/travis/build/Valkryst/${PROJECT_NAME}/target/site/apidocs/* .
     git add .
     git commit -m "Updates JavaDoc on successful Travis CI build. Build #$TRAVIS_BUILD_NUMBER auto-pushed to gh-pages."
     git push -fq origin gh-pages > /dev/null
