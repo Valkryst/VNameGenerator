@@ -23,7 +23,6 @@ public final class MarkovGenerator extends NameGenerator {
      *         If the list of training names is empty.
      */
     public MarkovGenerator(final @NonNull List<String> trainingNames) {
-        // Ensure list isn't empty:
         if (trainingNames.size() == 0) {
             throw new IllegalArgumentException("The list of training names is empty.");
         }
