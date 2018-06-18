@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class CombinatorialNameGenerator implements NameGenerator {
+public final class CombinatorialNameGenerator extends NameGenerator {
     /** The name-beginnings. */
     private final String[] beginnings;
     /** The name-middles. */
@@ -86,9 +86,7 @@ public final class CombinatorialNameGenerator implements NameGenerator {
 
         sb.append(chooseRandomElementFrom(endings));
 
-        final String name = sb.toString();
-        // Capitalize the first letter of the name:
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+        return super.capitalizeFirstCharacter(sb.toString());
     }
 
     /**

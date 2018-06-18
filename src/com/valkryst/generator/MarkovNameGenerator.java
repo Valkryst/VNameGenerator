@@ -6,7 +6,7 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public final class MarkovNameGenerator implements NameGenerator {
+public final class MarkovNameGenerator extends NameGenerator {
     /** The chain to use when generating names. */
     private final MarkovChain markovChain = new MarkovChain();
 
@@ -54,7 +54,6 @@ public final class MarkovNameGenerator implements NameGenerator {
             }
         }
 
-        // Capitalize the first letter of the name:
-        return sb.toString().substring(0, 1).toUpperCase() + sb.toString().substring(1);
+        return super.capitalizeFirstCharacter(sb.toString());
     }
 }

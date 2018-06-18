@@ -5,7 +5,7 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class ConsonantVowelNameGenerator implements NameGenerator {
+public final class ConsonantVowelNameGenerator extends NameGenerator {
     /** The consonants. */
     private final String[] consonants;
     /** The vowels. */
@@ -57,8 +57,6 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
             }
         }
 
-        final String name = sb.substring(0, length);
-        // Capitalize the first letter of the name:
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+        return super.capitalizeFirstCharacter(sb.toString());
     }
 }

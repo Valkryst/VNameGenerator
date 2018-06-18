@@ -5,7 +5,7 @@ import lombok.NonNull;
 
 import java.util.List;
 
-public final class GrammarNameGenerator implements NameGenerator{
+public final class GrammarNameGenerator extends NameGenerator{
     /** The CFG to generate names with. */
     private final ContextFreeGrammar contextFreeGrammar;
 
@@ -52,7 +52,6 @@ public final class GrammarNameGenerator implements NameGenerator{
             }
         }
 
-        // Capitalize the first letter of the name:
-        return longestResult.substring(0, 1).toUpperCase() + longestResult.substring(1);
+        return super.capitalizeFirstCharacter(longestResult);
     }
 }
