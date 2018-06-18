@@ -36,8 +36,8 @@ public final class ConsonantVowelNameGenerator implements NameGenerator {
             throw new IllegalArgumentException("The list of vowels is empty.");
         }
 
-        this.consonants = consonants.toArray(new String[consonants.size()]);
-        this.vowels = vowels.toArray(new String[vowels.size()]);
+        this.consonants = consonants.toArray(new String[0]);
+        this.vowels = vowels.toArray(new String[0]);
     }
 
     @Override
