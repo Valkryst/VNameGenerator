@@ -62,9 +62,9 @@ public final class CombinatorialNameGenerator implements NameGenerator {
             throw new IllegalArgumentException("The list of endings is empty.");
         }
 
-        this.beginnings = beginnings.toArray(new String[beginnings.size()]);
-        this.middles = middles.toArray(new String[middles.size()]);
-        this.endings = endings.toArray(new String[endings.size()]);
+        this.beginnings = beginnings.toArray(new String[0]);
+        this.middles = middles.toArray(new String[0]);
+        this.endings = endings.toArray(new String[0]);
     }
 
     @Override
