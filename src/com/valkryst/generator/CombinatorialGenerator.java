@@ -48,12 +48,12 @@ public final class CombinatorialGenerator extends NameGenerator {
         }
 
         // Ensure lists aren't empty:
-        if (beginnings.size() == 0) {
-            throw new IllegalArgumentException("The list of beginnings is empty.");
+        if (beginnings == null || beginnings.size() == 0) {
+            throw new IllegalArgumentException("The list of beginnings is empty or null.");
         }
 
-        if (endings.size() == 0) {
-            throw new IllegalArgumentException("The list of endings is empty.");
+        if (endings == null || endings.size() == 0) {
+            throw new IllegalArgumentException("The list of endings is empty or null.");
         }
 
         this.beginnings = beginnings.toArray(new String[0]);
