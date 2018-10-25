@@ -69,12 +69,12 @@ public class ConsonantVowelGeneratorTest {
         nameGenerator = new ConsonantVowelGenerator(consonants, vowels);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withNullConsonants() {
         nameGenerator = new ConsonantVowelGenerator(null, vowels);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withNullVowels() {
         nameGenerator = new ConsonantVowelGenerator(consonants, null);
     }
