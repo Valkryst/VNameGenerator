@@ -23,7 +23,7 @@ public abstract class NameGenerator {
      * @return
      *          The string with the first letter capitalized.
      */
-    protected String capitalizeFirstCharacter(final String string) {
+    String capitalizeFirstCharacter(final String string) {
         if (string.length() == 0) {
             return string;
         }
