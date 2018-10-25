@@ -22,11 +22,8 @@ public final class CombinatorialGenerator extends NameGenerator {
      *
      * @param endings
      *         The name-endings.
-     *
-     * @throws NullPointerException
-     *        If the lists of beginnings or endings are null.
      */
-    public CombinatorialGenerator(final @NonNull List<String> beginnings, final @NonNull List<String> endings) {
+    public CombinatorialGenerator(final List<String> beginnings, final List<String> endings) {
         this(beginnings, null, endings);
     }
 
@@ -42,13 +39,10 @@ public final class CombinatorialGenerator extends NameGenerator {
      * @param endings
      *         The name-endings.
      *
-     * @throws NullPointerException
-     *        If the lists of beginnings or endings are null.
-     *
      * @throws IllegalArgumentException
-     *        If the lists of beginnings or endings are null.
+     *         If the lists of beginnings or endings are null.
      */
-    public CombinatorialGenerator(final @NonNull List<String> beginnings, List<String> middles, final @NonNull List<String> endings) {
+    public CombinatorialGenerator(List<String> beginnings, List<String> middles, List<String> endings) {
         if (middles == null) {
             middles = Collections.emptyList();
         }
