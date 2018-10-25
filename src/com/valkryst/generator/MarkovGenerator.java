@@ -1,7 +1,6 @@
 package com.valkryst.generator;
 
 import com.valkryst.markov.MarkovChain;
-import lombok.NonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,15 +15,12 @@ public final class MarkovGenerator extends NameGenerator {
      * @param trainingNames
      *         The names to train the Markov Chain with.
      *
-     * @throws NullPointerException
-     *         If the list of training names is null.
-     *
      * @throws IllegalArgumentException
-     *         If the list of training names is empty.
+     *         If the list of training names is empty or null.
      */
-    public MarkovGenerator(final @NonNull List<String> trainingNames) {
-        if (trainingNames.size() == 0) {
-            throw new IllegalArgumentException("The list of training names is empty.");
+    public MarkovGenerator(final List<String> trainingNames) {
+        if (trainingNames == null || trainingNames.size() == 0) {
+            throw new IllegalArgumentException("The list of training names is empty or null.");
         }
 
         markovChain.train(trainingNames);
