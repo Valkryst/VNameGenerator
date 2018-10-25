@@ -42,7 +42,7 @@ public final class CombinatorialGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *         If the lists of beginnings or endings are null.
      */
-    public CombinatorialGenerator(List<String> beginnings, List<String> middles, List<String> endings) {
+    public CombinatorialGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
         if (middles == null) {
             middles = Collections.emptyList();
         }
