@@ -38,7 +38,7 @@ public class CombinatorialGeneratorTest {
         new CombinatorialGenerator(beginnings, middles, endings);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testConstructor_threeParams_withNullBeginnings() {
         new CombinatorialGenerator(null, middles, endings);
     }
@@ -48,7 +48,7 @@ public class CombinatorialGeneratorTest {
         new CombinatorialGenerator(beginnings, null, endings);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testConstructor_threeParams_withNullEndings() {
         new CombinatorialGenerator(beginnings, middles, null);
     }
