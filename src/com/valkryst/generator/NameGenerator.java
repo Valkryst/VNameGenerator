@@ -24,12 +24,16 @@ public abstract class NameGenerator {
      *          The string with the first letter capitalized.
      */
     String capitalizeFirstCharacter(final String string) {
-        if (string.length() == 0) {
+        if (string == null) {
+            return "";
+        }
+
+        if (string.isEmpty()) {
             return string;
         }
 
         final char tmp[] = string.toCharArray();
-        tmp[0] += 32;
+        tmp[0] = Character.toUpperCase(tmp[0]);
         return new String(tmp);
     }
 }
