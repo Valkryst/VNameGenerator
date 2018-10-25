@@ -70,33 +70,16 @@ public final class CombinatorialGenerator extends NameGenerator {
         final StringBuilder sb = new StringBuilder();
 
         // Construct Name:
-        sb.append(chooseRandomElementFrom(beginnings));
+        sb.append(beginnings[ThreadLocalRandom.current().nextInt(beginnings.length)]);
 
         if (middles.length > 0) {
             while (sb.length() < length) {
-                sb.append(chooseRandomElementFrom(middles));
+                sb.append(middles[ThreadLocalRandom.current().nextInt(middles.length)]);
             }
         }
 
-        sb.append(chooseRandomElementFrom(endings));
+        sb.append(endings[ThreadLocalRandom.current().nextInt(endings.length)]);
 
         return super.capitalizeFirstCharacter(sb.toString());
-    }
-
-    /**
-     * Chooses a random String from an array.
-     *
-     * @param arr
-     *        The array.
-     *
-     * @return
-     *        A random String from the array.
-     *
-     * @throws NullPointerException
-     *        If the array is null.
-     */
-    private String chooseRandomElementFrom(final @NonNull String[] arr) {
-        final int index = ThreadLocalRandom.current().nextInt(arr.length);
-        return arr[index];
     }
 }
