@@ -38,7 +38,7 @@ public final class CombinatorialGenerator extends NameGenerator {
      *         The name-endings.
      *
      * @throws IllegalArgumentException
-     *         If the lists of beginnings or endings are null.
+     *         If the lists of beginnings or endings are null or empty.
      */
     public CombinatorialGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
         if (middles == null) {
