@@ -1,7 +1,5 @@
 package com.valkryst.generator;
 
-import lombok.NonNull;
-
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,6 +17,7 @@ public final class ConsonantVowelGenerator extends NameGenerator {
      *
      * @param vowels
      *         The vowels.
+     *
      * @throws IllegalArgumentException
      *        If the lists of consonants or vowels are empty.
      */
