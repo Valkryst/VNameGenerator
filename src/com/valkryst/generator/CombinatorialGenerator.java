@@ -22,7 +22,7 @@ public final class CombinatorialGenerator extends NameGenerator {
      *         The name-endings.
      */
     public CombinatorialGenerator(final List<String> beginnings, final List<String> endings) {
-        this(beginnings, null, endings);
+        this(beginnings, Collections.emptyList(), endings);
     }
 
     /**
