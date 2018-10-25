@@ -1,7 +1,6 @@
 package com.valkryst.generator;
 
 import com.valkryst.VParser_CFG.ContextFreeGrammar;
-import lombok.NonNull;
 
 import java.util.List;
 
@@ -15,13 +14,15 @@ public final class GrammarGenerator extends NameGenerator{
      * @param rules
      *         The name generation rules.
      *
-     * @throws NullPointerException
-     *         If the list of rules is null.
-     *
      * @throws IllegalArgumentException
+     *         If the list of rules is empty or null.
      *         If there is a semantic error in one of the rules.
      */
-    public GrammarGenerator(final @NonNull List<String> rules) {
+    public GrammarGenerator(final List<String> rules) {
+        if (rules == null || rules.size() == 0) {
+            throw new IllegalArgumentException("The list of rules is empty or null.");
+        }
+
         contextFreeGrammar = new ContextFreeGrammar(rules);
     }
 
