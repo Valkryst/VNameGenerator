@@ -50,7 +50,6 @@ public final class MarkovGenerator extends NameGenerator {
         }
 
         if (sb.length() > length) {
-            System.out.println(sb.length() + " " + length + " " + sb.toString());
             sb.deleteCharAt(sb.length() - (sb.length() - length));
         }
 
