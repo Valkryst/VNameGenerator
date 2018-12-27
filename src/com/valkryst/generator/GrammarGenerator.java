@@ -12,15 +12,19 @@ public final class GrammarGenerator extends NameGenerator{
      * Constructs a GrammarGenerator.
      *
      * @param rules
-     *         The name generation rules.
+     *          The name generation rules.
      *
      * @throws IllegalArgumentException
-     *         If the list of rules is empty or null.
-     *         If there is a semantic error in one of the rules.
+     *          If the list of rules is empty or null.
+     *          If there is a semantic error in one of the rules.
      */
     public GrammarGenerator(final List<String> rules) {
-        if (rules == null || rules.size() == 0) {
-            throw new IllegalArgumentException("The list of rules is empty or null.");
+        if (rules == null) {
+            throw new IllegalArgumentException("The list of rules is null.");
+        }
+
+        if (rules.size() == 0) {
+            throw new IllegalArgumentException("The list of rules is empty.");
         }
 
         contextFreeGrammar = new ContextFreeGrammar(rules);
