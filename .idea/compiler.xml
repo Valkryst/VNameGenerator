@@ -10,10 +10,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="VNameGenerator" target="1.8" />
+      <module name="VNameGenerator" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-Xlint" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="VNameGenerator" options="" />
+    </option>
   </component>
 </project>
