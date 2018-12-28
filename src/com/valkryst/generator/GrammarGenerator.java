@@ -14,13 +14,16 @@ public final class GrammarGenerator extends NameGenerator{
      * @param rules
      *          The name generation rules.
      *
+     * @throws NullPointerException
+     *          If the list of rules is null.
+     *
      * @throws IllegalArgumentException
-     *          If the list of rules is empty or null.
+     *          If the list of rules is empty.
      *          If there is a semantic error in one of the rules.
      */
     public GrammarGenerator(final List<String> rules) {
         if (rules == null) {
-            throw new IllegalArgumentException("The list of rules is null.");
+            throw new NullPointerException("The list of rules is null.");
         }
 
         if (rules.size() == 0) {
