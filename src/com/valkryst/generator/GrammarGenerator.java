@@ -57,6 +57,6 @@ public final class GrammarGenerator extends NameGenerator{
             }
         }
 
-        return super.capitalizeFirstCharacter(longestResult);
+        return capitalizeFirstCharacter(longestResult);
     }
 }

@@ -72,6 +72,6 @@ public final class CombinatorialGenerator extends NameGenerator {
 
         sb.append(endings[ThreadLocalRandom.current().nextInt(endings.length)]);
 
-        return super.capitalizeFirstCharacter(sb.toString());
+        return capitalizeFirstCharacter(sb.toString());
     }
 }

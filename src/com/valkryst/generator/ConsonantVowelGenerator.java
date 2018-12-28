@@ -63,6 +63,6 @@ public final class ConsonantVowelGenerator extends NameGenerator {
             sb.deleteCharAt(sb.length() - (sb.length() - length));
         }
 
-        return super.capitalizeFirstCharacter(sb.toString());
+        return capitalizeFirstCharacter(sb.toString());
     }
 }
