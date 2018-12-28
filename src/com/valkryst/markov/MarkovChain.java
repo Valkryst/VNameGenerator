@@ -21,39 +21,21 @@ public class MarkovChain {
         final Map<String, EntryBuilder> builders = new HashMap<>();
 
         for (final String string : strings) {
-            train(builders, string);
+            if (string.length() < 2) {
+                return;
+            }
+
+            for (int i = 2 ; i < string.length() ; i++) {
+                final String charGroup = string.substring(i - 2, i);
+                final char thirdChar = string.charAt(i);
+
+                builders.putIfAbsent(charGroup, new EntryBuilder());
+                builders.get(charGroup).addOccurrence(thirdChar);
+            }
         }
 
         for (final Map.Entry<String, EntryBuilder> entry : builders.entrySet()) {
             entries.put(entry.getKey(), entry.getValue().build());
-        }
-    }
-
-    /**
-     * Trains the Markov Chain with a string.
-     *
-     * For each group of two characters, an occurrence of the following third
-     * character is recorded.
-     *
-     * Strings with a length less than two are ignored.
-     *
-     * @param builders
-     *          todo JavaDoc
-     *
-     * @param string
-     *          The string.
-     */
-    private void train(final @NonNull Map<String, EntryBuilder> builders, final @NonNull String string) {
-        if (string.length() < 2) {
-            return;
-        }
-
-        for (int i = 2 ; i < string.length() ; i++) {
-            final String charGroup = string.substring(i - 2, i);
-            final char thirdChar = string.charAt(i);
-
-            builders.putIfAbsent(charGroup, new EntryBuilder());
-            builders.get(charGroup).addOccurrence(thirdChar);
         }
     }
 
@@ -66,7 +48,11 @@ public class MarkovChain {
      * @return
      *          The character.
      */
-    public Optional<Character> chooseRandomCharacter(final @NonNull String string) {
+    public Optional<Character> chooseRandomCharacter(final String string) {
+        if (string == null || string.isEmpty()) {
+            return Optional.empty();
+        }
+
         if (entries.containsKey(string)) {
             return entries.get(string).chooseCharacter();
         } else {
