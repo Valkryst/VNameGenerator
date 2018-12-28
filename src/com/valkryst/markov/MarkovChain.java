@@ -50,7 +50,7 @@ public class MarkovChain {
 
         for (int i = 2 ; i < string.length() ; i++) {
             final String charGroup = string.substring(i - 2, i);
-            final Character thirdChar = string.charAt(i);
+            final char thirdChar = string.charAt(i);
 
             builders.putIfAbsent(charGroup, new EntryBuilder());
             builders.get(charGroup).addOccurrence(thirdChar);
