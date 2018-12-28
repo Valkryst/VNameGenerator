@@ -39,10 +39,6 @@ public final class CombinatorialGenerator extends NameGenerator {
      *         If the lists of beginnings or endings are null or empty.
      */
     public CombinatorialGenerator(final String[] beginnings, String[] middles, final String[] endings) {
-        if (middles == null) {
-            middles = new String[0];
-        }
-
         // Ensure lists aren't empty:
         if (beginnings == null || beginnings.length == 0) {
             throw new IllegalArgumentException("The list of beginnings is empty or null.");
@@ -53,7 +49,7 @@ public final class CombinatorialGenerator extends NameGenerator {
         }
 
         this.beginnings = beginnings;
-        this.middles = middles;
+        this.middles = (middles == null ? new String[0] : middles);
         this.endings = endings;
     }
 
