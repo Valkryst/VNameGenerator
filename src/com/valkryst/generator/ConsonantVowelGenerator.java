@@ -1,6 +1,5 @@
 package com.valkryst.generator;
 
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelGenerator extends NameGenerator {
@@ -21,13 +20,13 @@ public final class ConsonantVowelGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *          If the lists of consonants or vowels are empty or null.
      */
-    public ConsonantVowelGenerator(final List<String> consonants, final List<String> vowels) {
+    public ConsonantVowelGenerator(final String[] consonants, final String[] vowels) {
         // Ensure lists aren't empty:
         if (consonants == null) {
             throw new IllegalArgumentException("The list of consonants is null.");
         }
 
-        if (consonants.size() == 0) {
+        if (consonants.length == 0) {
             throw new IllegalArgumentException("The list of consonants is empty");
         }
 
@@ -35,12 +34,12 @@ public final class ConsonantVowelGenerator extends NameGenerator {
             throw new IllegalArgumentException("The list of vowels is null.");
         }
 
-        if (vowels.size() == 0) {
+        if (vowels.length == 0) {
             throw new IllegalArgumentException("The list of vowels is empty");
         }
 
-        this.consonants = consonants.toArray(new String[0]);
-        this.vowels = vowels.toArray(new String[0]);
+        this.consonants = consonants;
+        this.vowels = vowels;
     }
 
     @Override
