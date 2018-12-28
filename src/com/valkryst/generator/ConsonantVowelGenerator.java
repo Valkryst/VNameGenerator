@@ -23,19 +23,19 @@ public final class ConsonantVowelGenerator extends NameGenerator {
     public ConsonantVowelGenerator(final String[] consonants, final String[] vowels) {
         // Ensure lists aren't empty:
         if (consonants == null) {
-            throw new IllegalArgumentException("The list of consonants is null.");
+            throw new IllegalArgumentException("The array of consonants is null.");
         }
 
         if (consonants.length == 0) {
-            throw new IllegalArgumentException("The list of consonants is empty");
+            throw new IllegalArgumentException("The array of consonants is empty");
         }
 
         if (vowels == null) {
-            throw new IllegalArgumentException("The list of vowels is null.");
+            throw new IllegalArgumentException("The array of vowels is null.");
         }
 
         if (vowels.length == 0) {
-            throw new IllegalArgumentException("The list of vowels is empty");
+            throw new IllegalArgumentException("The array of vowels is empty");
         }
 
         this.consonants = consonants;

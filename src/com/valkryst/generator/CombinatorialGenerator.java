@@ -41,11 +41,11 @@ public final class CombinatorialGenerator extends NameGenerator {
     public CombinatorialGenerator(final String[] beginnings, String[] middles, final String[] endings) {
         // Ensure lists aren't empty:
         if (beginnings == null || beginnings.length == 0) {
-            throw new IllegalArgumentException("The list of beginnings is empty or null.");
+            throw new IllegalArgumentException("The array of beginnings is empty or null.");
         }
 
         if (endings == null || endings.length == 0) {
-            throw new IllegalArgumentException("The list of endings is empty or null.");
+            throw new IllegalArgumentException("The array of endings is empty or null.");
         }
 
         this.beginnings = beginnings;
