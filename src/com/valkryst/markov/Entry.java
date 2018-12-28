@@ -14,29 +14,20 @@ class Entry {
 
     public Entry(final @NonNull EntryBuilder builder) {
         final Map<Character, Integer> occurrences = builder.getOccurrences();
-
         characters = new char[occurrences.size()];
-        int[] frequency = new int[occurrences.size()];
         threshold = new int[occurrences.size()];
 
         int counter = 0;
         for (final Map.Entry<Character, Integer> entry : occurrences.entrySet()) {
             characters[counter] = entry.getKey();
-            frequency[counter] = entry.getValue();
-
-            if (counter > 0) {
-                threshold[counter] = frequency[counter] + threshold[counter - 1];
-            } else {
-                threshold[counter] = frequency[counter];
-            }
+            threshold[counter] = entry.getValue() + (counter > 0 ? threshold[counter - 1] : 0);
 
             counter++;
         }
     }
 
     public Optional<Character> chooseCharacter() {
-        final int max = threshold[threshold.length - 1];
-        final int rand = ThreadLocalRandom.current().nextInt(max + 1);
+        final int rand = ThreadLocalRandom.current().nextInt(threshold[threshold.length - 1] + 1);
 
         for (int i = 0 ; i < threshold.length ; i++) {
             if (threshold[i] >= rand) {
