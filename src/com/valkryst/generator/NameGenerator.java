@@ -27,7 +27,7 @@ public abstract class NameGenerator {
      * @return
      *          The string with the first letter capitalized.
      */
-    String capitalizeFirstCharacter(final String string) {
+    public static String capitalizeFirstCharacter(final String string) {
         if (string == null) {
             return "";
         }
