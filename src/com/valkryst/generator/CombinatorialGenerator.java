@@ -1,7 +1,5 @@
 package com.valkryst.generator;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class CombinatorialGenerator extends NameGenerator {
@@ -21,8 +19,8 @@ public final class CombinatorialGenerator extends NameGenerator {
      * @param endings
      *         The name-endings.
      */
-    public CombinatorialGenerator(final List<String> beginnings, final List<String> endings) {
-        this(beginnings, Collections.emptyList(), endings);
+    public CombinatorialGenerator(final String[] beginnings, final String[] endings) {
+        this(beginnings, new String[0], endings);
     }
 
     /**
@@ -40,23 +38,23 @@ public final class CombinatorialGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *         If the lists of beginnings or endings are null or empty.
      */
-    public CombinatorialGenerator(final List<String> beginnings, List<String> middles, final List<String> endings) {
+    public CombinatorialGenerator(final String[] beginnings, String[] middles, final String[] endings) {
         if (middles == null) {
-            middles = Collections.emptyList();
+            middles = new String[0];
         }
 
         // Ensure lists aren't empty:
-        if (beginnings == null || beginnings.size() == 0) {
+        if (beginnings == null || beginnings.length == 0) {
             throw new IllegalArgumentException("The list of beginnings is empty or null.");
         }
 
-        if (endings == null || endings.size() == 0) {
+        if (endings == null || endings.length == 0) {
             throw new IllegalArgumentException("The list of endings is empty or null.");
         }
 
-        this.beginnings = beginnings.toArray(new String[0]);
-        this.middles = middles.toArray(new String[0]);
-        this.endings = endings.toArray(new String[0]);
+        this.beginnings = beginnings;
+        this.middles = middles;
+        this.endings = endings;
     }
 
     @Override
