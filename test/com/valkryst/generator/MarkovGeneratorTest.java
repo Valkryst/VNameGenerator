@@ -14,12 +14,10 @@ import java.util.List;
 
 public class MarkovGeneratorTest {
     private MarkovGenerator nameGenerator;
-    private final List<String> trainingNames;
+    private final String[] trainingNames;
 
-    public MarkovGeneratorTest() throws URISyntaxException, IOException {
-        final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        final URL resourceUrl = classloader.getResource("Human/Viking/Male.txt");
-        trainingNames = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+    public MarkovGeneratorTest() throws IOException {
+        trainingNames = NameGenerator.loadLinesFromJar("Human/Viking/Male.txt");
     }
 
     @Before
@@ -39,7 +37,7 @@ public class MarkovGeneratorTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_withEmptyTrainingNames() {
-        nameGenerator = new MarkovGenerator(new ArrayList<>(0));
+        nameGenerator = new MarkovGenerator(new String[0]);
     }
 
     @Test
