@@ -18,7 +18,7 @@ public class MarkovChain {
      *          The training strings.
      */
     public void train(final @NonNull List<String> strings) {
-        final Map<String, EntryBuilder> builders = new HashMap<>();
+        final Map<String, Map<Character, Integer>> builders = new HashMap<>();
 
         for (final String string : strings) {
             if (string.length() < 2) {
@@ -27,15 +27,17 @@ public class MarkovChain {
 
             for (int i = 2 ; i < string.length() ; i++) {
                 final String charGroup = string.substring(i - 2, i);
-                final char thirdChar = string.charAt(i);
+                final char subsequentChar = string.charAt(i);
 
-                builders.putIfAbsent(charGroup, new EntryBuilder());
-                builders.get(charGroup).addOccurrence(thirdChar);
+                builders.putIfAbsent(charGroup, new HashMap<>());
+
+                builders.get(charGroup).putIfAbsent(subsequentChar, 0);
+                builders.get(charGroup).put(string.charAt(i), builders.get(charGroup).get(subsequentChar) + 1);
             }
         }
 
-        for (final Map.Entry<String, EntryBuilder> entry : builders.entrySet()) {
-            entries.put(entry.getKey(), entry.getValue().build());
+        for (final Map.Entry<String, Map<Character, Integer>> entry : builders.entrySet()) {
+            entries.put(entry.getKey(), new Entry(entry.getValue()));
         }
     }
 

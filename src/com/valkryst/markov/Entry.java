@@ -12,8 +12,7 @@ class Entry {
     /** The threshold value of each character. */
     private int[] threshold;
 
-    public Entry(final @NonNull EntryBuilder builder) {
-        final Map<Character, Integer> occurrences = builder.getOccurrences();
+    public Entry(final @NonNull Map<Character, Integer> occurrences) {
         characters = new char[occurrences.size()];
         threshold = new int[occurrences.size()];
 
