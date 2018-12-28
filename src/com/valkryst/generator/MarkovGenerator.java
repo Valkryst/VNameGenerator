@@ -21,13 +21,13 @@ public final class MarkovGenerator extends NameGenerator {
      * @throws IllegalArgumentException
      *          If the list of training names is empty.
      */
-    public MarkovGenerator(final List<String> trainingNames) {
+    public MarkovGenerator(final String[] trainingNames) {
         if (trainingNames == null) {
-            throw new NullPointerException("The list of training names is null.");
+            throw new NullPointerException("The array of training names is null.");
         }
 
-        if (trainingNames.size() == 0) {
-            throw new IllegalArgumentException("The list of training names is empty.");
+        if (trainingNames.length == 0) {
+            throw new IllegalArgumentException("The array of training names is empty.");
         }
 
         markovChain.train(trainingNames);
