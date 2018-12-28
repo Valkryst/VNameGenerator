@@ -2,7 +2,6 @@ package com.valkryst.generator;
 
 import com.valkryst.markov.MarkovChain;
 
-import java.util.List;
 import java.util.Optional;
 
 public final class MarkovGenerator extends NameGenerator {
