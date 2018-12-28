@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Entry {
+class Entry {
+    /** The characters.*/
     private char[] characters;
+    /** The threshold value of each character. */
     private int[] threshold;
 
     public Entry(final @NonNull EntryBuilder builder) {
