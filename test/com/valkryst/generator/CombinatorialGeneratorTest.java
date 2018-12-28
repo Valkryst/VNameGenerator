@@ -12,20 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CombinatorialGeneratorTest {
-    private final List<String> beginnings;
-    private final List<String> middles;
-    private final List<String> endings;
+    private final String[] beginnings;
+    private final String[] middles;
+    private final String[] endings;
 
-    public CombinatorialGeneratorTest() throws URISyntaxException, IOException {
-        final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        URL resourceUrl = classloader.getResource("Titles/Dune/Titles.txt");
-        beginnings = Files.readAllLines(Paths.get(resourceUrl.toURI()));
-
-        resourceUrl = classloader.getResource("Dwarven/Fantasy/Khordaldrum_Last_A.txt");
-        middles = Files.readAllLines(Paths.get(resourceUrl.toURI()));
-
-        resourceUrl = classloader.getResource("Dwarven/Fantasy/Khordaldrum_Last_B.txt");
-        endings = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+    public CombinatorialGeneratorTest() throws IOException {
+        beginnings = NameGenerator.loadLinesFromJar("Titles/Dune/Titles.txt");
+        middles = NameGenerator.loadLinesFromJar("Dwarven/Fantasy/Khordaldrum_Last_A.txt");
+        endings = NameGenerator.loadLinesFromJar("Dwarven/Fantasy/Khordaldrum_Last_B.txt");
     }
 
     @Test
@@ -55,17 +49,17 @@ public class CombinatorialGeneratorTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_threeParams_withEmptyBeginnings() {
-        new CombinatorialGenerator(new ArrayList<>(0), middles, endings);
+        new CombinatorialGenerator(new String[0], middles, endings);
     }
 
     @Test
     public void testConstructor_threeParams_withEmptyMiddles() {
-        new CombinatorialGenerator(beginnings, new ArrayList<>(0), endings);
+        new CombinatorialGenerator(beginnings, new String[0], endings);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void testConstructor_threeParams_withEmptyEndings() {
-        new CombinatorialGenerator(beginnings, middles, new ArrayList<>(0));
+        new CombinatorialGenerator(beginnings, middles, new String[0]);
     }
 
     @Test
