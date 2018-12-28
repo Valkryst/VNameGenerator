@@ -1,9 +1,6 @@
 package com.valkryst.markov;
 
-import lombok.NonNull;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -17,7 +14,7 @@ public class MarkovChain {
      * @param strings
      *          The training strings.
      */
-    public void train(final @NonNull List<String> strings) {
+    public void train(final String[] strings) {
         final Map<String, Map<Character, Integer>> builders = new HashMap<>();
 
         for (final String string : strings) {
