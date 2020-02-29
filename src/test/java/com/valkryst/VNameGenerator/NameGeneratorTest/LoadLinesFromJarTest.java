@@ -1,11 +1,9 @@
-package com.valkryst.generator.NameGeneratorTest;
+package com.valkryst.VNameGenerator.NameGeneratorTest;
 
-import com.valkryst.generator.NameGenerator;
-import org.junit.Assert;
+import com.valkryst.VNameGenerator.generator.NameGenerator;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class LoadLinesFromJarTest {
     @Test (expected = NullPointerException.class)

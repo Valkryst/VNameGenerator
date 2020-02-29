@@ -1,4 +1,4 @@
-import com.valkryst.generator.ConsonantVowelGenerator;
+import com.valkryst.VNameGenerator.generator.ConsonantVowelGenerator;
 
 public class ConsonantVowel {
     public static void main(String[] args) {

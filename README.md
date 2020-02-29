@@ -1,4 +1,7 @@
-![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiaDVDRkhJSzBONTh1cVg1ZGJTUko5Qk81NVdNSjBOVnBKQ3Zsek5UNUpVL2l0WmNVcnZyR0R5RU56ZnJRYWtFc3FzSmJBaGJvZ1FIcmQ1RzVmd0VTUWtNPSIsIml2UGFyYW1ldGVyU3BlYyI6IkxBUkVRQzlxcUlnK3I4SmciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator) [![Total alerts](https://img.shields.io/lgtm/alerts/g/Valkryst/VNameGenerator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Valkryst/VNameGenerator/alerts/) [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Valkryst/VNameGenerator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Valkryst/VNameGenerator/context:java)
+[![CircleCI](https://circleci.com/gh/Valkryst/VNameGenerator.svg?style=svg)](https://circleci.com/gh/Valkryst/VNameGenerator)
+[![Release](https://jitpack.io/v/Valkryst/VNameGenerator.svg)](https://jitpack.io/#Valkryst/VNameGenerator)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Valkryst/VNameGenerator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Valkryst/VNameGenerator/alerts/)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Valkryst/VNameGenerator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Valkryst/VNameGenerator/context:java)
 
 # Jar Files & Maven
 
@@ -29,11 +32,11 @@ Jar files can be found on the [releases](https://github.com/Valkryst/VNameGenera
 
 ## How to Use:
 
-Examples of each algorithm in-use can be found within the */test/com/valkryst/generator/* folder. These tests aren't
+Examples of each algorithm in-use can be found within the *test_generation* folder. These tests aren't
 documented, but should be simple to understand after reading the JavaDoc documentation within the generator classes
-located in the */src/com/valkryst/generator/* folder.
+located in the *test_generation* folder.
 
-Lists of names to use with the generators can be found within the */res/* folder.
+Lists of names to use with the generators can be found within the *src/main/resources* folder.
 
 ## Included Algorithms:
 
@@ -49,7 +52,7 @@ Names are generated using a context free grammar method.
 
 You can learn more about CFGs [here](http://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm).
 
-An example of how this is used can be found within the */test/com/valkryst/generator/* folder.
+An example of how this is used can be found within the *test_generation* folder.
 
 ### Markov Chain:
 Names are generated using a computed table of probabilities to determine which character follows the previous two

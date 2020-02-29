@@ -1,5 +1,6 @@
-package com.valkryst.generator;
+package com.valkryst.VNameGenerator;
 
+import com.valkryst.VNameGenerator.generator.ConsonantVowelGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 

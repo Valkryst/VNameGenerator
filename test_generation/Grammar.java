@@ -1,7 +1,4 @@
-import com.valkryst.generator.GrammarGenerator;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.valkryst.VNameGenerator.generator.GrammarGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

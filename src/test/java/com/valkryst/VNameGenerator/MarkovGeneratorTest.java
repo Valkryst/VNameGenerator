@@ -1,5 +1,7 @@
-package com.valkryst.generator;
+package com.valkryst.VNameGenerator;
 
+import com.valkryst.VNameGenerator.generator.MarkovGenerator;
+import com.valkryst.VNameGenerator.generator.NameGenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

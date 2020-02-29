@@ -1,4 +1,4 @@
-package com.valkryst.generator;
+package com.valkryst.VNameGenerator.generator;
 
 import com.valkryst.VParser_CFG.ContextFreeGrammar;
 

@@ -1,16 +1,7 @@
-import com.valkryst.generator.MarkovGenerator;
-import com.valkryst.generator.NameGenerator;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.valkryst.VNameGenerator.generator.MarkovGenerator;
+import com.valkryst.VNameGenerator.generator.NameGenerator;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Markov {
     public static void main(String[] args) throws IOException {

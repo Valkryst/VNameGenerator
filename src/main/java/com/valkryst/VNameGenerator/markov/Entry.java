@@ -1,4 +1,4 @@
-package com.valkryst.markov;
+package com.valkryst.VNameGenerator.markov;
 
 import lombok.NonNull;
 
