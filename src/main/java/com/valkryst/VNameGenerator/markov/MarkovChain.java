@@ -1,4 +1,4 @@
-package com.valkryst.markov;
+package com.valkryst.VNameGenerator.markov;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package com.valkryst.generator.NameGeneratorTest;
+package com.valkryst.VNameGenerator.NameGeneratorTest;
 
-import com.valkryst.generator.NameGenerator;
+import com.valkryst.VNameGenerator.generator.NameGenerator;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class LoadLinesTest {
     @BeforeClass

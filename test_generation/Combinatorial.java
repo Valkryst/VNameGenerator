@@ -1,5 +1,5 @@
-import com.valkryst.generator.CombinatorialGenerator;
-import com.valkryst.generator.NameGenerator;
+import com.valkryst.VNameGenerator.generator.CombinatorialGenerator;
+import com.valkryst.VNameGenerator.generator.NameGenerator;
 
 import java.io.IOException;
 

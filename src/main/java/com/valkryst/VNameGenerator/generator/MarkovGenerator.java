@@ -1,6 +1,6 @@
-package com.valkryst.generator;
+package com.valkryst.VNameGenerator.generator;
 
-import com.valkryst.markov.MarkovChain;
+import com.valkryst.VNameGenerator.markov.MarkovChain;
 
 import java.util.Optional;
 
