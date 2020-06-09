@@ -5,7 +5,7 @@
 
 # Jar Files & Maven
 
-The Maven dependency is hosted off of JitPack, so you will need to add JitPack as a repository before you add VTerminal as a dependency.
+The Maven dependency is hosted off of JitPack, so you will need to add JitPack as a repository before you add VNameGenerator as a dependency.
 
 ### Maven
 
