@@ -1,64 +1,62 @@
 package com.valkryst.VNameGenerator.generator;
 
 import com.valkryst.VNameGenerator.markov.MarkovChain;
+import lombok.NonNull;
 
-import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 public final class MarkovGenerator extends NameGenerator {
-    /** The chain to use when generating names. */
-    private final MarkovChain markovChain = new MarkovChain();
+    private MarkovChain markovChain = new MarkovChain();
 
     /**
-     * Constructs a MarkovGenerator.
+     * Constructs a MarkovGenerator and trains it with a set of names.
      *
-     * @param trainingNames
-     *          The names to train the Markov Chain with.
-     *
-     * @throws NullPointerException
-     *          If the list of training names is null.
-     *
-     * @throws IllegalArgumentException
-     *          If the list of training names is empty.
+     * @param names A set of names.
      */
-    public MarkovGenerator(final String[] trainingNames) {
-        if (trainingNames == null) {
-            throw new NullPointerException("The array of training names is null.");
-        }
-
-        if (trainingNames.length == 0) {
-            throw new IllegalArgumentException("The array of training names is empty.");
-        }
-
-        markovChain.train(trainingNames);
+    public MarkovGenerator(final @NonNull String[] names) {
+    	setTrainingNames(names);
     }
 
     @Override
-    public String generateName(int length) {
-        if (length < 2) {
-            length = 2;
-        }
+    public String generate(int maxLength) {
+    	super.validateMaxLengthValid(maxLength);
+		maxLength = ThreadLocalRandom.current().nextInt((int) (maxLength * 0.5), maxLength + 1);
 
-        final StringBuilder sb = new StringBuilder();
-        sb.append(markovChain.chooseRandomString()); // Begin the name with a random pair of two characters.
+        final var stringBuilder = new StringBuilder();
 
-        for (int i = 2; i < length; ++i) {
-            final Optional<Character> next = markovChain.chooseRandomCharacter(sb.substring(i - 2, i));
+		// Begin the name with a random pair of two characters.
+        stringBuilder.append(markovChain.chooseRandomString());
+
+        for (int i = 2 ; i < maxLength ; i++) {
+            final var next = markovChain.chooseRandomCharacter(stringBuilder.substring(i - 2, i));
 
             if (next.isPresent()) {
-                sb.append(next.get());
+                stringBuilder.append(next.get());
             } else {
-                if (sb.length() != length) {
-                    return generateName(length);
-                } else {
-                    break;
-                }
-            }
+            	break;
+			}
         }
 
-        if (sb.length() > length) {
-            sb.deleteCharAt(sb.length() - (sb.length() - length));
-        }
+		while (stringBuilder.length() > maxLength) {
+			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		}
 
-        return capitalizeFirstCharacter(sb.toString());
+        return stringBuilder.substring(0, 1).toUpperCase() + stringBuilder.substring(1);
     }
+
+	/**
+	 * Erase the existing Markov Chain and retrain it with a new set of names.
+	 *
+	 * @param names A set of names.
+	 */
+	public void setTrainingNames(final @NonNull String[] names) {
+    	if (names.length == 0) {
+    		throw new IllegalArgumentException("The array of training names must have at least one element. It is currently empty.");
+		}
+
+		super.lowercaseAllElements(names);
+
+    	markovChain = new MarkovChain();
+    	markovChain.train(names);
+	}
 }

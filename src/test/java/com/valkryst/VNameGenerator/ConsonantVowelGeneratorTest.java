@@ -1,68 +1,59 @@
 package com.valkryst.VNameGenerator;
 
 import com.valkryst.VNameGenerator.generator.ConsonantVowelGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ConsonantVowelGeneratorTest {
-    private final String[] consonants = new String[] {
-        "al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it",
-        "le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to",
-        "ve", "wa", "it"
-    };
+	private final ConsonantVowelGenerator generator = new ConsonantVowelGenerator();
 
-    private final String[] vowels = new String[] {
-            "a", "e", "i", "o", "u", "y"
-    };
+	@Test
+	public void canGenerateName() {
+		final var result = generator.generate(10).length();
+		Assertions.assertTrue(result <= 10);
+		Assertions.assertTrue(result > 0);
+	}
 
-    @Test
-    public void testConstructor_withValidConsonantsAndVowels() {
-        new ConsonantVowelGenerator(consonants, vowels);
-    }
+	@Test
+	public void canGenerateNameWithArbitraryLength() {
+		final var threadLocalRandom = ThreadLocalRandom.current();
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_withNullConsonants() {
-        new ConsonantVowelGenerator(null, vowels);
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_withNullVowels() {
-        new ConsonantVowelGenerator(consonants, null);
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_withEmptyConsonants() {
-        new ConsonantVowelGenerator(new String[0], vowels);
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_withEmptyVowels() {
-        new ConsonantVowelGenerator(consonants, new String[0]);
-    }
+		for (int i = 0 ; i < 4 ; i++) {
+			final int maxLength = threadLocalRandom.nextInt(1, 75);
+			final var result = generator.generate(maxLength).length();
+			Assertions.assertTrue(result <= maxLength);
+			Assertions.assertTrue(result > 0);
+		}
+	}
 
     @Test
-    public void testGenerateName_withZeroLength() {
-        final String result = new ConsonantVowelGenerator(consonants, vowels).generateName(0);
-        Assert.assertEquals(2, result.length());
+    public void cannotGenerateNameWithZeroAsMaxLength() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			generator.generate(0);
+		});
     }
 
-    @Test
-    public void  testGenerateName_withOneLength() {
-        final String result = new ConsonantVowelGenerator(consonants, vowels).generateName(1);
-        Assert.assertEquals(2, result.length());
-    }
+	@Test
+	public void canSetConsonants() throws NoSuchFieldException, IllegalAccessException {
+		final String[] consonants = new String[] { "z" };
+		generator.setConsonants(consonants);
 
-    @Test
-    public void  testGenerateName_withTwoLength() {
-        final String result = new ConsonantVowelGenerator(consonants, vowels).generateName(2);
-        Assert.assertEquals(2, result.length());
-    }
+		final var field = generator.getClass().getDeclaredField("consonants");
+		field.setAccessible(true);
 
-    @Test
-    public void  testGenerateName_withThreeToTwentyLength() {
-        for (int i = 3 ; i < 20 ; i++) {
-            final String result = new ConsonantVowelGenerator(consonants, vowels).generateName(i);
-            Assert.assertEquals(i, result.length());
-        }
-    }
+		Assertions.assertArrayEquals(consonants, (String[]) field.get(generator));
+	}
+
+	@Test
+	public void canSetVowels() throws NoSuchFieldException, IllegalAccessException {
+		final String[] vowels = new String[] { "z" };
+		generator.setVowels(vowels);
+
+		final var field = generator.getClass().getDeclaredField("vowels");
+		field.setAccessible(true);
+
+		Assertions.assertArrayEquals(vowels, (String[]) field.get(generator));
+	}
 }

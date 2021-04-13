@@ -6,12 +6,14 @@
 
     <groupId>com.github.Valkryst</groupId>
     <artifactId>VNameGenerator</artifactId>
-    <version>2020.02.29</version>
+    <version>2021.04.13</version>
+    <packaging>jar</packaging>
+    <name>VNameGenerator</name>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.release>16</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -25,16 +27,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
+            <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
 
@@ -43,45 +38,48 @@
             <artifactId>VParser_CFG</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!--- Creates a JAR of the source files in the target directory during build. -->
+            <!-- Runs tests during build. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
             </plugin>
 
-            <!--- Generates JavaDoc files during build. -->
+            <!--- Generates JavaDoc files during build phase. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+                <version>3.2.0</version>
+                <!--
+                Solution to problem:
+                MavenReportException: Error while creating archive: Unable to
+                find javadoc command: The environment variable JAVA_HOME is not
+                correctly set.
 
-            <!-- Used, during the test phase of the build, to run the unit tests -->
-            <plugin>
-                <groupId>org.apache.maven.surefire</groupId>
-                <artifactId>surefire</artifactId>
-                <version>3.0.0-M4</version>
+                Unable to find javadoc command - maven
+                Reference: https://stackoverflow.com/a/54323506
+                -->
+                <configuration>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                </configuration>
             </plugin>
         </plugins>
     </build>
