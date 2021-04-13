@@ -1,77 +1,121 @@
 package com.valkryst.VNameGenerator.generator;
 
+import lombok.NonNull;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class CombinatorialGenerator extends NameGenerator {
-    /** The name-beginnings. */
-    private final String[] beginnings;
-    /** The name-middles. */
-    private final String[] middles;
-    /** The name-endings. */
-    private final String[] endings;
+    /** A set of name beginnings. */
+    private String[] beginnings;
+    /** A set of name middles. */
+    private String[] middles;
+    /** A set of name endings. */
+    private String[] endings;
 
     /**
      * Constructs a new CombinatorialGenerator.
      *
-     * @param beginnings
-     *         The name-beginnings.
-     *
-     * @param endings
-     *         The name-endings.
+     * @param beginnings A set of name beginnings.
+     * @param endings A set of name endings.
      */
-    public CombinatorialGenerator(final String[] beginnings, final String[] endings) {
-        this(beginnings, new String[0], endings);
+    public CombinatorialGenerator(final @NonNull String[] beginnings, final @NonNull String[] endings) {
+        this(beginnings, null, endings);
     }
 
     /**
      * Constructs a new CombinatorialGenerator.
      *
-     * @param beginnings
-     *         The name-beginnings.
-     *
-     * @param middles
-     *         The name-middles.
-     *
-     * @param endings
-     *         The name-endings.
+     * @param beginnings A set of name beginnings.
+     * @param middles A set of name middles.
+     * @param endings A set of name endings.
      *
      * @throws IllegalArgumentException
      *         If the lists of beginnings or endings are null or empty.
      */
-    public CombinatorialGenerator(final String[] beginnings, String[] middles, final String[] endings) {
-        // Ensure lists aren't empty:
-        if (beginnings == null || beginnings.length == 0) {
-            throw new IllegalArgumentException("The array of beginnings is empty or null.");
-        }
+    public CombinatorialGenerator(final @NonNull String[] beginnings, final String[] middles, final @NonNull String[] endings) {
+		if (beginnings.length == 0) {
+			throw new IllegalArgumentException("The array of beginnings must have at least one element. It is currently empty.");
+		}
 
-        if (endings == null || endings.length == 0) {
-            throw new IllegalArgumentException("The array of endings is empty or null.");
-        }
+		if (endings.length == 0) {
+			throw new IllegalArgumentException("The array of endings must have at least one element. It is currently empty.");
+		}
 
-        this.beginnings = beginnings;
-        this.middles = (middles == null ? new String[0] : middles);
-        this.endings = endings;
+		setBeginnings(beginnings);
+		setMiddles(middles);
+		setEndings(endings);
     }
 
     @Override
-    public String generateName(int length) {
-        if (length == 0) {
-            length = 2;
-        }
+    public String generate(int maxLength) {
+		super.validateMaxLengthValid(maxLength);
 
-        final StringBuilder sb = new StringBuilder();
+        final var stringBuilder = new StringBuilder();
+        final var threadLocalRandom = ThreadLocalRandom.current();
 
-        // Construct Name:
-        sb.append(beginnings[ThreadLocalRandom.current().nextInt(beginnings.length)]);
+        maxLength = threadLocalRandom.nextInt((int) (maxLength * 0.5), maxLength + 1);
 
-        if (middles.length > 0) {
-            while (sb.length() < length) {
-                sb.append(middles[ThreadLocalRandom.current().nextInt(middles.length)]);
+        final var beginning = beginnings[threadLocalRandom.nextInt(beginnings.length)];
+        stringBuilder.append(beginning.substring(0, 1).toUpperCase());
+        stringBuilder.append(beginning.substring(1));
+
+        if (middles.length != 0) {
+            while (stringBuilder.length() < maxLength) {
+				stringBuilder.append(middles[threadLocalRandom.nextInt(middles.length)]);
             }
         }
 
-        sb.append(endings[ThreadLocalRandom.current().nextInt(endings.length)]);
+        if (maxLength > 1) {
+        	final var temp = endings[threadLocalRandom.nextInt(endings.length)];
+        	stringBuilder.replace(maxLength - temp.length(), maxLength, temp);
+		}
 
-        return capitalizeFirstCharacter(sb.toString());
+        return stringBuilder.substring(0, maxLength);
     }
+
+	/**
+	 * Sets a new set of beginnings.
+	 *
+	 * @param beginnings A set of beginnings.
+	 */
+    public void setBeginnings(final @NonNull String[] beginnings) {
+		if (beginnings.length == 0) {
+			throw new IllegalArgumentException("The array of beginnings must have at least one element. It is currently empty.");
+		}
+
+		super.lowercaseAllElements(beginnings);
+
+		this.beginnings = beginnings;
+	}
+
+	/**
+	 * Sets a new set of middles.
+	 *
+	 * @param middles A set of middles.
+	 */
+	public void setMiddles(final String[] middles) {
+		if (middles == null || middles.length == 0) {
+			this.middles = new String[0];
+			return;
+		}
+
+		super.lowercaseAllElements(middles);
+
+		this.middles = middles;
+	}
+
+	/**
+	 * Sets a new set of endings.
+	 *
+	 * @param endings A set of endings.
+	 */
+	public void setEndings(final @NonNull String[] endings) {
+		if (endings.length == 0) {
+			throw new IllegalArgumentException("The array of endings must have at least one element. It is currently empty.");
+		}
+
+		super.lowercaseAllElements(endings);
+
+		this.endings = endings;
+	}
 }
