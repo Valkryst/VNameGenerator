@@ -1,0 +1,30 @@
+name: Java CI with Maven
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # https://github.com/marketplace/actions/setup-java-jdk
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+          java-package: jdk
+          architecture: x64
+
+      - name: Cache Maven Packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build with Maven
+        env:
+          DISPLAY: :1
+        run: mvn --batch-mode --update-snapshots -Dmaven.javadoc.skip=true verify --file pom.xml

@@ -1,65 +1,41 @@
 package com.valkryst.VNameGenerator.generator;
 
 import com.valkryst.VParser_CFG.ContextFreeGrammar;
+import lombok.NonNull;
 
 import java.util.List;
 
 public final class GrammarGenerator extends NameGenerator{
-    /** The CFG to generate names with. */
-    private final ContextFreeGrammar contextFreeGrammar;
+    private ContextFreeGrammar contextFreeGrammar;
 
     /**
      * Constructs a GrammarGenerator.
      *
-     * @param rules
-     *          The name generation rules.
-     *
-     * @throws NullPointerException
-     *          If the list of rules is null.
-     *
-     * @throws IllegalArgumentException
-     *          If the list of rules is empty.
-     *          If there is a semantic error in one of the rules.
+     * @param rules A set of Context Free Grammar rules.
      */
-    public GrammarGenerator(final List<String> rules) {
-        if (rules == null) {
-            throw new NullPointerException("The list of rules is null.");
-        }
-
-        if (rules.size() == 0) {
-            throw new IllegalArgumentException("The list of rules is empty.");
-        }
-
-        contextFreeGrammar = new ContextFreeGrammar(rules);
+    public GrammarGenerator(final @NonNull List<String> rules) {
+        setRules(rules);
     }
-
 
     @Override
-    public String generateName(int length) {
-        if (length < 2) {
-            length = 2;
-        }
+    public String generate(final int maxLength) {
+    	super.validateMaxLengthValid(maxLength);
 
-        String longestResult = "";
-
-        for (int i = 0 ; i < 100 ; i++) {
-            final String tmp = contextFreeGrammar.run();
-
-            if (tmp.length() > longestResult.length()) {
-                longestResult = tmp;
-            }
-
-            if (tmp.length() > length) {
-                longestResult = tmp.substring(0, length);
-                break;
-            }
-
-            if (tmp.length() == length) {
-                longestResult = tmp;
-                break;
-            }
-        }
-
-        return capitalizeFirstCharacter(longestResult);
+		var result = contextFreeGrammar.run();
+		result = result.substring(0, Math.min(result.length(), maxLength));
+		return result.substring(0, 1).toUpperCase() + result.substring(1);
     }
+
+	/**
+	 * Set a new set of rules.
+	 *
+	 * @param rules A set of Context Free Grammar rules.
+	 */
+	public void setRules(final @NonNull List<String> rules) {
+		if (rules.size() == 0) {
+			throw new IllegalArgumentException("The list of rules must have at least one rule. It is currently empty.");
+		}
+
+		contextFreeGrammar = new ContextFreeGrammar(rules);
+	}
 }

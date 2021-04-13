@@ -1,68 +1,80 @@
 package com.valkryst.VNameGenerator.generator;
 
+import lombok.NonNull;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ConsonantVowelGenerator extends NameGenerator {
-    /** The consonants. */
-    private final String[] consonants;
-    /** The vowels. */
-    private final String[] vowels;
+    /** A set of consonants. */
+    private String[] consonants;
+    /** A set of vowels. */
+    private String[] vowels;
 
-    /**
-     * Constructs a new ConsonantVowelGenerator.
-     *
-     * @param consonants
-     *          The consonants.
-     *
-     * @param vowels
-     *          The vowels.
-     *
-     * @throws IllegalArgumentException
-     *          If the lists of consonants or vowels are empty or null.
-     */
-    public ConsonantVowelGenerator(final String[] consonants, final String[] vowels) {
-        // Ensure lists aren't empty:
-        if (consonants == null) {
-            throw new IllegalArgumentException("The array of consonants is null.");
-        }
+	/** Constructs a new ConsonantVowelGenerator. */
+	public ConsonantVowelGenerator() {
+		setConsonants(new String[] {
+			"al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it",
+			"le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to",
+			"ve", "wa", "it"
+		});
 
-        if (consonants.length == 0) {
-            throw new IllegalArgumentException("The array of consonants is empty");
-        }
-
-        if (vowels == null) {
-            throw new IllegalArgumentException("The array of vowels is null.");
-        }
-
-        if (vowels.length == 0) {
-            throw new IllegalArgumentException("The array of vowels is empty");
-        }
-
-        this.consonants = consonants;
-        this.vowels = vowels;
-    }
+		setVowels(new String[] { "a", "e", "i", "o", "u", "y" });
+	}
 
     @Override
-    public String generateName(int length) {
-        if (length < 2) {
-            length = 2;
-        }
+    public String generate(int maxLength) {
+		super.validateMaxLengthValid(maxLength);
 
-        final StringBuilder sb = new StringBuilder();
-        final ThreadLocalRandom rand = ThreadLocalRandom.current();
+        final var stringBuilder = new StringBuilder();
+        final var threadLocalRandom = ThreadLocalRandom.current();
 
-        while (sb.length() < length) {
-            if (length % 2 == 0) {
-                sb.append(vowels[rand.nextInt(vowels.length)]);
+		maxLength = threadLocalRandom.nextInt((int) (maxLength * 0.5), maxLength + 1);
+
+        String temp;
+        while (stringBuilder.length() < maxLength) {
+            if (maxLength % 2 == 0) {
+				temp = vowels[threadLocalRandom.nextInt(vowels.length)];
             } else {
-                sb.append(consonants[rand.nextInt(consonants.length)]);
+            	temp = consonants[threadLocalRandom.nextInt(consonants.length)];
             }
+
+			stringBuilder.append(temp);
         }
 
-        if (sb.length() > length) {
-            sb.deleteCharAt(sb.length() - (sb.length() - length));
-        }
+        while (stringBuilder.length() > maxLength) {
+        	stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		}
 
-        return capitalizeFirstCharacter(sb.toString());
+        return stringBuilder.substring(0, 1).toUpperCase() + stringBuilder.substring(1);
     }
+
+	/**
+	 * Sets a new set of consonants.
+	 *
+	 * @param consonants A set of consonants.
+	 */
+	public void setConsonants(final @NonNull String[] consonants) {
+    	if (consonants.length == 0) {
+    		throw new IllegalArgumentException("The array of consonants must have at least one element. It is currently empty.");
+		}
+
+		super.lowercaseAllElements(consonants);
+
+    	this.consonants = consonants;
+	}
+
+	/**
+	 * Sets a new set of vowels.
+	 *
+	 * @param vowels A set of vowels.
+	 */
+    public void setVowels(final @NonNull String[] vowels) {
+		if (consonants.length == 0) {
+			throw new IllegalArgumentException("The array of vowels must have at least one element. It is currently empty.");
+		}
+
+		super.lowercaseAllElements(vowels);
+
+    	this.vowels = vowels;
+	}
 }

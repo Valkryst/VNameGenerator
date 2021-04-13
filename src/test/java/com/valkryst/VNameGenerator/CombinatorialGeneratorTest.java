@@ -1,90 +1,128 @@
 package com.valkryst.VNameGenerator;
 
 import com.valkryst.VNameGenerator.generator.CombinatorialGenerator;
-import com.valkryst.VNameGenerator.generator.NameGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CombinatorialGeneratorTest {
-    private final String[] beginnings;
-    private final String[] middles;
-    private final String[] endings;
+    private final static String[] BEGINNINGS = new String[] { "a", "b", "c" };
+    private final static String[] MIDDLES = new String[] { "d", "e", "f" };
+    private final static String[] ENDINGS = new String[] { "g", "h", "i" };
 
-    public CombinatorialGeneratorTest() throws IOException {
-        beginnings = NameGenerator.loadLinesFromJar("Titles/Dune/Titles.txt");
-        middles = NameGenerator.loadLinesFromJar("Dwarven/Fantasy/Khordaldrum_Last_A.txt");
-        endings = NameGenerator.loadLinesFromJar("Dwarven/Fantasy/Khordaldrum_Last_B.txt");
-    }
+    private final CombinatorialGenerator generator = new CombinatorialGenerator(BEGINNINGS, MIDDLES, ENDINGS);
 
     @Test
-    public void testConstructor_twoParams_withValidInput() {
-        new CombinatorialGenerator(beginnings, endings);
-    }
+	public void canConstructWithBeginningsAndEndings() throws NoSuchFieldException, IllegalAccessException {
+    	final var generator = new CombinatorialGenerator(BEGINNINGS, ENDINGS);
 
-    @Test
-    public void testConstructor_threeParams_withValidInput() {
-        new CombinatorialGenerator(beginnings, middles, endings);
-    }
+    	var field = generator.getClass().getDeclaredField("beginnings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(BEGINNINGS, (String[]) field.get(generator));
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_threeParams_withNullBeginnings() {
-        new CombinatorialGenerator(null, middles, endings);
-    }
+		field = generator.getClass().getDeclaredField("endings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(ENDINGS, (String[]) field.get(generator));
+	}
 
-    @Test
-    public void testConstructor_threeParams_withNullMiddles() {
-        new CombinatorialGenerator(beginnings, null, endings);
-    }
+	@Test
+	public void canConstructWithBeginningsMiddlesAndEndings() throws NoSuchFieldException, IllegalAccessException {
+		final var generator = new CombinatorialGenerator(BEGINNINGS, MIDDLES, ENDINGS);
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_threeParams_withNullEndings() {
-        new CombinatorialGenerator(beginnings, middles, null);
-    }
+		var field = generator.getClass().getDeclaredField("beginnings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(BEGINNINGS, (String[]) field.get(generator));
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_threeParams_withEmptyBeginnings() {
-        new CombinatorialGenerator(new String[0], middles, endings);
-    }
+		field = generator.getClass().getDeclaredField("middles");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(MIDDLES, (String[]) field.get(generator));
 
-    @Test
-    public void testConstructor_threeParams_withEmptyMiddles() {
-        new CombinatorialGenerator(beginnings, new String[0], endings);
-    }
+		field = generator.getClass().getDeclaredField("endings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(ENDINGS, (String[]) field.get(generator));
+	}
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testConstructor_threeParams_withEmptyEndings() {
-        new CombinatorialGenerator(beginnings, middles, new String[0]);
-    }
+	@Test
+	public void canConstructWithNullMiddles() throws NoSuchFieldException, IllegalAccessException {
+		final var generator = new CombinatorialGenerator(BEGINNINGS, null, ENDINGS);
 
-    @Test
-    public void testGenerateName_withZeroLength() {
-        final CombinatorialGenerator nameGenerator = new CombinatorialGenerator(beginnings, middles, endings);
-        final String result = nameGenerator.generateName(0);
-        Assert.assertTrue(result.length() >= 2);
-    }
+		var field = generator.getClass().getDeclaredField("beginnings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(BEGINNINGS, (String[]) field.get(generator));
 
-    @Test
-    public void  testGenerateName_withOneLength() {
-        final CombinatorialGenerator nameGenerator = new CombinatorialGenerator(beginnings, middles, endings);
-        final String result = nameGenerator.generateName(1);
-        Assert.assertTrue(result.length() >= 2);
-    }
+		field = generator.getClass().getDeclaredField("middles");
+		field.setAccessible(true);
+		Assertions.assertEquals(0, ((String[]) field.get(generator)).length);
 
-    @Test
-    public void  testGenerateName_withTwoLength() {
-        final CombinatorialGenerator nameGenerator = new CombinatorialGenerator(beginnings, middles, endings);
-        final String result = nameGenerator.generateName(2);
-        Assert.assertTrue(result.length() >= 2);
-    }
+		field = generator.getClass().getDeclaredField("endings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(ENDINGS, (String[]) field.get(generator));
+	}
 
-    @Test
-    public void  testGenerateName_withThreeToTwentyLength() {
-        final CombinatorialGenerator nameGenerator = new CombinatorialGenerator(beginnings, middles, endings);
-        for (int i = 3 ; i < 20 ; i++) {
-            final String result = nameGenerator.generateName(i);
-            Assert.assertTrue(result.length() >= i);
-        }
-    }
+	@Test
+	public void canGenerateName() {
+    	final var result = generator.generate(10).length();
+		Assertions.assertTrue(result <= 10);
+		Assertions.assertTrue(result > 0);
+	}
+
+	@Test
+	public void canGenerateNameWithArbitraryLength() {
+		final var threadLocalRandom = ThreadLocalRandom.current();
+
+		for (int i = 0 ; i < 4 ; i++) {
+			final int maxLength = threadLocalRandom.nextInt(1, 75);
+			final var result = generator.generate(maxLength).length();
+			Assertions.assertTrue(result <= maxLength);
+			Assertions.assertTrue(result > 0);
+		}
+	}
+
+	@Test
+	public void cannotGenerateNameWithZeroAsMaxLength() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			generator.generate(0);
+		});
+	}
+
+	@Test
+	public void canSetBeginnings() throws NoSuchFieldException, IllegalAccessException {
+		final String[] beginnings = new String[] { "z" };
+		generator.setBeginnings(beginnings);
+
+		final var field = generator.getClass().getDeclaredField("beginnings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(beginnings, (String[]) field.get(generator));
+	}
+
+	@Test
+	public void canSetMiddles() throws NoSuchFieldException, IllegalAccessException {
+		final String[] middles = new String[] { "z" };
+		generator.setMiddles(middles);
+
+		final var field = generator.getClass().getDeclaredField("middles");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(middles, (String[]) field.get(generator));
+	}
+
+	@Test
+	public void canSetMiddlesWithNull() throws NoSuchFieldException, IllegalAccessException {
+		final var field = generator.getClass().getDeclaredField("middles");
+		field.setAccessible(true);
+		Assertions.assertNotEquals(0, ((String[]) field.get(generator)).length);
+
+		generator.setMiddles(null);
+		Assertions.assertEquals(0, ((String[]) field.get(generator)).length);
+	}
+
+	@Test
+	public void canSetEndings() throws NoSuchFieldException, IllegalAccessException {
+		final String[] endings = new String[] { "z" };
+		generator.setEndings(endings);
+
+		final var field = generator.getClass().getDeclaredField("endings");
+		field.setAccessible(true);
+		Assertions.assertArrayEquals(endings, (String[]) field.get(generator));
+	}
 }
