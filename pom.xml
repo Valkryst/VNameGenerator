@@ -6,7 +6,7 @@
 
     <groupId>com.github.Valkryst</groupId>
     <artifactId>VNameGenerator</artifactId>
-    <version>2021.04.13</version>
+    <version>2021.12.19</version>
     <packaging>jar</packaging>
     <name>VNameGenerator</name>
 
