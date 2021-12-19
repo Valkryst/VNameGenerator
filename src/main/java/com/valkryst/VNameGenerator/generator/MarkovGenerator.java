@@ -3,12 +3,12 @@ package com.valkryst.VNameGenerator.generator;
 import lombok.NonNull;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class MarkovGenerator extends NameGenerator {
-    private MarkovChain markovChain = new MarkovChain();
+	private final Map<String, Entry> entries = new HashMap<>();
 
     /**
      * Constructs a MarkovGenerator and trains it with a set of names.
@@ -16,147 +16,128 @@ public final class MarkovGenerator extends NameGenerator {
      * @param names A set of names.
      */
     public MarkovGenerator(final @NonNull String[] names) {
-    	setTrainingNames(names);
+		if (names.length == 0) {
+			throw new IllegalArgumentException("The array of training names must have at least one element. It is currently empty.");
+		}
+
+		final Map<String, Map<Character, Integer>> builders = new HashMap<>();
+
+		for (String string : names) {
+			if (string.length() < 2) {
+				return;
+			}
+
+			string = string.toLowerCase(Locale.ROOT);
+
+			for (int i = 2 ; i < string.length() ; i++) {
+				final String charGroup = string.substring(i - 2, i);
+				final char subsequentChar = string.charAt(i);
+
+				builders.putIfAbsent(charGroup, new HashMap<>());
+
+				builders.get(charGroup).putIfAbsent(subsequentChar, 0);
+				builders.get(charGroup).put(string.charAt(i), builders.get(charGroup).get(subsequentChar) + 1);
+			}
+		}
+
+		for (final Map.Entry<String, Map<Character, Integer>> entry : builders.entrySet()) {
+			entries.put(entry.getKey(), new Entry(entry.getValue()));
+		}
     }
 
     @Override
     public String generate(int maxLength) {
     	super.validateMaxLengthValid(maxLength);
-		maxLength = ThreadLocalRandom.current().nextInt((int) (maxLength * 0.5), maxLength + 1);
 
-        final var stringBuilder = new StringBuilder();
+		/*
+		 * Even a small Markov Chain is capable of generating long names, but
+		 * the names can be of a subjectively poor quality due to repetition
+		 * and length.
+		 *
+		 * e.g. Poor Quality Names
+		 *
+		 * 		Rlasaìdhagaidhairidh
+		 * 		Itirigiosaidhagsaìde
+		 * 		Nsaireabalaileall
+		 * 		Nanagaililiormailili
+		 * 		Unagaghreagagaghnait
+		 *
+		 * To generate names that are of a subjectively higher quality, we
+		 * randomize maxLength. This partially solves the issues of repetition
+		 * and length.
+		 *
+		 * We could allow maxLength randomization by users, but we want this
+		 * function to produce subjectively good results without needing to
+		 * know much about its internals.
+		 */
+		final var random = ThreadLocalRandom.current();
+		maxLength = random.nextInt((int) (maxLength * 0.5), maxLength + 1);
 
-		// Begin the name with a random pair of two characters.
-        stringBuilder.append(markovChain.chooseRandomString());
+		final var sb = new StringBuilder();
+		sb.append((String) entries.keySet().toArray()[random.nextInt(entries.size())]);
 
-        for (int i = 2 ; i < maxLength ; i++) {
-            final var next = markovChain.chooseRandomCharacter(stringBuilder.substring(i - 2, i));
+		for (int i = 2 ; i < maxLength ; i++) {
+            final var substring = sb.substring(i - 2, i);
 
-            if (next.isPresent()) {
-                stringBuilder.append(next.get());
-            } else {
-            	break;
+			final var entry = entries.get(substring);
+			if (entry == null) {
+				break;
 			}
+
+			sb.appendCodePoint(entry.randomCodePoint());
         }
 
-		while (stringBuilder.length() > maxLength) {
-			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		// Prevent names from begin/ending with non-alphabetic characters.
+		int codePoint = sb.codePointAt(0);
+		if (!Character.isAlphabetic(codePoint)) {
+			sb.deleteCharAt(0);
 		}
 
-        return stringBuilder.substring(0, 1).toUpperCase() + stringBuilder.substring(1);
+		codePoint = sb.codePointAt(sb.length() - 1);
+		if (!Character.isAlphabetic(codePoint)) {
+			sb.deleteCharAt(sb.length() - 1);
+		}
+
+        return sb.substring(0, 1).toUpperCase() + sb.substring(1);
     }
 
-	/**
-	 * Erase the existing Markov Chain and retrain it with a new set of names.
-	 *
-	 * @param names A set of names.
-	 */
-	public void setTrainingNames(final @NonNull String[] names) {
-    	if (names.length == 0) {
-    		throw new IllegalArgumentException("The array of training names must have at least one element. It is currently empty.");
-		}
-
-		super.lowercaseAllElements(names);
-
-    	markovChain = new MarkovChain();
-    	markovChain.train(names);
-	}
-
-	private final class Entry {
-		/** The characters.*/
-		private char[] characters;
-		/** The threshold value of each character. */
-		private int[] threshold;
+	private static final class Entry {
+		private final int[] codePoints;
+		private final float[] sums;
 
 		public Entry(final @NonNull Map<Character, Integer> occurrences) {
-			characters = new char[occurrences.size()];
-			threshold = new int[occurrences.size()];
+			codePoints = new int[occurrences.size()];
+			sums = new float[occurrences.size()];
 
-			int counter = 0;
-			for (final Map.Entry<Character, Integer> entry : occurrences.entrySet()) {
-				characters[counter] = entry.getKey();
-				threshold[counter] = entry.getValue() + (counter > 0 ? threshold[counter - 1] : 0);
+			int index = 0;
+			float cumulativeSum = 0;
 
-				counter++;
+			for (final var entry : occurrences.entrySet()) {
+				codePoints[index] = entry.getKey();
+
+				cumulativeSum += entry.getValue();
+				sums[index] = cumulativeSum;
+
+				index++;
 			}
 		}
 
-		public Optional<Character> chooseCharacter() {
-			final int rand = ThreadLocalRandom.current().nextInt(threshold[threshold.length - 1] + 1);
+		public int randomCodePoint() {
+			/*
+			 * This algorithm was inspired by the following StackExchange
+			 * answer:
+			 *
+			 * https://softwareengineering.stackexchange.com/a/150618
+			 */
+			final var randomSum = ThreadLocalRandom.current().nextFloat(sums[sums.length - 1] + 0.01f);
 
-			for (int i = 0 ; i < threshold.length ; i++) {
-				if (threshold[i] >= rand) {
-					return Optional.of(characters[i]);
+			for (int i = 0 ; i < sums.length ; i++) {
+				if (randomSum <= sums[i]) {
+					return codePoints[i];
 				}
 			}
 
-			return Optional.empty();
-		}
-	}
-
-	private final class MarkovChain {
-		private final Map<String, Entry> entries = new HashMap<>();
-
-		/**
-		 * Trains the Markov Chain using a set of strings.
-		 *
-		 * @param strings
-		 *          The training strings.
-		 */
-		public void train(final String[] strings) {
-			final Map<String, Map<Character, Integer>> builders = new HashMap<>();
-
-			for (final String string : strings) {
-				if (string.length() < 2) {
-					return;
-				}
-
-				for (int i = 2 ; i < string.length() ; i++) {
-					final String charGroup = string.substring(i - 2, i);
-					final char subsequentChar = string.charAt(i);
-
-					builders.putIfAbsent(charGroup, new HashMap<>());
-
-					builders.get(charGroup).putIfAbsent(subsequentChar, 0);
-					builders.get(charGroup).put(string.charAt(i), builders.get(charGroup).get(subsequentChar) + 1);
-				}
-			}
-
-			for (final Map.Entry<String, Map<Character, Integer>> entry : builders.entrySet()) {
-				entries.put(entry.getKey(), new Entry(entry.getValue()));
-			}
-		}
-
-		/**
-		 * Chooses a random character to follow a string.
-		 *
-		 * @param string
-		 *          The string.
-		 *
-		 * @return
-		 *          The character.
-		 */
-		public Optional<Character> chooseRandomCharacter(final String string) {
-			if (string == null || string.isEmpty()) {
-				return Optional.empty();
-			}
-
-			if (entries.containsKey(string)) {
-				return entries.get(string).chooseCharacter();
-			} else {
-				return Optional.empty();
-			}
-		}
-
-		/**
-		 * Chooses a random string from the set of valid strings.
-		 *
-		 * @return
-		 *          The string.
-		 */
-		public String chooseRandomString() {
-			final int index = ThreadLocalRandom.current().nextInt(entries.size());
-			return (String) entries.keySet().toArray()[index];
+			return 0;
 		}
 	}
 }
