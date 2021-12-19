@@ -20,7 +20,7 @@ public abstract class NameGenerator {
 	 * @param maxLength A maximum length.
 	 * @throws IllegalArgumentException If {@code maxLength} <= 0.
 	 */
-	protected final void validateMaxLengthValid(final int maxLength) throws IllegalArgumentException {
+	protected final void validateMaxLength(final int maxLength) throws IllegalArgumentException {
     	if (maxLength <= 0) {
     		throw new IllegalArgumentException("The maximum length, which is currently " + maxLength + " must be at least 1.");
 		}

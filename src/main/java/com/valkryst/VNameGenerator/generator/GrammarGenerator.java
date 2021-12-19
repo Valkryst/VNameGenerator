@@ -19,7 +19,7 @@ public final class GrammarGenerator extends NameGenerator{
 
     @Override
     public String generate(final int maxLength) {
-    	super.validateMaxLengthValid(maxLength);
+    	super.validateMaxLength(maxLength);
 
 		final var sb = new StringBuilder();
 		sb.append(contextFreeGrammar.run());

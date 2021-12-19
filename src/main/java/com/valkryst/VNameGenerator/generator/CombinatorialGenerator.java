@@ -46,7 +46,7 @@ public final class CombinatorialGenerator extends NameGenerator {
 
     @Override
     public String generate(int maxLength) {
-		super.validateMaxLengthValid(maxLength);
+		super.validateMaxLength(maxLength);
 		maxLength = super.randomizeMaxLength(maxLength);
 
         final var stringBuilder = new StringBuilder();

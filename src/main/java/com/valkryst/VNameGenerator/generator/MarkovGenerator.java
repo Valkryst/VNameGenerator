@@ -47,7 +47,7 @@ public final class MarkovGenerator extends NameGenerator {
 
     @Override
     public String generate(int maxLength) {
-    	super.validateMaxLengthValid(maxLength);
+    	super.validateMaxLength(maxLength);
 
 		/*
 		 * Even a small Markov Chain is capable of generating long names, but
