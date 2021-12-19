@@ -1,4 +1,4 @@
-/.idea/
-/target/
-/out/
-/VTerminal.iml
+.idea
+target
+out
+VNameGenerator.iml
