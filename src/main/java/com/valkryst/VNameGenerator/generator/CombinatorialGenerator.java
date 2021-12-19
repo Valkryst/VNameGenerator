@@ -69,7 +69,7 @@ public final class CombinatorialGenerator extends NameGenerator {
         	stringBuilder.replace(maxLength - temp.length(), maxLength, temp);
 		}
 
-        return super.capitalize(stringBuilder);
+        return super.capitalize(super.clean(stringBuilder));
     }
 
 	/**

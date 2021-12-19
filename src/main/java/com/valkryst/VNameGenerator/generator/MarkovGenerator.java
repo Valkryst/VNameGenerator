@@ -87,18 +87,7 @@ public final class MarkovGenerator extends NameGenerator {
 			sb.appendCodePoint(entry.randomCodePoint());
         }
 
-		// Prevent names from begin/ending with non-alphabetic characters.
-		int codePoint = sb.codePointAt(0);
-		if (!Character.isAlphabetic(codePoint)) {
-			sb.deleteCharAt(0);
-		}
-
-		codePoint = sb.codePointAt(sb.length() - 1);
-		if (!Character.isAlphabetic(codePoint)) {
-			sb.deleteCharAt(sb.length() - 1);
-		}
-
-        return super.capitalize(sb);
+        return super.capitalize(super.clean(sb));
     }
 
 	private static final class Entry {

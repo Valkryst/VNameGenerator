@@ -24,7 +24,7 @@ public final class GrammarGenerator extends NameGenerator{
 		final var sb = new StringBuilder();
 		sb.append(contextFreeGrammar.run());
 		sb.setLength(Math.min(sb.length(), maxLength));
-		return super.capitalize(sb);
+		return super.capitalize(super.clean(sb));
     }
 
 	/**

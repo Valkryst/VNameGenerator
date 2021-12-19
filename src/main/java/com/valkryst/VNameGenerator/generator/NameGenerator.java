@@ -40,4 +40,34 @@ public abstract class NameGenerator {
 	protected String capitalize(final StringBuilder sb) {
 		return sb.substring(0, 1).toUpperCase(Locale.ROOT) + sb.substring(1);
 	}
+
+	/**
+	 * Cleans the string held by a {@link StringBuilder} by performing the
+	 * following operations:
+	 *
+	 * <ul>
+	 *     <li>
+	 *         Removes non-alphabetic characters from the start of the string.
+	 *     </li>
+	 *     <li>
+	 *         Removes non-alphabetic characters from the end of the string.
+	 *     </li>
+	 * </ul>
+	 *
+	 * @param sb A {@link StringBuilder}.
+	 * @return The cleaned {@link StringBuilder}.
+	 */
+	protected StringBuilder clean(final StringBuilder sb) {
+		int codePoint = sb.codePointAt(0);
+		if (!Character.isAlphabetic(codePoint)) {
+			sb.deleteCharAt(0);
+		}
+
+		codePoint = sb.codePointAt(sb.length() - 1);
+		if (!Character.isAlphabetic(codePoint)) {
+			sb.deleteCharAt(sb.length() - 1);
+		}
+
+		return sb;
+	}
 }
