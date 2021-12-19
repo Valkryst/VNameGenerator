@@ -2,8 +2,6 @@ package com.valkryst.VNameGenerator.generator;
 
 import lombok.NonNull;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public final class ConsonantVowelGenerator extends NameGenerator {
     /** A set of consonants. */
     private String[] consonants;
@@ -27,14 +25,13 @@ public final class ConsonantVowelGenerator extends NameGenerator {
 		maxLength = super.randomizeMaxLength(maxLength);
 
         final var stringBuilder = new StringBuilder();
-        final var threadLocalRandom = ThreadLocalRandom.current();
 
         String temp;
         while (stringBuilder.length() < maxLength) {
             if (maxLength % 2 == 0) {
-				temp = vowels[threadLocalRandom.nextInt(vowels.length)];
+				temp = super.randomArrayElement(vowels);
             } else {
-            	temp = consonants[threadLocalRandom.nextInt(consonants.length)];
+            	temp = super.randomArrayElement(consonants);
             }
 
 			stringBuilder.append(temp);

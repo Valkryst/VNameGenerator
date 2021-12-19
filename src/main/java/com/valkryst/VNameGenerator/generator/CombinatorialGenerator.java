@@ -2,8 +2,6 @@ package com.valkryst.VNameGenerator.generator;
 
 import lombok.NonNull;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public final class CombinatorialGenerator extends NameGenerator {
     /** A set of name beginnings. */
     private String[] beginnings;
@@ -52,19 +50,18 @@ public final class CombinatorialGenerator extends NameGenerator {
 		maxLength = super.randomizeMaxLength(maxLength);
 
         final var stringBuilder = new StringBuilder();
-        final var threadLocalRandom = ThreadLocalRandom.current();
 
-        final var beginning = beginnings[threadLocalRandom.nextInt(beginnings.length)];
+        final var beginning = super.randomArrayElement(beginnings);
 		stringBuilder.append(beginning);
 
         if (middles.length != 0) {
             while (stringBuilder.length() < maxLength) {
-				stringBuilder.append(middles[threadLocalRandom.nextInt(middles.length)]);
+				stringBuilder.append(super.randomArrayElement(middles));
             }
         }
 
         if (maxLength > 1) {
-        	final var temp = endings[threadLocalRandom.nextInt(endings.length)];
+        	final var temp = super.randomArrayElement(endings);
         	stringBuilder.replace(maxLength - temp.length(), maxLength, temp);
 		}
 

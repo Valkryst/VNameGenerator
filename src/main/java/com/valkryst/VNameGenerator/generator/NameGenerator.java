@@ -73,6 +73,20 @@ public abstract class NameGenerator {
 	}
 
 	/**
+	 * Returns a random element from the given array.
+	 *
+	 * @param array An array.
+	 * @return A random element from the given array.
+	 */
+	protected String randomArrayElement(final String[] array) {
+		if (array.length == 0) {
+			throw new ArrayIndexOutOfBoundsException("The array is empty.");
+		}
+
+		return array[ThreadLocalRandom.current().nextInt(array.length)];
+	}
+
+	/**
 	 * Produces a random max length which is guaranteed to be between
 	 * <i>(0.5 * maxLength)</i> and <i>maxLength</i>.
 	 *
