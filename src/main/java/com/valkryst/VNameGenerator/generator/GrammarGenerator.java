@@ -21,9 +21,10 @@ public final class GrammarGenerator extends NameGenerator{
     public String generate(final int maxLength) {
     	super.validateMaxLengthValid(maxLength);
 
-		var result = contextFreeGrammar.run();
-		result = result.substring(0, Math.min(result.length(), maxLength));
-		return result.substring(0, 1).toUpperCase() + result.substring(1);
+		final var sb = new StringBuilder();
+		sb.append(contextFreeGrammar.run());
+		sb.setLength(Math.min(sb.length(), maxLength));
+		return super.capitalize(sb);
     }
 
 	/**

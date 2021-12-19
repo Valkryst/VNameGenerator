@@ -56,8 +56,7 @@ public final class CombinatorialGenerator extends NameGenerator {
         maxLength = threadLocalRandom.nextInt((int) (maxLength * 0.5), maxLength + 1);
 
         final var beginning = beginnings[threadLocalRandom.nextInt(beginnings.length)];
-        stringBuilder.append(beginning.substring(0, 1).toUpperCase());
-        stringBuilder.append(beginning.substring(1));
+		stringBuilder.append(beginning);
 
         if (middles.length != 0) {
             while (stringBuilder.length() < maxLength) {
@@ -70,7 +69,7 @@ public final class CombinatorialGenerator extends NameGenerator {
         	stringBuilder.replace(maxLength - temp.length(), maxLength, temp);
 		}
 
-        return stringBuilder.substring(0, maxLength);
+        return super.capitalize(stringBuilder);
     }
 
 	/**

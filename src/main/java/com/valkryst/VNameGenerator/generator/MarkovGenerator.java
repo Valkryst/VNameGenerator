@@ -98,7 +98,7 @@ public final class MarkovGenerator extends NameGenerator {
 			sb.deleteCharAt(sb.length() - 1);
 		}
 
-        return sb.substring(0, 1).toUpperCase() + sb.substring(1);
+        return super.capitalize(sb);
     }
 
 	private static final class Entry {
