@@ -3,6 +3,7 @@ package com.valkryst.VNameGenerator.generator;
 import lombok.NonNull;
 
 import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class NameGenerator {
     /**
@@ -69,5 +70,19 @@ public abstract class NameGenerator {
 		}
 
 		return sb;
+	}
+
+	/**
+	 * Produces a random max length which is guaranteed to be between
+	 * <i>(0.5 * maxLength)</i> and <i>maxLength</i>.
+	 *
+	 * @param maxLength The initial max length.
+	 * @return The randomized max length.
+	 */
+	protected int randomizeMaxLength(final int maxLength) {
+		return ThreadLocalRandom.current().nextInt(
+			(int) (maxLength * 0.5),
+			maxLength + 1
+		);
 	}
 }

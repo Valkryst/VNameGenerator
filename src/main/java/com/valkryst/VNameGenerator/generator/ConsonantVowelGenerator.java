@@ -24,11 +24,10 @@ public final class ConsonantVowelGenerator extends NameGenerator {
     @Override
     public String generate(int maxLength) {
 		super.validateMaxLengthValid(maxLength);
+		maxLength = super.randomizeMaxLength(maxLength);
 
         final var stringBuilder = new StringBuilder();
         final var threadLocalRandom = ThreadLocalRandom.current();
-
-		maxLength = threadLocalRandom.nextInt((int) (maxLength * 0.5), maxLength + 1);
 
         String temp;
         while (stringBuilder.length() < maxLength) {

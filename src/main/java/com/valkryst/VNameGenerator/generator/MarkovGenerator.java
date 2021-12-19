@@ -70,9 +70,9 @@ public final class MarkovGenerator extends NameGenerator {
 		 * function to produce subjectively good results without needing to
 		 * know much about its internals.
 		 */
-		final var random = ThreadLocalRandom.current();
-		maxLength = random.nextInt((int) (maxLength * 0.5), maxLength + 1);
+		maxLength = super.randomizeMaxLength(maxLength);
 
+		final var random = ThreadLocalRandom.current();
 		final var sb = new StringBuilder();
 		sb.append((String) entries.keySet().toArray()[random.nextInt(entries.size())]);
 
