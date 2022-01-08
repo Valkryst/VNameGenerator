@@ -37,6 +37,6 @@ public final class GrammarGenerator extends NameGenerator{
 			throw new IllegalArgumentException("The list of rules must have at least one rule. It is currently empty.");
 		}
 
-		contextFreeGrammar = new ContextFreeGrammar(rules);
+		contextFreeGrammar = new ContextFreeGrammar(rules.toArray(new String[0]));
 	}
 }
