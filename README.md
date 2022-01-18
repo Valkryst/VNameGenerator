@@ -84,8 +84,6 @@ done to improve the quality of the generated names.
 
 Names are guaranteed to begin with a capital character.
 
-Names are guaranteed never to begin or end with a non-alphabetic character.
-
 ### Combinatorial
 1. A beginning is chosen and added to the name.
 2. While the name is less than the maximum length, middles are chosen and added
