@@ -25,6 +25,4 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build with Maven
-        env:
-          DISPLAY: :1
         run: mvn --batch-mode --update-snapshots -Dmaven.javadoc.skip=true verify --file pom.xml
