@@ -118,7 +118,7 @@ public final class MarkovGenerator extends NameGenerator {
 			 *
 			 * https://softwareengineering.stackexchange.com/a/150618
 			 */
-			final var randomSum = ThreadLocalRandom.current().nextFloat(sums[sums.length - 1] + 0.01f);
+			final var randomSum = ThreadLocalRandom.current().nextDouble(sums[sums.length - 1] + 0.01f);
 
 			for (int i = 0 ; i < sums.length ; i++) {
 				if (randomSum <= sums[i]) {
