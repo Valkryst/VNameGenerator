@@ -217,11 +217,11 @@ public class Example {
         final int maxLength = 10;
         String temp;
         for (int i = 0 ; i < 20 ; i++) {
-        	do {
+			do {
 				temp = generator.generate(10);
 			} while (temp.length() < (maxLength / 2));
-
-            System.out.println(temp);
+			
+			System.out.println(temp);
         }
     }
 }
@@ -259,8 +259,8 @@ result in more unique and varied names.
 
 ```java
 public class Example {
-    public static void main(final String[] args) {
-        final String[] trainingNames = new String[] {
+	public static void main(final String[] args) {
+		final String[] trainingNames = new String[] {
 			"ailios", "ailisl", "aimil", "aingealag", "anabla", "anna",
 			"aoife", "barabal", "baraball", "barabla", "bearnas", "beasag",
 			"beathag", "beileag", "beitidh", "beitiris", "beitris",
@@ -285,12 +285,12 @@ public class Example {
 			"sìneag", "sìonag", "teasag", "teàrlag", "ùna", "una"
 		};
 
-        final MarkovGenerator generator = new MarkovGenerator(trainingNames);
+		final MarkovGenerator generator = new MarkovGenerator(trainingNames);
 
-        for (int i = 0 ; i < 20 ; i++) {
-            System.out.println(generator.generate(10));
-        }
-    }
+		for (int i = 0 ; i < 20 ; i++) {
+			System.out.println(generator.generate(10));
+		}
+	}
 }
 ```
 ```
