@@ -34,7 +34,7 @@ Add VNameGenerator as a dependency.
 
 ```
 dependencies {
-	implementation 'com.github.Valkryst:VNameGenerator:2021.12.19'
+	implementation 'com.github.Valkryst:VNameGenerator:2024.03.25'
 }
 ```
 
@@ -56,7 +56,7 @@ Add VNameGenerator as a dependency.
 <dependency>
     <groupId>com.github.Valkryst</groupId>
     <artifactId>VNameGenerator</artifactId>
-    <version>2021.12.19</version>
+    <version>2024.03.25</version>
 </dependency>
 ```
 
@@ -71,7 +71,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 Add VNameGenerator as a dependency.
 
 ```
-libraryDependencies += "com.github.Valkryst" % "VNameGenerator" % "2021.12.19"
+libraryDependencies += "com.github.Valkryst" % "VNameGenerator" % "2024.03.25"
 ```
 
 ## Algorithms
