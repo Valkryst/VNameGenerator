@@ -1,6 +1,6 @@
 ![Java CI with Maven](https://github.com/Valkryst/VNameGenerator/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 
-As this project's inception, the included algorithms are the only ones my research has turned up. If you know of
+At this project's inception, the included algorithms are the only ones my research has turned up. If you know of
 any other _unique_ algorithms for name generation, then please let me know. I would love to implement them.
 
 ## Table of Contents
